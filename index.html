@@ -27,14 +27,13 @@
             border: 1px solid #444; background: rgba(20, 20, 20, 0.6);
             color: #aaa; text-decoration: none; text-transform: uppercase;
             letter-spacing: 3px; font-size: 0.8rem; transition: 0.3s;
-            cursor: pointer;
         }
         .btn:hover { background: #d1d1d1; color: #000; }
     </style>
 </head>
 <body>
 
-    <!-- THE CINEMATIC - ABSOLUTE PATH DECREE -->
+    <!-- THE CINEMATIC - PURE RESTORATION -->
     <video autoplay muted loop playsinline id="video-bg">
         <source src="![](https://sovereignstudioarchive.github.io/roman-law-registry/assets/trainrun.mp4)" type="video/mp4">
         Your browser does not support the video tag.
@@ -44,18 +43,9 @@
         <h1 style="letter-spacing: 12px; text-transform: uppercase; margin-bottom: 0;">Roman Law</h1>
         <p style="color: #666; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 40px;">REGISTRY OF THE EASTERN DISTRICTS</p>
         
-        <a href="javascript:void(0)" class="btn" onclick="activateSound()">Sign the Law</a>
-        <a href="javascript:void(0)" class="btn" onclick="activateSound()">Access Archive</a>
+        <a href="#" class="btn">Sign the Law</a>
+        <a href="#" class="btn">Access Archive</a>
     </div>
-
-    <script>
-        function activateSound() {
-            const video = document.getElementById('video-bg');
-            video.muted = false;
-            video.volume = 0.8;
-            console.log("Audio Layer Activated.");
-        }
-    </script>
 
 </body>
 </html>
