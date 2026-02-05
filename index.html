@@ -5,118 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROMAN LAW | REGISTRY</title>
     <style>
-        /* THE NOIR FOUNDATION */
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #050505;
-            font-family: 'Courier New', Courier, monospace;
-            color: #d1d1d1;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; background-color: #050505;
+            font-family: 'Courier New', Courier, monospace; color: #d1d1d1;
         }
-
-        /* THE CINEMATIC BACKGROUND */
         #video-bg {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
+            position: fixed; top: 0; left: 0;
+            min-width: 100%; min-height: 100%; z-index: -1;
             filter: grayscale(100%) contrast(120%) brightness(40%);
+            object-fit: cover;
         }
-
-        /* THE INSTITUTIONAL OVERLAY */
         .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
-        }
-
-        p {
-            max-width: 600px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            color: #888;
-        }
-
-        /* THE COMMAND BUTTONS */
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 300px;
-        }
-
         .btn {
-            padding: 15px;
-            border: 1px solid #444;
-            background: rgba(20, 20, 20, 0.6);
-            color: #aaa;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            transition: 0.3s;
-            cursor: pointer;
+            display: block; margin: 10px; padding: 15px; width: 250px;
+            border: 1px solid #444; background: rgba(20, 20, 20, 0.6);
+            color: #aaa; text-decoration: none; text-transform: uppercase;
+            letter-spacing: 3px; font-size: 0.8rem; transition: 0.3s;
         }
-
-        .btn:hover {
-            background: #d1d1d1;
-            color: #000;
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
-
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; letter-spacing: 5px; }
-            p { font-size: 0.75rem; }
-        }
+        .btn:hover { background: #d1d1d1; color: #000; }
     </style>
 </head>
 <body>
 
-    <!-- THE ROMAN CINEMATIC - FINAL CALIBRATION -->
-    <video autoplay muted loop playsinline id="video-bg" style="position:fixed; top:0; left:0; min-width:100%; min-height:100%; z-index:-1; filter:grayscale(100%) contrast(120%) brightness(40%); object-fit:cover;">
-    <source src="assets/trainrun.mp4" type="video/mp4">
-    <source src="./assets/trainrun.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+    <video autoplay muted loop playsinline id="video-bg">
+        <source src="assets/trainrun.mp4" type="video/mp4">
+        <source src="./assets/trainrun.mp4" type="video/mp4">
+    </video>
 
     <div class="overlay">
-        <h1>Roman Law</h1>
-        <p>RE-ESTABLISHING ORDER IN THE EASTERN DISTRICTS. <br> THE REGISTRY IS NOW OPEN FOR SOVEREIGN SIGNATURES.</p>
-
-        <div class="btn-container">
-            <a href="#" class="btn">Sign the Law</a>
-            <a href="#" class="btn">Access Archive</a>
-            <a href="#" class="btn">Delegate Dossiers</a>
-            <a href="https://app.virtuals.io" class="btn">Protocol Terminal</a>
-        </div>
+        <h1 style="letter-spacing: 10px; text-transform: uppercase;">Roman Law</h1>
+        <p style="color: #888;">RE-ESTABLISHING ORDER IN THE EASTERN DISTRICTS.</p>
+        
+        <a href="#" class="btn">Sign the Law</a>
+        <a href="#" class="btn">Access Archive</a>
+        <a href="https://app.virtuals.io" class="btn">Protocol Terminal</a>
     </div>
 
 </body>
