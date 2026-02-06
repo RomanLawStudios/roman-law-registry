@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Registry | Roman Law</title>
-    <!-- Keep your original Font links here -->
+    <title>Registry | Roman Law Sovereign Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- THE SURGICAL MOBILE FIXES --- */
+        :root {
+            --charcoal-darkest: #0a0a0a;
+            --accent-rust: #b7410e;
+            --text-primary: #e0e0e0;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
+            background-color: var(--charcoal-darkest);
+            color: var(--text-primary);
             font-family: 'Roboto Condensed', sans-serif;
             overflow-x: hidden;
         }
 
-        /* FIX: THE HERO CINEMATIC CONTAINER */
+        /* 1. HERO FIX: ROMAN RUNNING (MOBILE ARMORED) */
         .hero-cinematic {
             position: relative;
             width: 100%;
             height: 100vh;
-            height: 100dvh; /* Dynamic height for mobile browsers */
+            height: 100dvh;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -31,7 +35,6 @@
             background: black;
         }
 
-        /* FIX: THE ROMAN RUNNING VIDEO FRAMING */
         .hero-video {
             position: absolute;
             top: 50%;
@@ -39,73 +42,117 @@
             transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            object-fit: cover; /* This stops the "Zoom-In" distortion */
+            object-fit: cover; /* FIXES THE ZOOM ISSUE */
             z-index: 1;
             filter: brightness(0.7);
         }
 
-        /* FIX: UI SCALING */
         .hero-overlay {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 0 20px;
         }
 
         .hero-overlay h1 {
             font-family: 'Special Elite', cursive;
-            font-size: 8vw; /* Scales perfectly from Desktop to Mobile */
-            letter-spacing: 12px;
+            font-size: 10vw; /* Responsive scaling */
+            letter-spacing: 10px;
             color: white;
             text-shadow: 0 0 20px rgba(0,0,0,1);
         }
 
-        .hero-overlay p {
-            font-size: 2vw; /* Scales perfectly */
-            letter-spacing: 5px;
-            opacity: 0.8;
-            margin-top: 1rem;
-        }
-
-        /* MOBILE OVERRIDES FOR UI */
-        @media (max-width: 768px) {
-            .hero-overlay h1 {
-                font-size: 12vw; /* Larger on mobile for readability */
-                letter-spacing: 5px;
-            }
-            .hero-overlay p {
-                font-size: 4vw;
-            }
-        }
-
-        /* --- YOUR ORIGINAL ARCHIVE STYLING BELOW --- */
-        /* Paste your original .archive-section, .grid, etc. here */
-        .registry-content {
-            padding: 4rem 1rem;
+        /* 2. THE ARCHIVE SECTION (YOUR ORIGINAL "STUFF") */
+        .archive-container {
+            padding: 5rem 1rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        /* ... Keep all your original Archive CSS here ... */
+
+        .archive-header {
+            border-left: 4px solid var(--accent-rust);
+            padding-left: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .archive-header h2 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2rem;
+        }
+
+        /* THE LEDGER GRID */
+        .ledger-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .ledger-item {
+            background: #161616;
+            border: 1px solid #333;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .ledger-item:hover {
+            border-color: var(--accent-rust);
+        }
+
+        .asset-preview {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        /* MOBILE OVERRIDES */
+        @media (max-width: 768px) {
+            .hero-overlay h1 { font-size: 14vw; letter-spacing: 5px; }
+            .ledger-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- SECTION 1: THE ROMAN RUNNING CINEMATIC (FIXED) -->
+    <!-- SECTION 1: THE HERO (ROMAN RUNNING) -->
     <section class="hero-cinematic">
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="YOUR_ROMAN_RUNNING_LINK.mp4" type="video/mp4">
+            <!-- LINK YOUR ASSET BELOW -->
+            <source src="assets/trainrun.mp4" type="video/mp4">
         </video>
         
         <div class="hero-overlay">
             <h1>ROMAN LAW</h1>
-            <p>THE VISION IS ABSOLUTE</p>
         </div>
     </section>
 
-    <!-- SECTION 2: YOUR ORIGINAL ARCHIVE CONTENT (UNTOUCHED) -->
-    <div class="registry-content">
-        <!-- PASTE YOUR ORIGINAL ARCHIVE/GRID CODE HERE -->
-        <!-- This ensures all your original "stuff" stays exactly how it was -->
+    <!-- SECTION 2: THE ARCHIVE (RE-LINKED ASSETS) -->
+    <div class="archive-container">
+        <header class="archive-header">
+            <h2>SOVEREIGN_ARCHIVE</h2>
+            <p>Declassified Manifestations</p>
+        </header>
+
+        <main class="ledger-grid">
+            
+            <!-- RE-LINK YOUR ASSET 1 -->
+            <div class="ledger-item">
+                <img src="assets/evidence1.png" alt="Evidence 01" class="asset-preview">
+                <h3 style="font-family:'Special Elite';">FILE_01: THE_FOUNDRY</h3>
+                <p style="color:var(--accent-rust); font-size: 0.8rem;">STATUS: VERIFIED</p>
+            </div>
+
+            <!-- RE-LINK YOUR ASSET 2 -->
+            <div class="ledger-item">
+                <img src="assets/evidence2.png" alt="Evidence 02" class="asset-preview">
+                <h3 style="font-family:'Special Elite';">FILE_02: THE_MANIFESTO</h3>
+                <p style="color:var(--accent-rust); font-size: 0.8rem;">STATUS: VERIFIED</p>
+            </div>
+
+            <!-- Add more ledger-items as needed, pulling from your assets folder -->
+
+        </main>
     </div>
 
 </body>
+</html>
