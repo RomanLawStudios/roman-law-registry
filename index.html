@@ -16,15 +16,15 @@
         }
         .genesis-btn {
             background: none; border: 1px solid #fff; color: #fff; padding: 15px 30px; 
-            cursor: pointer; letter-spacing: 4px; font-family: 'Courier New', monospace; transition: 1s; opacity: 0;
+            cursor: pointer; letter-spacing: 4px; font-family: 'Courier New', monospace; transition: 1.5s; opacity: 0;
         }
 
-        /* 2. THE STILL BACKGROUND (Replacing Video) */
+        /* 2. THE SOVEREIGN STILL */
         #bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: url('assets/imaginationdesk.png') no-repeat center center; /* imaginationdesk.png */
+            background: url('assets/imaginationdesk.png') no-repeat center center;
             background-size: cover;
-            filter: grayscale(0.9) brightness(0.2); /* Keeps it moody and professional */
+            filter: grayscale(0.9) brightness(0.2);
         }
 
         .ui { 
@@ -39,7 +39,6 @@
             margin: 40px auto; width: 100%; max-width: 600px;
             border-bottom: 1px solid #b7410e; padding: 15px;
             display: flex; align-items: center; background: rgba(0,0,0,0.6);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .prompt-input {
             background: none; border: none; color: #b7410e; width: 100%;
@@ -53,14 +52,14 @@
             background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
             z-index: 50; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;
         }
-        .sample-img { width: 85%; max-width: 800px; border: 1px solid #b7410e; filter: grayscale(1); margin-bottom: 25px; box-shadow: 0 0 40px rgba(183, 65, 14, 0.2); }
+        .sample-img { width: 85%; max-width: 800px; border: 1px solid #b7410e; filter: grayscale(1); margin-bottom: 25px; }
 
         #jyw-text { font-family: 'Special Elite', cursive; opacity: 0; transition: 2s; transform: translateY(20px); }
         .glitch-law { color: #b7410e; font-size: 2.2rem; display: block; letter-spacing: 12px; font-weight: bold; animation: law-glow 3s infinite; }
 
         @keyframes law-glow { 0%, 100% { text-shadow: 0 0 15px rgba(183, 65, 14, 0.5); } 50% { text-shadow: 0 0 30px rgba(183, 65, 14, 1); } }
 
-        /* THE TABS */
+        /* TABS */
         .tab-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
         .tab-btn { 
             display: flex; align-items: center; justify-content: space-between;
@@ -77,17 +76,18 @@
 
     <!-- 1. GENESIS -->
     <div id="genesis-overlay">
+        <!-- THE NEW DECREE -->
         <div id="typewriter" style="color: #666; letter-spacing: 5px; margin-bottom: 20px;"></div>
         <button class="genesis-btn" id="awaken-btn" onclick="revealStudio()">[ AWAKEN THE ARCHITECT ]</button>
     </div>
 
-    <!-- 2. THE REVEAL -->
+    <!-- 2. THE ENGINE -->
     <div id="manifest-reveal">
-        <p id="processing-text" style="letter-spacing: 12px; color: #b7410e; animation: pulse 1s infinite;">EXTRACTING FROM THE VOID...</p>
+        <p id="processing-text" style="letter-spacing: 12px; color: #b7410e; animation: pulse 1s infinite;">Adding the finishing touches...</p>
         <img id="sample-output" src="![](https://images.useotto.xyz/images/1770340353209.png)" class="sample-img" style="display:none;">
         
         <div id="jyw-text">
-            <p style="font-size: 0.8rem; letter-spacing: 3px;">"Always love what you do. As passion is everything...</p>
+            <p style="font-size: 0.8rem; letter-spacing: 3px;">"ALWAYS REMEMBER THAT ANYTHING CAN BE CREATED INTO THIS WORLD...</p>
             <p>
                 <span style="font-size: 1rem;">WE ARE THE </span>
                 <span class="glitch-law">LAW</span>
@@ -106,7 +106,7 @@
 
         <div class="prompt-box">
             <span style="color:#444; margin-right:15px;">></span>
-            <input type="text" class="prompt-input" id="user-prompt" placeholder="ENTER A VISION TO MANIFEST..." onkeydown="if(event.key==='Enter') manifest()">
+            <input type="text" class="prompt-input" id="user-prompt" placeholder="Enter An idea to be brought to life..." onkeydown="if(event.key==='Enter') manifest()">
         </div>
 
         <div class="tab-container">
@@ -116,12 +116,13 @@
     </div>
 
     <script>
-        const text = "BUILDING WORLD THROUGH ARTIST CREATIVITY...";
+        // THE UPDATED TYPEWRITER TEXT
+        const text = "BUILDING THE WORLD THROUGH YOUR EYES...";
         let i = 0;
         function type() {
             if (i < text.length) {
                 document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++; setTimeout(type, 80);
+                i++; setTimeout(type, 90);
             } else { document.getElementById("awaken-btn").style.opacity = "1"; }
         }
 
