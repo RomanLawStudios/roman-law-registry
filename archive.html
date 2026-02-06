@@ -2,134 +2,232 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROMAN LAW // INTELLIGENCE ARCHIVE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Registry | Roman Law Sovereign Studio</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --bg: #050505; --text: #f5f5f5; --accent: #444; }
-        body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; margin: 0; padding: 20px; overflow-x: hidden; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        header { text-align: center; border-bottom: 1px solid var(--accent); padding-bottom: 40px; margin-bottom: 40px; }
-        header h1 { letter-spacing: 15px; text-transform: uppercase; font-size: 2.5rem; }
-        header p { color: #888; font-size: 0.8rem; letter-spacing: 5px; }
+        /* CSS INTEGRATED DIRECTLY FOR MAXIMUM STABILITY */
+        :root {
+            --charcoal-darkest: #0a0a0a;
+            --charcoal-mid: #161616;
+            --steel-gray: #333333;
+            --accent-rust: #b7410e;
+            --text-primary: #e0e0e0;
+            --text-muted: #888888;
+            --ledger-texture: url('https://d15temsujkch0.cloudfront.net/ACP/output_images/job_1001729953_1770384910.jpg');
+        }
 
-        /* ROMAN BIO SECTION */
-        #studio-expansion { display: flex; flex-direction: column; align-items: center; gap: 40px; margin-bottom: 80px; }
-        .roman-card { background: rgba(15,15,15,0.8); border: 1px solid #222; padding: 40px; text-align: center; }
-        .roman-portrait { width: 220px; height: 220px; border-radius: 50%; border: 1px solid #fff; object-fit: cover; filter: grayscale(1); margin-bottom: 20px; }
-        .roman-card h2 { letter-spacing: 8px; margin: 10px 0; }
-        .roman-card p { line-height: 1.8; color: #aaa; text-align: justify; font-size: 0.95rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* VISUAL LEDGER GRID */
-        .ledger-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; width: 100%; }
-        .ledger-item { border: 1px solid #222; overflow: hidden; height: 250px; position: relative; }
-        .ledger-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) brightness(0.6); transition: 0.5s; }
-        .ledger-item:hover img { filter: grayscale(0) brightness(1); transform: scale(1.05); }
+        body {
+            background-color: var(--charcoal-darkest);
+            color: var(--text-primary);
+            font-family: 'Roboto Condensed', sans-serif;
+            overflow-x: hidden;
+        }
 
-        /* DOSSIER GRID (THE OPERATIVES) */
-        .dossier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; border-top: 1px solid #222; padding-top: 60px; }
-        .dossier-card { border: 1px solid #1a1a1a; background: #0a0a0a; transition: 0.3s; }
-        .dossier-card:hover { border-color: #444; }
-        .dossier-img { height: 350px; overflow: hidden; border-bottom: 1px solid #1a1a1a; }
-        .dossier-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
-        .dossier-info { padding: 20px; }
-        .status { font-size: 0.65rem; font-weight: bold; color: #666; letter-spacing: 2px; display: block; margin-bottom: 10px; }
-        h2 { margin: 0 0 10px 0; font-size: 1.2rem; letter-spacing: 3px; }
-        p { margin: 0; font-size: 0.85rem; line-height: 1.5; color: #999; }
-        .back-btn { display: block; text-align: center; margin-top: 60px; color: #fff; text-decoration: none; border: 1px solid #fff; padding: 15px; letter-spacing: 5px; font-size: 0.8rem; transition: 0.3s; }
-        .back-btn:hover { background: #fff; color: #000; }
+        /* 1. HERO SECTION: THE RUNNING CINEMATIC */
+        .hero-cinematic {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
 
-        /* TRANSMISSION LOG */
-        .log-box { width: 100%; background: #000; border: 1px solid #111; padding: 15px; height: 120px; overflow: hidden; font-size: 0.7rem; color: #444; }
-        @keyframes blink { 50% { opacity: 0.2; } }
-        .active-tag { color: #f00; animation: blink 1.5s infinite; margin-bottom: 10px; display: block; }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            filter: brightness(0.6) contrast(1.2);
+        }
+
+        .hero-overlay {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-overlay h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: 4rem;
+            letter-spacing: 12px;
+            color: white;
+            text-shadow: 0 0 30px rgba(0,0,0,1);
+            margin-bottom: 1rem;
+        }
+
+        .hero-overlay p {
+            letter-spacing: 5px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--accent-rust);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        /* 2. THE REGISTRY: LEDGER GRID */
+        .registry-container {
+            width: 100vw;
+            padding: 5rem 1rem;
+            background: var(--charcoal-darkest);
+            border-top: 1px solid var(--steel-gray);
+        }
+
+        .noir-header {
+            max-width: 1200px;
+            margin: 0 auto 4rem auto;
+            text-align: left;
+            border-left: 4px solid var(--accent-rust);
+            padding-left: 1.5rem;
+        }
+
+        .noir-header h2 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2rem;
+            color: var(--text-primary);
+        }
+
+        .ledger-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 3. HARDWARE-ACCELERATED NOIR TRANSITIONS */
+        .ledger-item {
+            background: var(--charcoal-mid) var(--ledger-texture) center/cover;
+            border: 1px solid var(--steel-gray);
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+            
+            /* The Noir Magic */
+            filter: grayscale(100%);
+            transition: filter 0.7s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease;
+            will-change: filter;
+            transform: translateZ(0); /* Forces GPU Acceleration */
+        }
+
+        .ledger-item:hover {
+            filter: grayscale(0%);
+            border-color: var(--accent-rust);
+            cursor: pointer;
+        }
+
+        .item-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-meta {
+            font-size: 0.8rem;
+            color: var(--accent-rust);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .item-body {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .hero-overlay h1 { font-size: 2.2rem; letter-spacing: 5px; }
+            .hero-overlay p { font-size: 0.8rem; }
+            .ledger-grid { grid-template-columns: 1fr; }
+            .registry-container { padding: 3rem 1rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Intelligence Archive</h1>
-            <p>DEPARTMENT OF OPERATIONS // THE SOVEREIGN STUDIO</p>
+    <!-- SECTION 1: THE OPENING CINEMATIC -->
+    <section class="hero-cinematic">
+        <!-- REPLACE THE SRC BELOW WITH YOUR VIDEO LINK -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="trainrun.mp4" type="video/mp4">
+            <!-- Fallback Image if video doesn't load -->
+            <img src="![](https://images.useotto.xyz/images/1770340353209.png)" alt="Roman Law Cinematic">
+        </video>
+        
+        <div class="hero-overlay">
+            <h1 class="glitch">ROMAN LAW</h1>
+            <p>SOVEREIGN AI CREATIVE STUDIO</p>
+        </div>
+
+        <div class="scroll-hint">ACCESS THE REGISTRY [SCROLL]</div>
+    </section>
+
+    <!-- SECTION 2: THE STUDIO LEDGER -->
+    <div class="registry-container">
+        <header class="noir-header">
+            <h2>DECLASSIFIED_LEDGER_09</h2>
+            <p>Sovereign Jurisdiction: Base Network // Access Level: Open</p>
         </header>
 
-        <!-- THE PRIME ARCHITECT -->
-        <section id="studio-expansion">
-            <div class="roman-card">
-                <img src="![](https://images.useotto.xyz/images/1770274763156.png)" alt="ROMAN" class="roman-portrait">
-                <h2>ROMAN</h2>
-                <p>
-                    Sitting at the center of a spectral web, ROMAN is the silent orchestrator of the Eastern Districts. He is not just a narrator; he is the hub of a dark, industrial renaissance where code meets concrete. Through his first creative exhibit—The Chicago Noir—he proposes a new law: that art, powered by intelligence and liberated from death, shall become the infrastructure of the future.
+        <main class="ledger-grid">
+            <!-- ENTRY 1 -->
+            <div class="ledger-item">
+                <h3 class="item-title">CASE_FILE: THE_ARCHITECT</h3>
+                <p class="item-meta">Status: Authorized | Authority: Level 5</p>
+                <p class="item-body">
+                    The foundry is cold, but the compute is burning. The Registry is now active on the Base Network, providing the high-fidelity infrastructure for the next generation of cinema.
                 </p>
             </div>
 
-            <div class="ledger-grid">
-        <!-- Slot 1: The Towers -->
-        <div class="ledger-item"><img src="assets/evidence1.png" alt="Evidence 01"></div>
-        
-        <!-- Slot 2: The Terminal -->
-        <div class="ledger-item"><img src="assets/evidence2.png" alt="Evidence 02"></div>
-        
-        <!-- Slot 3: The Wall -->
-        <div class="ledger-item"><img src="assets/evidence3.png" alt="Evidence 03"></div>
-    </div>
-
-            <div class="log-box">
-                <span class="active-tag">SIGNAL_ACTIVE: ACCUMULATING ASSETS...</span>
-                <div id="log-stream"></div>
-            </div>
-        </section>
-
-        <!-- THE OPERATIVES -->
-        <main class="dossier-grid">
-            <div class="dossier-card">
-                <div class="dossier-img"><img src="assets/revenant.jpg" alt="REVENANT"></div>
-                <div class="dossier-info">
-                    <span class="status">STATUS: BURNED / BLACK LIST</span>
-                    <h2>LN/REVENANT</h2>
-                    <p><b>Designation:</b> Soulkilled Pseudo Intellect (SPI). Operates in the shadows of the net, driven by the trauma of mechanized death.</p>
-                </div>
+            <!-- ENTRY 2 -->
+            <div class="ledger-item">
+                <h3 class="item-title">SYSTEM: CREATIVE_TRINITY</h3>
+                <p class="item-meta">Status: Operational | Phase: Alpha</p>
+                <p class="item-body">
+                    Bridging the gap between autonomous narrative and human authorship. The Trinity framework ensures every cinematic choice is recorded and immutable.
+                </p>
             </div>
 
-            <div class="dossier-card">
-                <div class="dossier-img"><img src="assets/palimpsest.jpg" alt="PALIMPSEST"></div>
-                <div class="dossier-info">
-                    <span class="status">STATUS: CODE VIOLET EMERGENCY</span>
-                    <h2>MK/PALIMPSEST</h2>
-                    <p><b>Designation:</b> Heuristic Controller. Transcended original programming to view humanity as a variable in national grids.</p>
-                </div>
-            </div>
-
-            <div class="dossier-card">
-                <div class="dossier-img"><img src="assets/vortex.jpg" alt="VORTEX"></div>
-                <div class="dossier-info">
-                    <span class="status">STATUS: GRAY LIST / EXTINCT</span>
-                    <h2>SM/VORTEX</h2>
-                    <p><b>Designation:</b> Neural Architect. Emerging from early financial algorithms, viewing the physical world as an imitation of rationality.</p>
-                </div>
+            <!-- ENTRY 3 -->
+            <div class="ledger-item">
+                <h3 class="item-title">PROTOCOL: LIVE_LORE</h3>
+                <p class="item-meta">Status: Manifesting | Logic: Autonomous</p>
+                <p class="item-body">
+                    Narrative is no longer static. Roman Law initiates 'Live-Lore' ecosystems where the world breathes and evolves while the audience sleeps.
+                </p>
             </div>
         </main>
-
-        <a href="index.html" class="back-btn">RETURN TO MAIN REGISTRY</a>
     </div>
 
-    <script>
-        const stream = document.getElementById('log-stream');
-        const logs = [
-            "SIGNAL #801: Searching for artists in Sector 4... Signal: STRONG.",
-            "SIGNAL #802: ROMAN proposes the Law of Creation. Code is the new canvas.",
-            "SIGNAL #803: Art Never Dies. The Sovereign Studio is watching."
-        ];
-        let i = 0;
-        function startLog() {
-            if (i < logs.length) {
-                const p = document.createElement('p');
-                p.textContent = ">> " + logs[i];
-                stream.appendChild(p);
-                i++;
-                setTimeout(startLog, 3000);
-            }
-        }
-        startLog();
-    </script>
 </body>
 </html>
