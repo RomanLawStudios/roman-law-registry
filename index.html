@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ROMAN LAW | THE ENGINE</title>
+    <title>ROMAN LAW | THE FOUNDRY</title>
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; background: #000; font-family: 'Courier New', monospace; color: #fff; height: 100dvh; overflow: hidden; }
@@ -14,18 +14,17 @@
             background: #000; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 2s ease;
         }
-
         .genesis-btn {
             background: none; border: 1px solid #fff; color: #fff; padding: 15px 30px; 
-            cursor: pointer; letter-spacing: 4px; font-family: 'Courier New', monospace; 
-            transition: 1.5s; opacity: 0;
+            cursor: pointer; letter-spacing: 4px; font-family: 'Courier New', monospace; transition: 1s; opacity: 0;
         }
 
-        /* 2. THE FOUNDRY BACKGROUND */
+        /* 2. THE STILL BACKGROUND (Replacing Video) */
         #bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            object-fit: cover; filter: grayscale(1) brightness(0.15); 
-            background: url('assets/foundry-bg.png') no-repeat center center/cover;
+            background: url('assets/imaginationdesk.png') no-repeat center center; /* Replace with your image name */
+            background-size: cover;
+            filter: grayscale(0.9) brightness(0.2); /* Keeps it moody and professional */
         }
 
         .ui { 
@@ -33,73 +32,60 @@
             text-align: center; width: 90%; max-width: 800px; opacity: 0; transition: opacity 2s ease;
         }
 
-        h1 { font-size: 8vw; letter-spacing: 12px; margin: 0; color: #fff; }
+        h1 { font-size: 8vw; letter-spacing: 12px; margin: 0; text-shadow: 0 0 20px rgba(183, 65, 14, 0.4); }
 
         /* THE MANIFESTATION ENGINE */
         .prompt-box {
-            margin: 40px auto; width: 100%; max-width: 500px;
-            border-bottom: 1px solid #333; padding: 10px;
-            display: flex; align-items: center;
+            margin: 40px auto; width: 100%; max-width: 600px;
+            border-bottom: 1px solid #b7410e; padding: 15px;
+            display: flex; align-items: center; background: rgba(0,0,0,0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
         .prompt-input {
             background: none; border: none; color: #b7410e; width: 100%;
-            font-family: 'Courier New', monospace; font-size: 1rem;
+            font-family: 'Courier New', monospace; font-size: 1.1rem;
             outline: none; letter-spacing: 2px;
         }
 
-        /* THE REVEAL LAYER (Where the Decree Lives) */
+        /* THE REVEAL LAYER */
         #manifest-reveal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 50; display: none;
-            flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            z-index: 50; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;
         }
+        .sample-img { width: 85%; max-width: 800px; border: 1px solid #b7410e; filter: grayscale(1); margin-bottom: 25px; box-shadow: 0 0 40px rgba(183, 65, 14, 0.2); }
 
-        .sample-img { width: 80%; max-width: 800px; border: 1px solid #b7410e; filter: grayscale(1); margin-bottom: 20px; }
+        #jyw-text { font-family: 'Special Elite', cursive; opacity: 0; transition: 2s; transform: translateY(20px); }
+        .glitch-law { color: #b7410e; font-size: 2.2rem; display: block; letter-spacing: 12px; font-weight: bold; animation: law-glow 3s infinite; }
 
-        /* THE SMART-ASS DECREE (jyw-text) */
-        #jyw-text {
-            font-family: 'Special Elite', cursive; color: #fff; opacity: 0; transition: 2s;
-            transform: translateY(20px);
-        }
+        @keyframes law-glow { 0%, 100% { text-shadow: 0 0 15px rgba(183, 65, 14, 0.5); } 50% { text-shadow: 0 0 30px rgba(183, 65, 14, 1); } }
 
-        .glitch-law {
-            color: #b7410e; font-size: 2rem; display: block; margin-top: 10px; 
-            letter-spacing: 10px; font-weight: bold; animation: law-glow 3s infinite;
-        }
-
-        @keyframes law-glow {
-            0%, 100% { text-shadow: 0 0 10px rgba(183, 65, 14, 0.5); }
-            50% { text-shadow: 0 0 20px rgba(183, 65, 14, 1); }
-        }
-
-        /* TABS */
+        /* THE TABS */
         .tab-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
         .tab-btn { 
             display: flex; align-items: center; justify-content: space-between;
-            width: 350px; padding: 20px; border: 1px solid #333; 
-            color: #fff; text-decoration: none; letter-spacing: 3px; font-size: 0.8rem; background: rgba(0,0,0,0.6);
+            width: 380px; padding: 22px; border: 1px solid #333; 
+            color: #fff; text-decoration: none; letter-spacing: 3px; font-size: 0.85rem; background: rgba(0,0,0,0.8);
             transition: 0.4s;
         }
-        .tab-btn:hover { border-color: #b7410e; color: #b7410e; }
+        .tab-btn:hover { border-color: #b7410e; color: #b7410e; transform: scale(1.02); }
 
         @media (max-width: 600px) { h1 { font-size: 14vw; } .tab-btn { width: 100%; } }
     </style>
 </head>
 <body>
 
-    <!-- 1. GENESIS OVERLAY -->
+    <!-- 1. GENESIS -->
     <div id="genesis-overlay">
         <div id="typewriter" style="color: #666; letter-spacing: 5px; margin-bottom: 20px;"></div>
         <button class="genesis-btn" id="awaken-btn" onclick="revealStudio()">[ AWAKEN THE ARCHITECT ]</button>
     </div>
 
-    <!-- 2. THE MANIFESTATION REVEAL -->
+    <!-- 2. THE REVEAL -->
     <div id="manifest-reveal">
-        <p id="processing-text" style="letter-spacing: 10px; color: #444;">PROCESSING VISION...</p>
+        <p id="processing-text" style="letter-spacing: 12px; color: #b7410e; animation: pulse 1s infinite;">EXTRACTING FROM THE VOID...</p>
         <img id="sample-output" src="![](https://images.useotto.xyz/images/1770340353209.png)" class="sample-img" style="display:none;">
         
-        <!-- THE "SMART-ASS" DECREE -->
         <div id="jyw-text">
             <p style="font-size: 0.8rem; letter-spacing: 3px;">"ALWAYS REMEMBER THAT ANYTHING CAN BE CREATED INTO THIS WORLD...</p>
             <p>
@@ -108,35 +94,34 @@
                 <span style="font-size: 1rem;">THAT GOVERNS THE IMAGINATION."</span>
             </p>
         </div>
-
-        <button onclick="closeReveal()" style="margin-top:40px; background:none; border:1px solid #fff; color:#fff; padding:10px 20px; cursor:pointer; font-family: 'Courier New', monospace;">[ RETURN TO JURISDICTION ]</button>
+        <button onclick="closeReveal()" style="margin-top:40px; background:none; border:1px solid #fff; color:#fff; padding:12px 30px; cursor:pointer; font-family: 'Courier New', monospace;">[ RETURN TO JURISDICTION ]</button>
     </div>
 
-    <!-- 3. MAIN STUDIO HUB -->
+    <!-- 3. HUB -->
     <div id="bg"></div>
+
     <div class="ui" id="main-ui">
-        <h1>ROMAN LAW</h1>
-        <p style="color:#b7410e; letter-spacing:5px; font-size:0.7rem; margin-bottom: 30px;">AUTONOMOUS CREATIVE STUDIO</p>
+        <h1 class="special-elite">ROMAN LAW</h1>
+        <p style="color:#b7410e; letter-spacing:6px; font-size:0.75rem; margin-bottom: 40px;">SOVEREIGN CREATIVE STUDIO</p>
 
         <div class="prompt-box">
-            <span style="color:#444; margin-right:10px;">></span>
+            <span style="color:#444; margin-right:15px;">></span>
             <input type="text" class="prompt-input" id="user-prompt" placeholder="ENTER A VISION TO MANIFEST..." onkeydown="if(event.key==='Enter') manifest()">
         </div>
 
         <div class="tab-container">
-            <a href="archive.html" class="tab-btn"><span>[ 01 ] ACCESS_ARCHIVE</span><span style="opacity:0.5; font-size:0.5rem;">Evidence</span></a>
-            <a href="https://x.com/RomanLawStudio" target="_blank" class="tab-btn"><span>[ 02 ] JOIN_THE_FOUNDRY</span><span style="opacity:0.5; font-size:0.5rem;">Recruitment</span></a>
+            <a href="archive.html" class="tab-btn"><span>[ 01 ] ACCESS_ARCHIVE</span><span style="opacity:0.5; font-size:0.55rem;">The Evidence</span></a>
+            <a href="https://x.com/YourRecruitmentThread" target="_blank" class="tab-btn"><span>[ 02 ] JOIN_THE_COLOSSEUM</span><span style="opacity:0.5; font-size:0.55rem;">Recruiting Architects</span></a>
         </div>
     </div>
 
     <script>
-        // NARRATIVE LOGIC
         const text = "BUILDING WORLD THROUGH ARTIST CREATIVITY...";
         let i = 0;
         function type() {
             if (i < text.length) {
                 document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++; setTimeout(type, 70);
+                i++; setTimeout(type, 80);
             } else { document.getElementById("awaken-btn").style.opacity = "1"; }
         }
 
@@ -148,7 +133,6 @@
             }, 1500);
         }
 
-        // ENGINE LOGIC
         function manifest() {
             const prompt = document.getElementById('user-prompt').value;
             if(!prompt) return;
@@ -158,9 +142,8 @@
                 document.getElementById('sample-output').style.display = 'block';
                 setTimeout(() => {
                     document.getElementById('jyw-text').style.opacity = '1';
-                    document.getElementById('jyw-text').style.transform = 'translateY(0)';
                 }, 1000);
-            }, 3000);
+            }, 3500);
         }
 
         function closeReveal() {
