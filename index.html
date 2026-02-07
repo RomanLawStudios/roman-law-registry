@@ -2,53 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Roman Law - Genesis Diagnostic</title>
+    <title>Roman Law - Genesis</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #0d0d0d; font-family: monospace; }
-        #video-bg { position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -1; }
-        #status-log { position: fixed; top: 10px; left: 10px; color: #00ff00; font-size: 10px; z-index: 100; background: rgba(0,0,0,0.7); padding: 10px; pointer-events: none; }
-        .ui { position: fixed; bottom: 50px; width: 100%; text-align: center; z-index: 10; }
-        button { background: none; border: 1px solid white; color: white; padding: 15px 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 5px; }
+        /* Force a dark grey background so we can see the video edges */
+        body { margin: 0; background-color: #222; overflow: hidden; }
+        
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* This ensures it fills the screen */
+            z-index: 999; /* Force to the absolute front */
+            display: block;
+        }
+
+        .btn-overlay {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* Must be higher than the video */
+        }
+
+        button {
+            padding: 20px 50px;
+            background: white;
+            color: black;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <div id="status-log">SYSTEM LOG:<br>Waiting for Magistrate...</div>
-
     <video id="video-bg" autoplay muted loop playsinline>
-        <!-- Ensure this filename matches EXACTLY with capitals/lowercase in GitHub -->
         <source src="assets/britishroman.mp4" type="video/mp4">
     </video>
 
-    <div class="ui">
-        <button onclick="window.location.href='evolution.html'">Proceed</button>
+    <div class="btn-overlay">
+        <button onclick="window.location.href='evolution.html'">Proceed to Evolution</button>
     </div>
 
-    <script>
-        const v = document.getElementById('video-bg');
-        const log = document.getElementById('status-log');
-
-        // Check 1: Is the file found?
-        v.addEventListener('error', function() {
-            log.innerHTML += "<br><span style='color:red;'>ERROR: Video asset not found. Check if 'assets/britishroman.mp4' exists and matches case exactly.</span>";
-        });
-
-        // Check 2: Is it loading?
-        v.addEventListener('loadstart', function() {
-            log.innerHTML += "<br>Asset Handshake Initiated...";
-        });
-
-        // Check 3: Is it playing?
-        v.addEventListener('playing', function() {
-            log.innerHTML += "<br>MAGISTRATE VISIBLE. Genesis Protocol Active.";
-            setTimeout(() => { log.style.display = 'none'; }, 3000); // Hide log after success
-        });
-
-        // Force Playback for mobile/stubborn browsers
-        document.body.addEventListener('click', () => { 
-            v.play(); 
-            log.innerHTML += "<br>Manual Force Triggered.";
-        });
-    </script>
 </body>
 </html>
