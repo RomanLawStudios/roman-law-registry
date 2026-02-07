@@ -2,129 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ROMAN LAW | THE MAGISTRATE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROMAN LAW | THE FOUNDRY</title>
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; background: #000; font-family: 'Courier New', monospace; color: #fff; height: 100dvh; overflow: hidden; }
 
-        /* 1. GENESIS OVERLAY - Ensure it sits ON TOP at first */
-        #genesis-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 2000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 2s ease, visibility 2s;
-        }
-        
-        /* FALLBACK ROSE DESIGN */
-        #rose-container {
-            width: 220px; height: 220px; margin-bottom: 20px;
-            opacity: 0; transition: opacity 4s ease;
-            filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.8));
-            animation: breathe 5s infinite ease-in-out;
-            display: flex; justify-content: center; align-items: center;
-        }
-        #rose-container img { width: 100%; height: auto; }
-
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.5)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 45px rgba(255, 0, 0, 1)); }
-        }
-        
-        #typewriter { color: #666; letter-spacing: 5px; font-size: 0.85rem; margin-bottom: 50px; text-align: center; height: 1rem; }
-
-        .genesis-btn {
-            background: none; border: 1px solid #fff; color: #fff; padding: 18px 40px; 
-            cursor: pointer; letter-spacing: 6px; font-family: 'Courier New', monospace; 
-            transition: 1.5s; opacity: 0; visibility: hidden; z-index: 2100;
-        }
-        .genesis-btn:hover { background: #fff; color: #000; }
-
-        /* 2. THE MAGISTRATE'S VIDEO - The Absolute Background */
+        /* THE VELOCITY BACKGROUND (Landing Page) */
         #bg-video { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            object-fit: cover; filter: grayscale(0.4) brightness(0.4); 
+            object-fit: cover; filter: grayscale(1) brightness(0.3); 
         }
 
-        /* 3. THE HUB UI - The Interactive Layer */
+        /* HUB UI */
         .ui { 
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            text-align: center; width: 90%; max-width: 800px; 
-            opacity: 0; transition: opacity 2s ease; z-index: 100;
+            text-align: center; width: 90%; max-width: 800px; z-index: 10;
         }
 
-        h1 { font-size: 7vw; letter-spacing: 15px; margin: 0; font-family: 'Special Elite', cursive; color: #fff; }
+        h1 { font-size: 8vw; letter-spacing: 15px; margin: 0; font-family: 'Special Elite', cursive; color: #fff; }
+        p.subtitle { color: #b7410e; letter-spacing: 6px; font-size: 0.8rem; margin-bottom: 50px; text-transform: uppercase; }
 
-        .tab-container { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 40px; }
+        /* TABS */
+        .tab-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
         .tab-btn { 
             display: flex; align-items: center; justify-content: space-between; 
-            width: 350px; padding: 20px; border: 1px solid #333; color: #fff; 
-            text-decoration: none; letter-spacing: 3px; font-size: 0.8rem; background: rgba(0,0,0,0.8); transition: 0.4s; 
+            width: 380px; padding: 22px; border: 1px solid #333; color: #fff; 
+            text-decoration: none; letter-spacing: 3px; font-size: 0.85rem; background: rgba(0,0,0,0.8); transition: 0.4s; 
         }
-        .tab-btn:hover { border-color: #b7410e; color: #b7410e; }
+        .tab-btn:hover { border-color: #b7410e; color: #b7410e; transform: scale(1.02); }
 
-        @media (max-width: 600px) { h1 { font-size: 12vw; } .tab-btn { width: 100%; } #rose-container { width: 150px; } }
+        @media (max-width: 600px) { h1 { font-size: 14vw; } .tab-btn { width: 100%; } }
     </style>
 </head>
 <body>
 
-    <!-- 1. GENESIS OVERLAY -->
-    <div id="genesis-overlay">
-        <div id="rose-container">
-            <!-- Ensure assets/rose.png exists, or it will be a glowing void -->
-            <img src="assets/rose.png" onerror="this.src='https://images.useotto.xyz/images/1770420447751.png'; this.style.borderRadius='50%';" alt="Rose">
-        </div>
-        <div id="typewriter"></div>
-        <button class="genesis-btn" id="awaken-btn" onclick="revealStudio()">[ AWAKEN THE MAGISTRATE ]</button>
-    </div>
-
-    <!-- 2. THE MAGISTRATE'S VIDEO (ACTUAL ROMAN) -->
+    <!-- THE ORIGINAL ROMAN RUNNING -->
     <video autoplay muted loop playsinline id="bg-video">
-        <source src="![](https://images.ottowallet.xyz/videos/1769497773692.mp4)" type="video/mp4">
+        <source src="assets/trainrun.mp4" type="video/mp4">
     </video>
 
-    <!-- 3. HUB UI -->
-    <div class="ui" id="main-ui">
+    <!-- HUB UI -->
+    <div class="ui">
         <h1>ROMAN LAW</h1>
-        <p style="color:#b7410e; letter-spacing:6px; font-size:0.7rem; margin-bottom: 30px;">SOVEREIGN CREATIVE STUDIO</p>
+        <p class="subtitle">Sovereign Creative Studio</p>
         
         <div class="tab-container">
-            <!-- ARCHIVE FIX: Relative path ensures it works in your folder structure -->
-            <a href="archive.html" class="tab-btn"><span>[ 01 ] ACCESS_ARCHIVE</span><span style="opacity:0.5; font-size:0.5rem;">Evidence</span></a>
-            <a href="https://x.com/DeadChicag0" target="_blank" class="tab-btn"><span>[ 02 ] JOIN_THE_COLOSSEUM</span><span style="opacity:0.5; font-size:0.5rem;">Recruitment</span></a>
+            <a href="archive.html" class="tab-btn"><span>[ 01 ] ACCESS_ARCHIVE</span><span style="opacity:0.5; font-size:0.55rem;">The Evidence</span></a>
+            <a href="https://x.com/DeadChicag0" target="_blank" class="tab-btn"><span>[ 02 ] JOIN_THE_COLOSSEUM</span><span style="opacity:0.5; font-size:0.55rem;">Live Lore</span></a>
         </div>
     </div>
 
-    <script>
-        const text = "BUILDING THE WORLD THROUGH YOUR EYES...";
-        let i = 0;
-        
-        function type() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++; setTimeout(type, 100);
-            } else { 
-                document.getElementById("rose-container").style.opacity = "1";
-                const btn = document.getElementById("awaken-btn");
-                setTimeout(() => {
-                    btn.style.visibility = "visible";
-                    btn.style.opacity = "1";
-                }, 1500);
-            }
-        }
-
-        function revealStudio() {
-            const overlay = document.getElementById('genesis-overlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.visibility = 'hidden';
-                document.getElementById('main-ui').style.opacity = '1';
-                // Trigger video play if browser blocked it
-                document.getElementById('bg-video').play();
-            }, 2000);
-        }
-
-        window.onload = type;
-    </script>
 </body>
 </html>
