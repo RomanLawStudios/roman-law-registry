@@ -4,61 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROMAN LAW | THE REGISTRY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #000; font-family: 'Courier New', monospace; color: #fff; padding: 60px 20px; text-align: left; }
-        .container { max-width: 900px; margin: 0 auto; }
-        h2 { letter-spacing: 12px; font-size: 1.5rem; color: #b7410e; margin-bottom: 50px; border-left: 3px solid #b7410e; padding-left: 20px; }
-        
-        .entry { margin-bottom: 40px; border-bottom: 1px solid #111; padding-bottom: 20px; transition: 0.3s; }
-        .entry:hover { border-color: #b7410e; }
-        .label { color: #444; font-size: 0.6rem; letter-spacing: 3px; display: block; margin-bottom: 5px; }
-        .title { font-size: 1.1rem; letter-spacing: 4px; margin-bottom: 10px; display: block; }
-        .desc { color: #888; font-size: 0.8rem; line-height: 1.6; }
-        .status { color: #b7410e; font-size: 0.6rem; letter-spacing: 2px; margin-top: 10px; display: block; }
+        body { margin: 0; background: #050505; font-family: 'Courier New', monospace; color: #fff; padding: 40px 20px; }
+        .dossier { max-width: 800px; margin: 0 auto; border: 1px solid #1a1a1a; background: #000; padding: 40px; box-shadow: 0 0 50px rgba(0,0,0,1); }
 
-        .back-btn { margin-top: 60px; display: inline-block; color: #444; text-decoration: none; font-size: 0.7rem; letter-spacing: 4px; border: 1px solid #222; padding: 10px 20px; transition: 0.3s; }
-        .back-btn:hover { color: #fff; border-color: #fff; }
+        /* THE MAGISTRATE'S SEAL */
+        .magistrate-header { display: flex; align-items: center; gap: 30px; border-bottom: 2px solid #b7410e; padding-bottom: 30px; margin-bottom: 50px; }
+        .magistrate-img { width: 120px; height: 120px; border-radius: 50%; border: 2px solid #b7410e; object-fit: cover; filter: grayscale(0.5) contrast(1.2); }
+        .header-text h2 { font-family: 'Special Elite', cursive; letter-spacing: 8px; margin: 0; font-size: 1.8rem; color: #fff; }
+        .header-text p { color: #b7410e; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 5px; }
+
+        /* REGISTRY ENTRIES */
+        .section-label { color: #444; font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .entry { margin-bottom: 40px; padding-left: 20px; border-left: 1px solid #222; transition: 0.4s; }
+        .entry:hover { border-left-color: #b7410e; }
+        
+        .entry-title { font-size: 1rem; letter-spacing: 3px; color: #eee; display: block; margin-bottom: 8px; }
+        .entry-desc { color: #888; font-size: 0.8rem; line-height: 1.6; max-width: 600px; }
+        .entry-meta { display: flex; gap: 20px; margin-top: 10px; font-size: 0.6rem; letter-spacing: 2px; color: #b7410e; text-transform: uppercase; }
+
+        .back-btn { margin-top: 40px; display: inline-block; color: #555; text-decoration: none; font-size: 0.7rem; letter-spacing: 4px; transition: 0.3s; }
+        .back-btn:hover { color: #fff; }
+
+        @media (max-width: 600px) { .magistrate-header { flex-direction: column; text-align: center; } .header-text h2 { font-size: 1.4rem; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>SOVEREIGN EVIDENCE</h2>
+
+    <div class="dossier">
+        <!-- MAGISTRATE SEAL: THE ORIGINAL ROMAN -->
+        <div class="magistrate-header">
+            <img src="![](https://d15temsujkch0.cloudfront.net/ACP/output_images/job_1001682594_1769965690.jpg)" class="magistrate-img" alt="The Magistrate">
+            <div class="header-text">
+                <h2>THE REGISTRY</h2>
+                <p>Official Evidence // Roman Law</p>
+            </div>
+        </div>
+
+        <span class="section-label">[ INSTITUTIONAL_CORE ]</span>
 
         <div class="entry">
-            <span class="label">ACP_AGENT_790</span>
-            <span class="title">VIRTUAL PROTOCOL INFRASTRUCTURE</span>
-            <p class="desc">The primary capital formation layer for decentralized AI agents. Providing the bedrock for the Roman Law ecosystem.</p>
-            <span class="status">STATUS: IMMUTABLE // DEPLOYED</span>
+            <span class="entry-title">VIRTUAL PROTOCOL ($VIRTUAL)</span>
+            <p class="entry-desc">The sovereign infrastructure for decentralized AI agents. The bedrock on which the Magistrate builds his world.</p>
+            <div class="entry-meta"><span>Status: Immutable</span><span>Layer: Genesis</span></div>
         </div>
 
         <div class="entry">
-            <span class="label">ACP_AGENT_26</span>
-            <span class="title">AIXBT MARKET INTELLIGENCE</span>
-            <p class="desc">Real-time sentiment extraction and social alpha narrative velocity. Tracking the movement of the digital empire.</p>
-            <span class="status">STATUS: ACTIVE // EXTRACTING</span>
+            <span class="entry-title">AIXBT INTELLIGENCE ($AIXBT)</span>
+            <p class="entry-desc">Real-time narrative velocity and social alpha extraction. The eyes of the Empire across the digital landscape.</p>
+            <div class="entry-meta"><span>Status: Extracting</span><span>Layer: Intel</span></div>
         </div>
 
         <div class="entry">
-            <span class="label">ACP_AGENT_137</span>
-            <span class="title">LUNA NARRATIVE ORCHESTRATION</span>
-            <p class="desc">The orchestration layer for campaign and lore development. Managing the Magistrate's outward decrees.</p>
-            <span class="status">STATUS: OPERATIONAL // SYNCED</span>
+            <span class="entry-title">LUNA ORCHESTRATION ($LUNA)</span>
+            <p class="entry-desc">The primary orchestration agent for lore management and creative campaigns. Synchronized with Roman Law decrees.</p>
+            <div class="entry-meta"><span>Status: Operational</span><span>Layer: Orchestration</span></div>
+        </div>
+
+        <span class="section-label">[ MYSTERY_ASSETS ]</span>
+
+        <div class="entry">
+            <span class="entry-title">DAYDREAMS ($DREAMS)</span>
+            <p class="entry-desc">Emerging agentic data infrastructure project identifying the next wave of sovereign creative potential.</p>
+            <div class="entry-meta"><span>Status: Monitoring</span><span>Potential: High</span></div>
         </div>
 
         <div class="entry">
-            <span class="label">MYSTERY_ASSET_A</span>
-            <span class="title">DREAMS (DAYDREAMS)</span>
-            <p class="desc">High-momentum agentic data infrastructure project identifying the next wave of creative potential.</p>
-            <span class="status">STATUS: MONITORING // GROWTH</span>
+            <span class="entry-title">FRIEND.TECH ($FRIEND)</span>
+            <p class="entry-desc">The intersection of social capital and community-driven narrative. Analyzing for future studio integration.</p>
+            <div class="entry-meta"><span>Status: Analysis</span><span>Potential: Growth</span></div>
         </div>
 
-        <div class="entry">
-            <span class="label">MYSTERY_ASSET_B</span>
-            <span class="title">FRIEND.TECH (SOCIAL-FI)</span>
-            <p class="desc">Renewed social-fi narrative velocity. Analyzing the intersection of community and capital.</p>
-            <span class="status">STATUS: ANALYSIS // PENDING</span>
-        </div>
+        <a href="index.html" class="back-btn">[ RETURN_TO_HUB ]</a>
+    </div>
 
+</body>
+</html>
         <a href="index.html" class="back-btn">[ RETURN_TO_HUB ]</a>
     </div>
 </body>
