@@ -2,39 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sovereigne Studios | Index</title>
+    <title>Sovereigne Studios | Genesis</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; color: white; font-family: monospace; }
-        #video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        #btn { position: relative; z-index: 10; padding: 20px; border: 2px solid white; background: none; color: white; cursor: pointer; letter-spacing: 5px; text-transform: uppercase; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; display: none; }
+        #gate { 
+            position: relative; z-index: 10; padding: 30px 60px; 
+            border: 2px solid #fff; background: rgba(0,0,0,0.8); 
+            color: #fff; font-family: 'Courier New', monospace; 
+            font-size: 1.2rem; cursor: pointer; letter-spacing: 8px; 
+            text-transform: uppercase; transition: 0.3s;
+        }
+        #gate:hover { background: #fff; color: #000; }
     </style>
 </head>
 <body>
 
-    <button id="btn" onclick="injectDNA()">[ RECLAIM INDEX ]</button>
-    <div id="video-container"></div>
+    <button id="gate" onclick="activateDNA()">[ INITIALIZE GENESIS ]</button>
+
+    <video id="v" loop playsinline muted>
+        <!-- Pulling the asset directly from your repo -->
+        <source src="britishroman.mp4" type="video/mp4">
+    </video>
 
     <script>
-        function injectDNA() {
-            const container = document.getElementById('video-container');
-            const btn = document.getElementById('btn');
+        function activateDNA() {
+            const v = document.getElementById('v');
+            const g = document.getElementById('gate');
             
-            // Generate the video element from scratch to bypass CSP blocks
-            const video = document.createElement('video');
-            video.src = "![](https://images.ottowallet.xyz/videos/1769492817510.mp4)";
-            video.loop = true;
-            video.playsInline = true;
-            video.style.width = "100%";
-            video.style.height = "100%";
-            video.style.objectFit = "cover";
+            v.style.display = "block"; // Prevent black screen flash
             
-            container.appendChild(video);
-            btn.style.display = "none";
-            
-            // Force the play
-            video.play().catch(e => {
-                console.error("Critical Failure:", e);
-                alert("Browser Blocked Playback. Check console.");
+            v.play().then(() => {
+                v.muted = false; // Activates WWII Roman Audio
+                g.style.display = 'none';
+            }).catch(err => {
+                console.error("Browser Blocked:", err);
+                v.play(); // Fallback: play muted if unmuting is rejected
             });
         }
     </script>
