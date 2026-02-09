@@ -2,65 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Roman Law - Genesis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereigne Studios | Index</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: 'Courier New', Courier, monospace; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: 'Courier New', Courier, monospace; }
         
-        /* The Visual Layer */
-        #video-bg { 
-            position: fixed; top: 50%; left: 50%; 
-            min-width: 100%; min-height: 100%; 
-            transform: translate(-50%, -50%); 
-            z-index: 1; /* Ensure it is visible */
-            background-color: #000;
+        /* Full Screen Video Background */
+        .video-background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1; filter: grayscale(20%) contrast(110%);
         }
 
-        /* The Sound Prompt Layer */
-        #sound-prompt {
-            position: fixed; top: 20px; right: 20px;
-            color: rgba(255,255,255,0.4); font-size: 10px;
-            letter-spacing: 2px; text-transform: uppercase;
-            z-index: 100; cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.1); padding: 8px 15px;
-            transition: 0.5s;
+        /* Overlay Styling */
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; color: #fff; z-index: 1;
         }
 
-        .ui { position: fixed; bottom: 50px; width: 100%; text-align: center; z-index: 100; }
-        button { background: rgba(0,0,0,0.5); border: 1px solid white; color: white; padding: 15px 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 5px; }
+        .enter-btn {
+            padding: 15px 40px; border: 2px solid #fff; background: transparent;
+            color: #fff; font-size: 1.2rem; cursor: pointer; letter-spacing: 5px;
+            transition: 0.3s; text-transform: uppercase;
+        }
+
+        .enter-btn:hover { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+
+        .studio-title { margin-bottom: 20px; font-size: 0.8rem; letter-spacing: 10px; opacity: 0.7; }
     </style>
 </head>
-<body onclick="unmuteGenesis()">
+<body>
 
-    <!-- The Video MUST start 'muted' to guarantee the visual renders -->
-    <video id="video-bg" autoplay muted loop playsinline preload="auto">
-        <source src="assets/britishroman.mp4" type="video/mp4">
+    <!-- The Greaser Asset -->
+    <video id="bgVideo" class="video-background" loop playsinline muted>
+        <source src="![](https://images.ottowallet.xyz/videos/1769492817510.mp4)" type="video/mp4">
     </video>
 
-    <div id="sound-prompt">Click to Initialize Sound</div>
+    <!-- The Master Audio -->
+    <audio id="bgAudio" loop>
+        <source src="https://cdn1.suno.ai/4b8bf585-676d-4aa8-8b28-15f05ce6b86a.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="ui">
-        <button onclick="window.location.href='evolution.html'">Proceed</button>
+    <div class="overlay" id="overlay">
+        <div class="studio-title">SOVEREIGNE STUDIOS PRESENT</div>
+        <button class="enter-btn" onclick="startExperience()">Enter The Index</button>
     </div>
 
     <script>
-        const v = document.getElementById('video-bg');
-        const prompt = document.getElementById('sound-prompt');
+        function startExperience() {
+            const video = document.getElementById('bgVideo');
+            const audio = document.getElementById('bgAudio');
+            const overlay = document.getElementById('overlay');
 
-        function unmuteGenesis() {
-            if (v.muted) {
-                v.muted = false;
-                v.play(); // Double-tap to ensure playback
-                prompt.innerHTML = "Soundscape Active";
-                prompt.style.opacity = "0.2";
-                console.log("Visuals & Audio Synced.");
-            }
+            // Unmute and play both
+            video.muted = false;
+            video.play();
+            audio.play();
+
+            // Fade out overlay
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
-        
-        // Ensure visual starts immediately
-        window.addEventListener('load', () => {
-            v.play().catch(e => console.log("Autoplay blocked, waiting for click."));
-        });
     </script>
 </body>
 </html>
-
