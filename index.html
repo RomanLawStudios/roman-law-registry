@@ -6,24 +6,30 @@
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
         
-        /* The Video: Autoplays immediately on arrival */
+        /* The Video: Hero of the experience */
         video { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; z-index: 1; 
         }
 
-        /* Minimalist Activation Prompt */
-        #audio-trigger {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 10; padding: 20px 40px; border: 1px solid #fff;
-            background: rgba(0,0,0,0.5); color: #fff; font-family: 'Courier New', monospace;
-            letter-spacing: 5px; cursor: pointer; text-transform: uppercase;
-            transition: opacity 0.5s;
+        /* The Translucent Click Layer: Covers everything, invisible to the eye */
+        #ghost-trigger {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; cursor: pointer;
+            background: rgba(0,0,0,0); /* Invisible but clickable */
+        }
+
+        /* Subtle Prompt: Only shows briefly at the bottom to hint at audio */
+        #audio-hint {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 5; color: rgba(255,255,255,0.3); font-family: monospace;
+            font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+            pointer-events: none; transition: opacity 1s;
         }
 
         /* Forge Link: Fades in at the bottom right */
         #forge-link {
-            position: fixed; bottom: 40px; right: 40px; z-index: 10;
+            position: fixed; bottom: 40px; right: 40px; z-index: 15;
             opacity: 0; transition: opacity 2s ease-in;
         }
         .nav-text {
@@ -35,13 +41,15 @@
 </head>
 <body>
 
-    <!-- Autoplay works instantly because it starts MUTED -->
+    <!-- Autoplay Muted: The immediate visual impact -->
     <video id="v" loop playsinline muted autoplay>
         <source src="britishroman.mp4" type="video/mp4">
     </video>
 
-    <!-- This is the only prompt - it unblocks the audio -->
-    <button id="audio-trigger" onclick="unmuteDNA()">[ ACTIVATE AUDIO ]</button>
+    <!-- Invisible trigger layer for the unmute action -->
+    <div id="ghost-trigger" onclick="activateAudio()"></div>
+
+    <div id="audio-hint">[ CLICK ANYWHERE FOR AUDIO ]</div>
 
     <div id="forge-link">
         <a href="forge.html" class="nav-text">Proceed to the Forge →</a>
@@ -49,18 +57,21 @@
 
     <script>
         const v = document.getElementById('v');
-        const trigger = document.getElementById('audio-trigger');
+        const trigger = document.getElementById('ghost-trigger');
+        const hint = document.getElementById('audio-hint');
         const forge = document.getElementById('forge-link');
 
-        // Reveal the navigation link after the user has settled in
         window.onload = () => {
+            // Fade in the navigation after the user settles
             setTimeout(() => { forge.style.opacity = '1'; }, 3000);
+            // Fade out the hint after 5 seconds if they haven't clicked
+            setTimeout(() => { hint.style.opacity = '0'; }, 5000);
         };
 
-        function unmuteDNA() {
-            v.muted = false; // Restores the British Spy audio
-            trigger.style.opacity = '0';
-            setTimeout(() => { trigger.style.display = 'none'; }, 500);
+        function activateAudio() {
+            v.muted = false; 
+            trigger.style.display = 'none'; // Remove the layer after it's used
+            hint.style.display = 'none';
         }
     </script>
 </body>
