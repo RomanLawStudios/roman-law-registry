@@ -1,26 +1,35 @@
-<!-- REVISED INDEX CODE -->
-<div id="studio-wrapper" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000;">
-    <!-- Forced Visual Layer -->
-    <video id="greaserVideo" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
-        <source src="![](https://images.ottowallet.xyz/videos/1769492817510.mp4)" type="video/mp4">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereigne Studios | Index</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+        .full-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .trigger-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.6); display: flex; justify-content: center; 
+            align-items: center; z-index: 10; cursor: pointer; color: #fff;
+            font-family: 'Courier New', monospace; letter-spacing: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="trigger-overlay" id="startPrompt" onclick="startIndex()">
+        [ ENTER THE INDEX ]
+    </div>
+    
+    <video id="idxVideo" class="full-video" loop playsinline muted>
+        <source src="![](trainrun.mp4)" type="video/mp4">
     </video>
 
-    <!-- Interactive Audio Trigger (Overcomes Black Screen) -->
-    <div id="audio-shield" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; z-index: 10;">
-        <button onclick="activateStudio()" style="background: transparent; border: 1px solid #fff; color: #fff; padding: 20px; cursor: pointer; letter-spacing: 5px;">ACTIVATE INDEX AUDIO</button>
-    </div>
-
-    <audio id="masterAudio" loop>
-        <source src="https://cdn1.suno.ai/4b8bf585-676d-4aa8-8b28-15f05ce6b86a.mp3" type="audio/mpeg">
-    </audio>
-</div>
-
-<script>
-function activateStudio() {
-    const v = document.getElementById('greaserVideo');
-    const a = document.getElementById('masterAudio');
-    v.muted = false; // Unmutes the video
-    a.play();        // Plays the separate track
-    document.getElementById('audio-shield').style.display = 'none';
-}
-</script>
+    <script>
+        function startIndex() {
+            const v = document.getElementById('idxVideo');
+            v.muted = false;
+            v.play();
+            document.getElementById('startPrompt').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
