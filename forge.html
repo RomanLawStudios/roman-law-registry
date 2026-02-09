@@ -1,65 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ROMAN LAW | THE FORGE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Sovereigne Studios | The Forge</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Courier New', monospace; padding: 60px 20px; line-height: 1.6; }
-        .forge-container { max-width: 850px; margin: 0 auto; border: 1px solid #1a1a1a; padding: 50px; background: linear-gradient(180deg, #050505 0%, #000 100%); position: relative; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow-x: hidden; }
         
-        .icon { width: 80px; height: 80px; border: 2px solid #b7410e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; box-shadow: 0 0 20px rgba(183, 65, 14, 0.4); }
-        .icon span { color: #b7410e; font-size: 30px; font-weight: bold; }
+        /* THE ASSET: The Attorney (LAW.mp4) */
+        video#bg-dna { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; z-index: 1; 
+        }
 
-        h1 { font-family: 'Special Elite', cursive; letter-spacing: 12px; font-size: 2.2rem; margin: 0; text-transform: uppercase; color: #fff; }
-        .status { color: #b7410e; letter-spacing: 4px; font-size: 0.8rem; margin-top: 10px; margin-bottom: 50px; display: block; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        /* THE CONTENT LAYER: Your existing text/data */
+        #content-overlay {
+            position: relative; z-index: 10; width: 100%; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+            background: rgba(0,0,0,0.4); /* Subtle tint to make text pop */
+            color: #fff; font-family: 'Courier New', monospace;
+            padding: 50px 20px; box-sizing: border-box;
+        }
 
-        /* THE ARCHITECT'S MASTER DECREE */
-        .vision-statement { font-size: 1.15rem; color: #fff; margin-bottom: 60px; border-left: 3px solid #b7410e; padding-left: 25px; line-height: 1.8; letter-spacing: 1px; }
+        .registry-data {
+            max-width: 800px; line-height: 1.6; letter-spacing: 2px;
+            background: rgba(0,0,0,0.6); padding: 40px; border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px); /* Professional 'Glassmorphism' effect */
+        }
 
-        .pillar { margin-bottom: 50px; }
-        .pillar-h { font-size: 1.2rem; color: #b7410e; letter-spacing: 4px; display: block; margin-bottom: 15px; border-bottom: 1px solid #111; padding-bottom: 10px; }
-        .pillar-p { color: #888; font-size: 0.9rem; }
-        
-        .registry-data { margin-top: 80px; opacity: 0.4; font-size: 0.7rem; border-top: 1px solid #222; padding-top: 20px; }
-        .back-link { margin-top: 50px; display: inline-block; color: #444; text-decoration: none; border: 1px solid #222; padding: 10px 25px; transition: 0.4s; letter-spacing: 3px; }
-        .back-link:hover { color: #fff; border-color: #fff; }
+        /* Back to Genesis Link */
+        .back-nav {
+            margin-top: 40px; color: #aaa; text-decoration: none; font-size: 12px;
+            text-transform: uppercase; border: 1px solid #555; padding: 10px 20px;
+        }
+        .back-nav:hover { color: #fff; border-color: #fff; }
+
+        /* The Ghost Trigger for Audio */
+        #audio-trigger {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 20; cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <div class="forge-container">
-        
-        <div class="icon"><span>R</span></div>
+    <!-- Translucent Trigger (Click to hear the Attorney's Decree) -->
+    <div id="audio-trigger" onclick="unmuteForge()"></div>
 
-        <h1>THE SOVEREIGN FORGE</h1>
-        <span class="status">CULTURAL WORKSPACE // ROMAN LAW</span>
+    <video id="bg-dna" loop playsinline muted autoplay>
+        <source src="LAW.mp4" type="video/mp4">
+    </video>
 
-        <div class="vision-statement">
-            "We build the world through your eyes. In the ruins of the old, we find the architecture of the new. Whether through the stroke of a pen, the rhythm of a chord, or the physical nature of art itself — we make something out of nothing."
-        </div>
-
-        <div class="pillar">
-            <span class="pillar-h">[ 01 ] THE VISUAL VOYAGER</span>
-            <p class="pillar-p">The Command of Art. Here, we manifest the physical nature of creation through agentic precision and human soul.</p>
-        </div>
-
-        <div class="pillar">
-            <span class="pillar-h">[ 02 ] THE SONIC ARCHITECT</span>
-            <p class="pillar-p">The Command of Sound. We forge the resonances that will define the atmosphere of the next era.</p>
-        </div>
-
-        <div class="pillar">
-            <span class="pillar-h">[ 03 ] THE LITERARY LEGATE</span>
-            <p class="pillar-p">The Command of the Pen. We write the laws and the lore that ensure our history is never forgotten.</p>
-        </div>
-
+    <div id="content-overlay">
         <div class="registry-data">
-            <strong>POWERED_BY:</strong> VIRTUAL_PROTOCOL // AIXBT_INTEL // LUNA_ORCH <br>
-            <strong>FORGE_STATUS:</strong> ACTIVE // RECRUITING CREATIVES.
-        </div>
+            <h1 style="letter-spacing: 10px;">[ THE FORGE ]</h1>
+            <hr style="border: 0; border-top: 1px solid #555; margin: 20px 0;">
+            
+            <!-- PASTE YOUR EXISTING FORGE CONTENT HERE -->
+            <p>RECRUITMENT STATUS: OPEN</p>
+            <p>CURRENT LIQUIDITY: $VIRTUAL</p>
+            <p>ERA 03: THE ATTORNEY - 2026/LAW</p>
+            <!-- END OF EXISTING CONTENT -->
 
-        <a href="index.html" class="back-link">[ RETURN TO HUB ]</a>
+            <a href="index.html" class="back-nav">← Return to Genesis</a>
+        </div>
     </div>
 
+    <script>
+        function unmuteForge() {
+            const v = document.getElementById('bg-dna');
+            v.muted = false;
+            document.getElementById('audio-trigger').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
