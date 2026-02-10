@@ -12,17 +12,19 @@
             min-width: 100%; min-height: 100%;
             transform: translate(-50%, -50%);
             z-index: 1; object-fit: cover;
-            filter: brightness(50%); display: block;
+            filter: brightness(45%); display: block;
         }
 
         #overlay { position: relative; z-index: 10; padding: 40px; pointer-events: none; }
         h1 { font-size: 2rem; letter-spacing: 10px; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; margin: 0; }
         
-        #agent-card { background: rgba(0,0,0,0.8); padding: 20px; border-left: 3px solid white; max-width: 380px; margin-top: 30px; pointer-events: auto; }
-        
+        #agent-card { background: rgba(0,0,0,0.8); padding: 25px; border-left: 3px solid white; max-width: 400px; margin-top: 30px; pointer-events: auto; }
+        h2 { letter-spacing: 4px; color: #fff; margin-top: 0; }
+        p { line-height: 1.6; color: #ccc; font-size: 0.9rem; }
+
         #controls { position: fixed; bottom: 8%; left: 40px; display: flex; flex-direction: column; gap: 12px; z-index: 20; }
-        button { background: rgba(0,0,0,0.5); border: 1px solid white; color: white; padding: 15px; width: 240px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; transition: 0.3s; }
-        button:hover, .active-btn { background: white; color: black; }
+        button { background: rgba(0,0,0,0.6); border: 1px solid white; color: white; padding: 15px; width: 260px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; transition: 0.3s; text-align: left; }
+        button:hover, .active-btn { background: white; color: black; padding-left: 30px; }
     </style>
 </head>
 <body>
@@ -35,13 +37,14 @@
         <h1>ROMAN LAW STUDIOS</h1>
         <div id="agent-card">
             <h2 id="agent-name">001_THE SPY</h2>
-            <p id="agent-desc">DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING</p>
+            <p id="agent-desc">DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.</p>
         </div>
     </div>
 
     <div id="controls">
-        <button onclick="switchDNA('britishroman', '001_THE SPY', 'DNA: BRITISH INTEL<br>STATUS: ACTIVE', this)" class="active-btn">001_RECON</button>
-        <button onclick="switchDNA('greaser', '002_THE GREASER', 'DNA: URBAN STREETS<br>STATUS: STANDBY', this)">002_SECURITY</button>
+        <button onclick="switchDNA('britishroman', '001_THE SPY', 'DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.', this)" class="active-btn">001_RECON</button>
+        <button onclick="switchDNA('greaser', '002_THE GREASER', 'DNA: URBAN STREETS<br>STATUS: ACTIVE / SECURED<br><br>Internal security and protocol enforcement specialist.', this)">002_SECURITY</button>
+        <button onclick="switchDNA('attorney', '003_THE ATTORNEY', 'DNA: CORPORATE LAW<br>STATUS: ACTIVE / GOVERNING<br><br>High-level protocol governance and strategic negotiation.', this)">003_GOVERNANCE</button>
     </div>
 
     <script>
@@ -56,23 +59,25 @@
             nameField.innerText = name;
             descField.innerHTML = desc;
 
-            // 2. Unmute and Play (Audio Restoration)
+            // 2. Audio Handshake (Unmute)
             video.muted = false;
             video.volume = 0.8;
             
             video.load();
-            video.play();
+            video.play().catch(e => console.log("Awaiting interaction..."));
 
-            // 3. UI Feedback
+            // 3. UI Update
             buttons.forEach(b => b.classList.remove('active-btn'));
             btn.classList.add('active-btn');
         }
 
-        // AUTO-WAKEUP FOR AUDIO: Clicking anywhere unmutes the current video
+        // INITIAL AUDIO UNLOCK: First click anywhere on the page enables sound
         document.addEventListener('click', function() {
             const v = document.getElementById('bg-video');
-            v.muted = false;
-            v.play();
+            if(v.muted) {
+                v.muted = false;
+                v.play();
+            }
         }, { once: true });
     </script>
 </body>
