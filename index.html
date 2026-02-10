@@ -9,20 +9,22 @@
         #intro-video { position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: 1; object-fit: cover; }
         #launch-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; display: flex; align-items: center; justify-content: center; background: black; cursor: pointer; }
         #gate-text { border: 1px solid white; padding: 25px; letter-spacing: 5px; text-transform: uppercase; }
-        #status-report { position: fixed; top: 10px; left: 10px; font-size: 10px; color: red; z-index: 200; }
+        #status-report { position: fixed; top: 10px; left: 10px; font-size: 10px; color: #444; z-index: 200; }
+        #skip-trigger { position: fixed; bottom: 30px; right: 30px; z-index: 150; font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.3); cursor: pointer; text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <div id="status-report">SYSTEM CHECK: STANDBY...</div>
+    <div id="status-report">SYSTEM READY_</div>
 
     <div id="launch-gate" onclick="igniteForge()">
         <div id="gate-text">INITIALIZE SYSTEM_</div>
     </div>
 
+    <div id="skip-trigger" onclick="enterRegistry()">SKIP_SEQUENCE_</div>
+
     <video id="intro-video" playsinline preload="auto">
-        <!-- Force cache refresh with ?v=1 -->
-        <source src="romansprint.mp4?v=1" type="video/mp4">
+        <source src="romansprint.mp4" type="video/mp4">
     </video>
 
     <script>
@@ -32,23 +34,30 @@
 
         function igniteForge() {
             status.innerText = "IGNITION SEQUENCE STARTED...";
-            gate.style.display = 'none';
-            video.muted = false;
+            gate.style.opacity = '0';
+            setTimeout(() => { gate.style.display = 'none'; }, 500);
             
+            video.muted = false;
             video.play().then(() => {
-                status.innerText = "VIDEO PLAYING_";
+                status.innerText = "TRANSMISSION LIVE_";
             }).catch(e => {
-                status.innerText = "ERROR: PLAYBACK BLOCKED OR FILE MISSING_";
-                console.log(e);
+                status.innerText = "HANDSHAKE ERROR - REDIRECTING...";
+                enterRegistry();
             });
         }
 
-        video.onerror = function() {
-            status.innerText = "CRITICAL ERROR: 'romansprint.mp4' NOT FOUND ON SERVER_";
-        };
+        // THE CRITICAL REDIRECT: Sending user to studio.html
+        function enterRegistry() {
+            window.location.href = "studio.html";
+        }
 
         video.onended = function() {
-            window.location.href = "index.html";
+            enterRegistry();
+        };
+
+        video.onerror = function() {
+            status.innerText = "ASSET MISSING - ENTERING STUDIO_";
+            setTimeout(enterRegistry, 1000);
         };
     </script>
 </body>
