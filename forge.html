@@ -48,7 +48,7 @@
     </div>
 
     <!-- THE CINEMATIC -->
-    <video id="intro-video" playsinline preload="auto">
+    <video id="romansprint-video" playsinline preload="auto">
         <source src="romansprint.mp4" type="video/mp4">
     </video>
 
@@ -79,7 +79,7 @@
 
         // FAILSAFE: If video doesn't load or is missing, redirect after 3 seconds
         video.onerror = function() {
-            console.log("Intro asset not found. Entering Registry.");
+            console.log("romansprint asset not found. Entering Registry.");
             enterRegistry();
         };
     </script>
