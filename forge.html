@@ -16,25 +16,26 @@
             min-width: 100%; min-height: 100%;
             transform: translate(-50%, -50%);
             z-index: 1; object-fit: cover;
+            background: black;
         }
 
-        /* INITIAL OVERLAY: Instruction to unlock sound */
         #launch-gate {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 100; display: flex; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.8); cursor: pointer;
-            transition: opacity 0.5s;
+            background: rgba(0,0,0,0.9); cursor: pointer;
+            transition: opacity 0.8s ease;
         }
 
         #gate-text {
-            border: 1px solid white; padding: 20px 40px;
-            letter-spacing: 5px; text-transform: uppercase;
-            font-weight: bold; background: rgba(255,255,255,0.1);
+            border: 1px solid white; padding: 25px 50px;
+            letter-spacing: 6px; text-transform: uppercase;
+            font-weight: bold; background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
         #skip-button {
-            position: fixed; bottom: 30px; right: 30px;
-            z-index: 50; font-size: 0.7rem; letter-spacing: 2px;
+            position: fixed; bottom: 40px; right: 40px;
+            z-index: 50; font-size: 0.75rem; letter-spacing: 3px;
             color: rgba(255,255,255,0.4); cursor: pointer;
             text-decoration: underline; text-transform: uppercase;
         }
@@ -42,14 +43,13 @@
 </head>
 <body>
 
-    <!-- THE GATEKEEPER: Forces a click to ensure the browser allows audio -->
     <div id="launch-gate" onclick="igniteForge()">
         <div id="gate-text">INITIALIZE SYSTEM_</div>
     </div>
 
-    <!-- THE CINEMATIC -->
     <video id="intro-video" playsinline preload="auto">
-        <source src="intro.mp4" type="video/mp4">
+        <!-- THE TARGETED ASSET -->
+        <source src="romansprint.mp4" type="video/mp4">
     </video>
 
     <div id="skip-button" onclick="enterRegistry()">SKIP_SEQUENCE</div>
@@ -59,16 +59,16 @@
         const gate = document.getElementById('launch-gate');
 
         function igniteForge() {
-            // 1. Hide the gate
             gate.style.opacity = '0';
-            setTimeout(() => { gate.style.display = 'none'; }, 500);
+            setTimeout(() => { gate.style.display = 'none'; }, 800);
 
-            // 2. Start Video with Audio enabled
             video.muted = false;
-            video.play();
+            video.play().catch(error => {
+                console.log("Playback failed. File may be missing or incorrectly named.");
+                enterRegistry(); 
+            });
         }
 
-        // REDIRECT PROTOCOL: When video ends, move to the main Studio
         video.onended = function() {
             enterRegistry();
         };
@@ -77,10 +77,8 @@
             window.location.href = "index.html";
         }
 
-        // FAILSAFE: If video doesn't load or is missing, redirect after 3 seconds
         video.onerror = function() {
-            console.log("Intro asset not found. Entering Registry.");
-            enterRegistry();
+            console.error("CRITICAL: romansprint.mp4 not found in root.");
         };
     </script>
 </body>
