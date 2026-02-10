@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROMAN LAW STUDIOS</title>
+    <title>ROMAN LAW STUDIOS | THE REGISTRY</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100vw; height: 100vh; background-color: black; overflow: hidden; font-family: 'Courier New', monospace; color: white; }
         
+        /* VIDEO LAYER */
         #bg-video {
             position: fixed; top: 50%; left: 50%;
             min-width: 100%; min-height: 100%;
@@ -15,6 +16,7 @@
             filter: brightness(45%); display: block;
         }
 
+        /* UI OVERLAY */
         #overlay { position: relative; z-index: 10; padding: 40px; pointer-events: none; }
         h1 { font-size: 2rem; letter-spacing: 10px; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; margin: 0; }
         
@@ -22,6 +24,7 @@
         h2 { letter-spacing: 4px; color: #fff; margin-top: 0; }
         p { line-height: 1.6; color: #ccc; font-size: 0.9rem; }
 
+        /* CONTROL TERMINAL */
         #controls { position: fixed; bottom: 8%; left: 40px; display: flex; flex-direction: column; gap: 12px; z-index: 20; }
         button { background: rgba(0,0,0,0.6); border: 1px solid white; color: white; padding: 15px; width: 260px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; transition: 0.3s; text-align: left; }
         button:hover, .active-btn { background: white; color: black; padding-left: 30px; }
@@ -29,10 +32,12 @@
 </head>
 <body>
 
+    <!-- THE ENGINE -->
     <video id="bg-video" autoplay muted loop playsinline preload="auto">
         <source id="video-source" src="britishroman.mp4" type="video/mp4">
     </video>
 
+    <!-- THE INTERFACE -->
     <div id="overlay">
         <h1>ROMAN LAW STUDIOS</h1>
         <div id="agent-card">
@@ -41,6 +46,7 @@
         </div>
     </div>
 
+    <!-- THE AGENT SELECTOR -->
     <div id="controls">
         <button onclick="switchDNA('britishroman', '001_THE SPY', 'DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.', this)" class="active-btn">001_RECON</button>
         <button onclick="switchDNA('greaser', '002_THE GREASER', 'DNA: URBAN STREETS<br>STATUS: ACTIVE / SECURED<br><br>Internal security and protocol enforcement specialist.', this)">002_SECURITY</button>
@@ -54,30 +60,28 @@
             const descField = document.getElementById('agent-desc');
             const buttons = document.querySelectorAll('button');
 
-            // 1. Update Video and Metadata
+            // 1. Point to the file
             video.src = file + ".mp4";
             nameField.innerText = name;
             descField.innerHTML = desc;
 
-            // 2. Audio Handshake (Unmute)
+            // 2. The Audio Handshake (Unmute on change)
             video.muted = false;
             video.volume = 0.8;
             
             video.load();
-            video.play().catch(e => console.log("Awaiting interaction..."));
+            video.play().catch(e => console.log("Awaiting user interaction for audio..."));
 
             // 3. UI Update
             buttons.forEach(b => b.classList.remove('active-btn'));
             btn.classList.add('active-btn');
         }
 
-        // INITIAL AUDIO UNLOCK: First click anywhere on the page enables sound
+        // INITIAL WAKE-UP: First tap anywhere on the screen unmutes and plays
         document.addEventListener('click', function() {
             const v = document.getElementById('bg-video');
-            if(v.muted) {
-                v.muted = false;
-                v.play();
-            }
+            v.muted = false;
+            v.play();
         }, { once: true });
     </script>
 </body>
