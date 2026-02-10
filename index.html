@@ -1,59 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROMAN LAW STUDIOS</title>
-    <style>
-        /* This ensures the video actually takes up space on the screen */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: black;
-            overflow: hidden;
-        }
+<script>
+    function switchDNA(file, name, desc, btn) {
+        const video = document.getElementById('bg-video');
+        
+        // Update source and metadata
+        video.src = file + ".mp4";
+        document.getElementById('agent-name').innerText = name;
+        document.getElementById('agent-desc').innerHTML = desc;
+        
+        // THE AUDIO FIX: When you click a button, we unmute and set volume
+        video.muted = false;
+        video.volume = 0.7; // 70% volume for a professional feel
+        
+        video.load();
+        video.play().catch(error => {
+            console.log("Audio still blocked by browser. User must click again.");
+        });
 
-        #bg-video {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: 1; /* Video is the bottom layer */
-            object-fit: cover;
-            filter: brightness(50%);
-            display: block; /* Ensures it's not treated as an inline element */
-        }
+        // Update button visual state
+        document.querySelectorAll('button').forEach(b => b.classList.remove('active-btn'));
+        btn.classList.add('active-btn');
+    }
 
-        #content-layer {
-            position: relative;
-            z-index: 10; /* Text is the top layer */
-            color: white;
-            font-family: 'Courier New', monospace;
-            padding: 50px;
-        }
-
-        h1 { letter-spacing: 10px; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; }
-    </style>
-</head>
-<body>
-
-    <!-- The most basic, un-breakable video tag possible -->
-    <video id="bg-video" autoplay muted loop playsinline preload="auto">
-        <source src="britishroman.mp4" type="video/mp4">
-        CODEC ERROR: RE-UPLOAD REQUIRED
-    </video>
-
-    <div id="content-layer">
-        <h1>ROMAN LAW STUDIOS</h1>
-        <p>RECONNAISSANCE TERMINAL</p>
-        <p>STATUS: INITIALIZING DNA...</p>
-    </div>
-
-</body>
-</html>
+    // THE ELAINE FAILSAFE: Unmute the current video on the very first tap anywhere
+    document.addEventListener('click', function() {
+        const video = document.getElementById('bg-video');
+        video.muted = false;
+        video.play();
+    }, { once: true });
+</script>
