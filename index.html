@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROMAN LAW STUDIOS</title>
-  <style>
-        body, html { margin: 0; padding: 0; width: 100vw; height: 100vh; background-color: black; overflow: hidden; font-family: 'Courier New', monospace; color: white; }
+    <title>ROMAN LAW STUDIOS | THE REGISTRY</title>
+    <style>
+        body, html { 
+            margin: 0; padding: 0; width: 100vw; height: 100vh; 
+            background-color: black; overflow: hidden; 
+            font-family: 'Courier New', monospace; color: white; 
+        }
         
+        /* CINEMATIC ENGINE */
         #bg-video {
             position: fixed; top: 50%; left: 50%;
             min-width: 100%; min-height: 100%;
@@ -15,87 +20,122 @@
             filter: brightness(45%); display: block;
         }
 
-        #overlay { position: relative; z-index: 10; padding: 30px; pointer-events: none; }
+        /* HUD OVERLAY LAYER */
+        #overlay { position: relative; z-index: 10; padding: 40px; pointer-events: none; }
         
-        /* HEADER: Transparent with a sharp underline */
-        h1 { font-size: 1.8rem; letter-spacing: 8px; border-bottom: 1.5px solid rgba(255,255,255,0.8); display: inline-block; padding-bottom: 8px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        h1 { 
+            font-size: 1.8rem; letter-spacing: 10px; 
+            border-bottom: 2px solid rgba(255,255,255,0.7); 
+            display: inline-block; padding-bottom: 10px; margin: 0; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+        }
         
-        /* AGENT CARD: No background, just the structural edge */
+        /* TRANSPARENT AGENT CARD */
         #agent-card { 
-            background: rgba(0,0,0,0); /* FULLY TRANSPARENT */
-            padding: 15px; 
+            background: rgba(0,0,0,0); /* FULL TRANSPARENCY */
+            padding: 20px; 
             border-left: 2px solid white; 
-            max-width: 350px; 
-            margin-top: 25px; 
-            pointer-events: auto;
+            max-width: 400px; 
+            margin-top: 30px; 
+            pointer-events: auto; 
         }
-        
-        h2 { letter-spacing: 3px; font-size: 1.2rem; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        p { line-height: 1.4; color: rgba(255,255,255,0.9); font-size: 0.85rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
 
-        /* BUTTONS: Ghost style - transparent until hovered */
-        #controls { position: fixed; bottom: 5%; left: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 20; }
+        h2 { 
+            letter-spacing: 4px; color: #fff; margin-top: 0; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+        }
+
+        p { 
+            line-height: 1.6; color: rgba(255,255,255,0.9); 
+            font-size: 0.9rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+        }
+
+        /* HUD CONTROLS */
+        #controls { 
+            position: fixed; bottom: 8%; left: 40px; 
+            display: flex; flex-direction: column; gap: 12px; z-index: 20; 
+        }
+
         button { 
-            background: rgba(0,0,0,0.2); /* ALMOST TOTAL TRANSPARENCY */
+            background: rgba(0,0,0,0.2); 
             border: 1px solid rgba(255,255,255,0.5); 
-            color: white; 
-            padding: 12px; 
-            width: 220px; 
-            cursor: pointer; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: bold; 
-            font-size: 0.75rem; 
-            transition: 0.4s; 
-            backdrop-filter: blur(2px); /* SUBTLE GLASS EFFECT */
+            color: white; padding: 15px; width: 240px; 
+            cursor: pointer; text-transform: uppercase; 
+            letter-spacing: 2px; font-weight: bold; 
+            transition: 0.4s; text-align: left;
+            backdrop-filter: blur(2px);
         }
-        button:hover, .active-btn { background: white; color: black; border-color: white; }
 
+        button:hover, .active-btn { 
+            background: white; color: black; 
+            border-color: white; padding-left: 30px; 
+        }
+
+        /* MOBILE RESPONSIVE TWEAKS */
         @media (max-width: 600px) {
-            h1 { font-size: 1.2rem; letter-spacing: 4px; }
-            #agent-card { max-width: 85%; margin-top: 20px; border-left: 1.5px solid white; }
-            #controls { bottom: 4%; left: 20px; }
-            button { width: 180px; padding: 10px; font-size: 0.7rem; }
+            #overlay { padding: 25px; }
+            h1 { font-size: 1.2rem; letter-spacing: 5px; }
+            #agent-card { max-width: 85%; margin-top: 20px; }
+            #agent-card p { font-size: 0.75rem; }
+            #controls { bottom: 5%; left: 25px; gap: 8px; }
+            button { width: 190px; padding: 12px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- VIDEO PLAYER -->
     <video id="bg-video" autoplay muted loop playsinline preload="auto">
         <source id="video-source" src="britishroman.mp4" type="video/mp4">
     </video>
 
+    <!-- INTERFACE -->
     <div id="overlay">
         <h1>ROMAN LAW STUDIOS</h1>
         <div id="agent-card">
-            <h2 id="agent-name">001_THE SPY</h2>
-            <p id="agent-desc">DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING</p>
+            <h2 id="agent-name">THE SPY</h2>
+            <p id="agent-desc">DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.</p>
         </div>
     </div>
 
+    <!-- SELECTOR -->
     <div id="controls">
-        <button onclick="switchDNA('britishroman', '001_THE SPY', 'DNA: BRITISH INTEL<br>STATUS: ACTIVE', this)" class="active-btn">001_RECON</button>
-        <button onclick="switchDNA('greaser', '002_THE GREASER', 'DNA: URBAN STREETS<br>STATUS: ACTIVE', this)">002_SECURITY</button>
-        <button onclick="switchDNA('attorney', '003_THE ATTORNEY', 'DNA: CORPORATE LAW<br>STATUS: ACTIVE', this)">003_GOVERNANCE</button>
+        <button onclick="switchDNA('britishroman', 'THE SPY', 'DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.', this)" class="active-btn">RECON</button>
+        <button onclick="switchDNA('greaser', 'THE GREASER', 'DNA: URBAN STREETS<br>STATUS: ACTIVE / SECURED<br><br>Internal security and protocol enforcement specialist.', this)">SECURITY</button>
+        <button onclick="switchDNA('attorney', 'THE ATTORNEY', 'DNA: CORPORATE LAW<br>STATUS: ACTIVE / GOVERNING<br><br>High-level protocol governance and strategic negotiation.', this)">GOVERNANCE</button>
     </div>
 
     <script>
         function switchDNA(file, name, desc, btn) {
             const video = document.getElementById('bg-video');
+            const nameField = document.getElementById('agent-name');
+            const descField = document.getElementById('agent-desc');
+            const buttons = document.querySelectorAll('button');
+
+            // 1. Update Asset
             video.src = file + ".mp4";
-            document.getElementById('agent-name').innerText = name;
-            document.getElementById('agent-desc').innerHTML = desc;
+            nameField.innerText = name;
+            descField.innerHTML = desc;
+
+            // 2. Audio Handshake (Lift Mute on Interaction)
             video.muted = false;
+            video.volume = 0.8;
+            
             video.load();
-            video.play();
-            document.querySelectorAll('button').forEach(b => b.classList.remove('active-btn'));
+            video.play().catch(e => console.log("Awaiting manual trigger for audio..."));
+
+            // 3. HUD Feedback
+            buttons.forEach(b => b.classList.remove('active-btn'));
             btn.classList.add('active-btn');
         }
 
+        // AUDIO ACTIVATOR: First tap on the screen unmutes current cinematic
         document.addEventListener('click', function() {
             const v = document.getElementById('bg-video');
-            v.muted = false;
-            v.play();
+            if(v.muted) {
+                v.muted = false;
+                v.play();
+            }
         }, { once: true });
     </script>
 </body>
