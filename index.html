@@ -3,74 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- VIRTUALS PROTOCOL SITE VERIFICATION -->
-    <meta name="virtual-protocol-site-verification" content="8bf6fea72855013e2831cc64b7f30605" />
-    
-    <title>ROMAN LAW STUDIOS</title>
+    <title>ImaginX | Roman Law Studios Sanctuary</title>
     <style>
-        body, html { 
-            margin: 0; padding: 0; width: 100vw; height: 100vh; 
-            background-color: black; overflow: hidden; 
-            cursor: pointer; /* Indicates the screen is interactive */
-        }
-        
-        #intro-video { 
-            position: fixed; top: 50%; left: 50%; 
-            min-width: 100%; min-height: 100%; 
-            transform: translate(-50%, -50%); 
-            z-index: 1; object-fit: cover; 
-        }
-
-        /* Subtle indicator that sound is muted until click */
-        #audio-hint {
-            position: fixed; top: 20px; left: 50%;
-            transform: translateX(-50%);
-            z-index: 50; font-family: 'Times New Roman', serif;
-            font-size: 10px; letter-spacing: 4px;
-            color: rgba(255,255,255,0.3);
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
             text-transform: uppercase;
-            pointer-events: none;
-            transition: opacity 1s;
+            letter-spacing: 2px;
         }
+        .container {
+            border: 1px solid #333;
+            padding: 40px;
+            background: rgba(10, 10, 10, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        h1 { font-size: 1.5rem; margin-bottom: 20px; color: #fff; }
+        p { font-size: 0.9rem; color: #888; margin: 10px 0; }
+        .engine-status { color: #00ff41; font-weight: bold; margin-top: 20px; }
+        .links { margin-top: 30px; }
+        a { color: #fff; text-decoration: none; border-bottom: 1px solid #444; padding-bottom: 2px; transition: 0.3s; }
+        a:hover { color: #888; border-bottom: 1px solid #888; }
+        .footer { margin-top: 50px; font-size: 0.7rem; color: #444; }
     </style>
 </head>
-<body onclick="igniteAudio()">
+<body>
+    <div class="container">
+        <h1>Roman Law Studios</h1>
+        <p>Architect: [Your Name/ID]</p>
+        <p>Mission: 60-Day Cinematic Sanctuary</p>
+        <p>Technology: ImaginX Cinematic Engine</p>
+        
+        <div class="engine-status">
+            SYSTEM STATUS: ONLINE / GENESIS INITIATED
+        </div>
 
-    <!-- OPTIONAL: Very faint hint that disappears on click -->
-    <div id="audio-hint">CLICK TO ACTIVATE AUDIO</div>
+        <div class="links">
+            <a href="https://github.com/[YourGitHub]">VIEW SOURCE GITHUB</a> | 
+            <a href="https://virtuals.io">VIRTUALS PROTOCOL</a>
+        </div>
 
-    <!-- THE CINEMATIC (Autoplays muted to bypass browser blocks) -->
-    <video id="intro-video" autoplay playsinline muted preload="auto">
-        <source src="romansprint.mp4" type="video/mp4">
-    </video>
-
-    <script>
-        const video = document.getElementById('intro-video');
-        const hint = document.getElementById('audio-hint');
-
-        function igniteAudio() {
-            // Wake up the sound
-            video.muted = false;
-            
-            // Fade out the hint
-            if(hint) hint.style.opacity = '0';
-            
-            console.log("Audio Unlocked.");
-        }
-
-        function enterStudio() {
-            window.location.href = "studio.html";
-        }
-
-        // Move to the Studio when the sprint concludes
-        video.onended = function() {
-            enterStudio();
-        };
-
-        // Failsafe: If video breaks, go to Studio
-        video.onerror = function() {
-            enterStudio();
-        };
-    </script>
+        <div class="footer">
+            EST. 2026 | ROMAN LAW STUDIOS | ALL RIGHTS RESERVED
+        </div>
+    </div>
 </body>
 </html>
