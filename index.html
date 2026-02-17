@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImaginX | Roman Law Studios Sanctuary</title>
+    <!-- SEO & Metadata for the Sanctuary -->
+    <meta name="description" content="ImaginX Cinematic Engine at Roman Law Studios. A 60-day on-chain cinematic sanctuary.">
+    <!-- Verification Meta Tag (Optional but Recommended) -->
+    <meta name="virtual-protocol-site-verification" content="d3f13e60f56af83fc10fbb699bb8f730">
+    
     <style>
         body {
             background-color: #050505;
@@ -17,41 +22,59 @@
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
+            overflow: hidden;
         }
         .container {
             border: 1px solid #333;
             padding: 40px;
-            background: rgba(10, 10, 10, 0.8);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
             text-align: center;
+            max-width: 600px;
+            z-index: 10;
         }
-        h1 { font-size: 1.5rem; margin-bottom: 20px; color: #fff; }
-        p { font-size: 0.9rem; color: #888; margin: 10px 0; }
-        .engine-status { color: #00ff41; font-weight: bold; margin-top: 20px; }
-        .links { margin-top: 30px; }
-        a { color: #fff; text-decoration: none; border-bottom: 1px solid #444; padding-bottom: 2px; transition: 0.3s; }
-        a:hover { color: #888; border-bottom: 1px solid #888; }
-        .footer { margin-top: 50px; font-size: 0.7rem; color: #444; }
+        h1 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; letter-spacing: 4px; }
+        .engine-title { color: #888; font-size: 0.8rem; margin-bottom: 30px; }
+        p { font-size: 0.9rem; color: #666; margin: 10px 0; }
+        .engine-status { color: #00ff41; font-weight: bold; margin-top: 30px; font-size: 1.1rem; }
+        .links { margin-top: 40px; font-size: 0.8rem; }
+        a { color: #fff; text-decoration: none; border-bottom: 1px solid #444; padding-bottom: 4px; transition: 0.3s; margin: 0 15px; }
+        a:hover { color: #888; border-bottom: 1px solid #888; text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); }
+        .footer { margin-top: 60px; font-size: 0.7rem; color: #333; }
+        
+        /* Subtle Scanline Effect for Noir Look */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Roman Law Studios</h1>
-        <p>Architect: [Your Name/ID]</p>
+        <div class="engine-title">Powered by the ImaginX Cinematic Engine</div>
+        
+        <p>Protocol: Genesis Phase</p>
         <p>Mission: 60-Day Cinematic Sanctuary</p>
-        <p>Technology: ImaginX Cinematic Engine</p>
+        <p>Registry: Verified 02.20.2026</p>
         
         <div class="engine-status">
-            SYSTEM STATUS: ONLINE / GENESIS INITIATED
+            SYSTEM STATUS: ONLINE / CRYPTO-VERIFIED
         </div>
 
         <div class="links">
-            <a href="https://github.com/[YourGitHub]">VIEW SOURCE GITHUB</a> | 
-            <a href="https://virtuals.io">VIRTUALS PROTOCOL</a>
+            <a href="https://github.com/[YourGitHubName]">SOURCE CODE</a>
+            <a href="https://virtuals.io">VIRTUALS.IO</a>
         </div>
 
         <div class="footer">
-            EST. 2026 | ROMAN LAW STUDIOS | ALL RIGHTS RESERVED
+            EST. 2026 | ROMAN LAW STUDIOS | CRYPTOGRAPHIC SANCTUARY
         </div>
     </div>
 </body>
