@@ -1,81 +1,163 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImaginX | Roman Law Studios Sanctuary</title>
-    <!-- SEO & Metadata for the Sanctuary -->
-    <meta name="description" content="ImaginX Cinematic Engine at Roman Law Studios. A 60-day on-chain cinematic sanctuary.">
-    <!-- Verification Meta Tag (Optional but Recommended) -->
-    <meta name="virtual-protocol-site-verification" content="d3f13e60f56af83fc10fbb699bb8f730">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --noir-black: #050505;
+            --noir-gray: #1a1a1a;
+            --engine-blue: #00d2ff;
+            --text-glow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
         body {
-            background-color: #050505;
-            color: #e0e0e0;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            background-color: var(--noir-black);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
             margin: 0;
-            text-transform: uppercase;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Engine Status Ticker --- */
+        .status-bar {
+            background: #111;
+            padding: 10px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 10px;
             letter-spacing: 2px;
-            overflow: hidden;
-        }
-        .container {
-            border: 1px solid #333;
-            padding: 40px;
-            background: rgba(10, 10, 10, 0.95);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #333;
             text-align: center;
-            max-width: 600px;
-            z-index: 10;
+            color: var(--engine-blue);
+            text-transform: uppercase;
         }
-        h1 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; letter-spacing: 4px; }
-        .engine-title { color: #888; font-size: 0.8rem; margin-bottom: 30px; }
-        p { font-size: 0.9rem; color: #666; margin: 10px 0; }
-        .engine-status { color: #00ff41; font-weight: bold; margin-top: 30px; font-size: 1.1rem; }
-        .links { margin-top: 40px; font-size: 0.8rem; }
-        a { color: #fff; text-decoration: none; border-bottom: 1px solid #444; padding-bottom: 4px; transition: 0.3s; margin: 0 15px; }
-        a:hover { color: #888; border-bottom: 1px solid #888; text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); }
-        .footer { margin-top: 60px; font-size: 0.7rem; color: #333; }
-        
-        /* Subtle Scanline Effect for Noir Look */
-        body::before {
-            content: " ";
+
+        /* --- Hero Section (ImaginX Cinematic Banner) --- */
+        .hero-container {
+            width: 100%;
+            position: relative;
+            background: #000;
+            border-bottom: 2px solid #222;
+        }
+
+        .hero-banner {
+            width: 100%;
+            height: auto;
             display: block;
+            aspect-ratio: 21 / 9;
+            object-fit: cover;
+            filter: brightness(0.8) contrast(1.2);
+        }
+
+        .hero-overlay {
             position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, var(--noir-black));
+        }
+
+        /* --- Content Layout --- */
+        .sanctuary-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .module-card {
+            background: var(--noir-gray);
+            border: 1px solid #333;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .module-card:hover {
+            border-color: var(--engine-blue);
+            box-shadow: var(--text-glow);
+            transform: translateY(-5px);
+        }
+
+        .module-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        h1, h2 {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .engine-text {
+            color: var(--engine-blue);
+            text-shadow: var(--text-glow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            font-size: 12px;
+            color: #555;
+            border-top: 1px solid #222;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Roman Law Studios</h1>
-        <div class="engine-title">Powered by the ImaginX Cinematic Engine</div>
-        
-        <p>Protocol: Genesis Phase</p>
-        <p>Mission: 60-Day Cinematic Sanctuary</p>
-        <p>Registry: Verified 02.20.2026</p>
-        
-        <div class="engine-status">
-            SYSTEM STATUS: ONLINE / CRYPTO-VERIFIED
-        </div>
 
-        <div class="links">
-            <a href="https://github.com/[YourGitHubName]">SOURCE CODE</a>
-            <a href="https://virtuals.io">VIRTUALS.IO</a>
-        </div>
+    <!-- 1. SYSTEM STATUS -->
+    <div class="status-bar">
+        System Status: <span class="engine-text">Online</span> // ImaginX Cinematic Engine // Roman Law Studios Sanctuary
+    </div>
 
-        <div class="footer">
-            EST. 2026 | ROMAN LAW STUDIOS | CRYPTOGRAPHIC SANCTUARY
+    <!-- 2. HERO BANNER -->
+    <div class="hero-container">
+        <img src="![](https://images.useotto.xyz/images/1771381171802.png)" 
+             alt="ImaginX Cinematic Engine Sanctuary" 
+             class="hero-banner">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <!-- 3. MISSION STATEMENT -->
+    <div style="text-align: center; padding: 60px 20px;">
+        <h1 style="font-size: 3rem;">IMAGIN<span class="engine-text">X</span></h1>
+        <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem; color: #aaa;">
+            Building the first on-chain Noir studio for AI agents. $IMAGIN fuels the proprietary production suite transforming raw metadata into cinema.
+        </p>
+    </div>
+
+    <!-- 4. TECHNICAL MODULES -->
+    <div class="sanctuary-grid">
+        <div class="module-card">
+            <div class="module-icon">⚙️</div> <!-- Placeholder for Icon 1 -->
+            <h3>Cinematic Pipeline</h3>
+            <p style="color: #888;">Procedural Noir-lighting and storytelling tools for high-fidelity agent visual conversion.</p>
+        </div>
+        <div class="module-card">
+            <div class="module-icon">📜</div> <!-- Placeholder for Icon 2 -->
+            <h3>The Registry</h3>
+            <p style="color: #888;">Cryptographically verified ledger of every frame produced by Roman Law Studios.</p>
+        </div>
+        <div class="module-card">
+            <div class="module-icon">⚖️</div> <!-- Placeholder for Icon 3 -->
+            <h3>Executive Governance</h3>
+            <p style="color: #888;">$IMAGIN holders act as Executive Producers, voting on the 60-day Script Directions.</p>
         </div>
     </div>
+
+    <footer>
+        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | @VIRTUALS_IO
+    </footer>
+
 </body>
 </html>
