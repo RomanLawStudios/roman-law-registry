@@ -163,13 +163,14 @@
         <h2 class="engine-text" style="margin-bottom: 40px;">Engine Potential: Live Showcase</h2>
         <div class="sanctuary-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); margin-top: 0;">
             
-            <!-- FEATURE CLIP 01: CHICAGO BREACH -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); box-shadow: var(--text-glow);">
+            <!-- FEATURE CLIP 01: CHICAGO BREACH (AUDIO ENABLED) -->
+            <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); cursor: pointer;" 
+                 onclick="this.querySelector('video').muted = !this.querySelector('video').muted; this.querySelector('video').controls = true;">
                 <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
                     <source src="chicago-breach.mp4" type="video/mp4">
                 </video>
-                <div style="padding: 15px; background: #111;">
-                    <span class="engine-text" style="font-size: 10px; letter-spacing: 2px;">FILE: CHICAGO_STATION_BREACH</span>
+                <div style="padding: 10px; background: #111; font-size: 10px; color: var(--engine-blue);">
+                    [ CLICK TO UNMUTE AUDIO ]
                 </div>
             </div>
 
