@@ -8,9 +8,21 @@
     <style>
         :root {
             --noir-black: #050505;
-            --noir-gray: #1a1a1a;
+            --noir-gray: rgba(26, 26, 26, 0.85); /* Semi-transparent for background depth */
             --engine-blue: #00d2ff;
             --text-glow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        /* --- Full-Page Ambient Video CSS --- */
+        #ambient-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            filter: brightness(0.25) contrast(1.2) grayscale(0.4); /* Darker for readability */
+            object-fit: cover;
         }
 
         body {
@@ -22,9 +34,14 @@
             overflow-x: hidden;
         }
 
-        /* --- Engine Status Ticker --- */
+        /* Container to allow scrolling over fixed video */
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
         .status-bar {
-            background: #111;
+            background: rgba(17, 17, 17, 0.9);
             padding: 10px;
             font-family: 'Syncopate', sans-serif;
             font-size: 10px;
@@ -35,11 +52,10 @@
             text-transform: uppercase;
         }
 
-        /* --- Hero Section (ImaginX Cinematic Banner) --- */
         .hero-container {
             width: 100%;
             position: relative;
-            background: #000;
+            background: transparent;
             border-bottom: 2px solid #222;
         }
 
@@ -61,7 +77,6 @@
             background: linear-gradient(transparent, var(--noir-black));
         }
 
-        /* --- Content Layout --- */
         .sanctuary-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -78,6 +93,7 @@
             text-align: center;
             transition: 0.3s;
             position: relative;
+            backdrop-filter: blur(5px); /* Adds a high-end frosted glass effect */
         }
 
         .module-card:hover {
@@ -109,99 +125,103 @@
             padding: 50px;
             font-size: 12px;
             color: #555;
+            background: rgba(5, 5, 5, 0.9);
             border-top: 1px solid #222;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. SYSTEM STATUS -->
-    <div class="status-bar">
-        System Status: <span class="engine-text">Online</span> // ImaginX Cinematic Engine // Roman Law Studios Sanctuary
-    </div>
+    <!-- THE AMBIENT CINEMATIC ENGINE -->
+    <video autoplay muted loop playsinline id="ambient-video">
+        <source src="ambient-chicago.mp4" type="video/mp4">
+    </video>
 
-    <!-- 2. HERO BANNER -->
-    <div class="hero-container">
-        <img src="hero-banner.png" class="hero-banner"> 
-             alt="ImaginX Cinematic Engine Sanctuary" 
-             class="hero-banner">
-        <div class="hero-overlay"></div>
-    </div>
-
-    <!-- 3. MISSION STATEMENT -->
-    <div style="text-align: center; padding: 60px 20px;">
-        <h1 style="font-size: 3rem;">IMAGIN<span class="engine-text">X</span></h1>
-        <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem; color: #aaa;">
-            Building the first on-chain Noir studio for AI agents. $IMAGIN fuels the proprietary production suite transforming raw metadata into cinema.
-        </p>
-    </div>
-
-    <!-- 4. TECHNICAL MODULES (OVERHAULED) -->
-    <div class="sanctuary-grid">
-        <div class="module-card">
-            <img src="pipeline.PNG" 
-                 alt="Cinematic Pipeline" class="module-icon">
-            <h3>Cinematic Pipeline</h3>
-            <p style="color: #888;">Procedural Noir-lighting and storytelling tools for high-fidelity agent visual conversion.</p>
+    <div class="page-wrapper">
+        <!-- 1. SYSTEM STATUS -->
+        <div class="status-bar">
+            System Status: <span class="engine-text">Online</span> // ImaginX Cinematic Engine // Roman Law Studios Sanctuary
         </div>
-        <div class="module-card">
-            <img src="registry.PNG" 
-                 alt="The Registry" class="module-icon">
-            <h3>The Registry</h3>
-            <p style="color: #888;">Cryptographically verified ledger of every frame produced by Roman Law Studios.</p>
-        </div>
-        <div class="module-card">
-            <img src="governance.PNG" 
-                 alt="Executive Governance" class="module-icon">
-            <h3>Executive Governance</h3>
-            <p style="color: #888;">$IMAGIN holders act as Executive Producers, voting on the 60-day Script Directions.</p>
-        </div>
-    </div>
 
-    <!-- 5. CINEMATIC SHOWCASE: ENGINE POTENTIAL (AUDIO-ENABLED GRID) -->
-    <div style="text-align: center; padding: 80px 20px; background: #080808; border-top: 1px solid #222;">
-        <h2 class="engine-text" style="margin-bottom: 40px;">Engine Potential: Live Showcase</h2>
-        <div class="sanctuary-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); margin-top: 0;">
-            
-            <!-- FEATURE CLIP 01: CHICAGO BREACH -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); box-shadow: var(--text-glow); cursor: pointer;"
-                 onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
-                <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                    <source src="chicago-breach.mp4" type="video/mp4">
-                </video>
-                <div style="padding: 10px; background: #111; font-size: 10px; color: var(--engine-blue); letter-spacing: 2px;">
-                    [ CLICK TO UNMUTE: CHICAGO_STATION_BREACH ]
-                </div>
+        <!-- 2. HERO BANNER -->
+        <div class="hero-container">
+            <img src="hero-banner.png" alt="ImaginX Cinematic Engine Sanctuary" class="hero-banner">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- 3. MISSION STATEMENT -->
+        <div style="text-align: center; padding: 60px 20px;">
+            <h1 style="font-size: 3rem;">IMAGIN<span class="engine-text">X</span></h1>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem; color: #aaa;">
+                Building the first on-chain Noir studio for AI agents. $IMAGIN fuels the proprietary production suite transforming raw metadata into cinema.
+            </p>
+        </div>
+
+        <!-- 4. TECHNICAL MODULES -->
+        <div class="sanctuary-grid">
+            <div class="module-card">
+                <img src="pipeline.PNG" alt="Cinematic Pipeline" class="module-icon">
+                <h3>Cinematic Pipeline</h3>
+                <p style="color: #888;">Procedural Noir-lighting and storytelling tools for high-fidelity agent visual conversion.</p>
             </div>
-
-            <!-- FEATURE CLIP 02: [WWII SPY] -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
-                 onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
-                <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                    <source src="britishroman.mp4" type="video/mp4">
-                </video>
-                <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
-                    [ CLICK TO UNMUTE: WWII_SPY ]
-                </div>
+            <div class="module-card">
+                <img src="registry.PNG" alt="The Registry" class="module-icon">
+                <h3>The Registry</h3>
+                <p style="color: #888;">Cryptographically verified ledger of every frame produced by Roman Law Studios.</p>
             </div>
-
-            <!-- FEATURE CLIP 03: [Attorney] -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
-                 onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
-                <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                    <source src="attorney.mp4" type="video/mp4">
-                </video>
-                <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
-                    [ CLICK TO UNMUTE: Attorney ]
-                </div>
+            <div class="module-card">
+                <img src="governance.PNG" alt="Executive Governance" class="module-icon">
+                <h3>Executive Governance</h3>
+                <p style="color: #888;">$IMAGIN holders act as Executive Producers, voting on the 60-day Script Directions.</p>
             </div>
-
         </div>
-        <p style="color: #555; margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px;">[ IMAGINX ENGINE: AUDIO-VISUAL MASTER CUT ]</p>
+
+        <!-- 5. CINEMATIC SHOWCASE: ENGINE POTENTIAL (AUDIO-ENABLED GRID) -->
+        <div style="text-align: center; padding: 80px 20px; background: rgba(8, 8, 8, 0.7); border-top: 1px solid #222;">
+            <h2 class="engine-text" style="margin-bottom: 40px;">Engine Potential: Live Showcase</h2>
+            <div class="sanctuary-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); margin-top: 0;">
+                
+                <!-- FEATURE CLIP 01: CHICAGO BREACH -->
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); box-shadow: var(--text-glow); cursor: pointer;"
+                     onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
+                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
+                        <source src="chicago-breach.mp4" type="video/mp4">
+                    </video>
+                    <div style="padding: 10px; background: #111; font-size: 10px; color: var(--engine-blue); letter-spacing: 2px;">
+                        [ CLICK TO UNMUTE: CHICAGO_STATION_BREACH ]
+                    </div>
+                </div>
+
+                <!-- FEATURE CLIP 02: WWII SPY -->
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
+                     onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
+                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
+                        <source src="britishroman.mp4" type="video/mp4">
+                    </video>
+                    <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
+                        [ CLICK TO UNMUTE: WWII_SPY ]
+                    </div>
+                </div>
+
+                <!-- FEATURE CLIP 03: ATTORNEY -->
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
+                     onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
+                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
+                        <source src="attorney.mp4" type="video/mp4">
+                    </video>
+                    <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
+                        [ CLICK TO UNMUTE: ATTORNEY ]
+                    </div>
+                </div>
+
+            </div>
+            <p style="color: #555; margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px;">[ IMAGINX ENGINE: AUDIO-VISUAL MASTER CUT ]</p>
+        </div>
+
+        <footer>
+            &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | @VIRTUALS_IO
+        </footer>
     </div>
-    <footer>
-        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | @VIRTUALS_IO
-    </footer>
 
 </body>
 </html>
