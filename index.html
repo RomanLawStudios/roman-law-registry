@@ -158,46 +158,47 @@
         </div>
     </div>
 
-   <!-- 5. CINEMATIC SHOWCASE: ENGINE POTENTIAL (MULTI-ASSET GRID) -->
+    <!-- 5. CINEMATIC SHOWCASE: ENGINE POTENTIAL (AUDIO-ENABLED GRID) -->
     <div style="text-align: center; padding: 80px 20px; background: #080808; border-top: 1px solid #222;">
         <h2 class="engine-text" style="margin-bottom: 40px;">Engine Potential: Live Showcase</h2>
         <div class="sanctuary-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); margin-top: 0;">
             
-            <!-- FEATURE CLIP 01: CHICAGO BREACH (AUDIO ENABLED) -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); cursor: pointer;" 
-                 onclick="this.querySelector('video').muted = !this.querySelector('video').muted; this.querySelector('video').controls = true;">
+            <!-- FEATURE CLIP 01: CHICAGO BREACH -->
+            <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); box-shadow: var(--text-glow); cursor: pointer;"
+                 onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
                 <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
                     <source src="chicago-breach.mp4" type="video/mp4">
                 </video>
-                <div style="padding: 10px; background: #111; font-size: 10px; color: var(--engine-blue);">
-                    [ CLICK TO UNMUTE AUDIO ]
+                <div style="padding: 10px; background: #111; font-size: 10px; color: var(--engine-blue); letter-spacing: 2px;">
+                    [ CLICK TO UNMUTE: CHICAGO_STATION_BREACH ]
                 </div>
             </div>
 
-            <!-- FEATURE CLIP 02: [WWII SPY] -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333;">
+            <!-- FEATURE CLIP 02: [NEXT MASTERPIECE] -->
+            <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
+                 onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
                 <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                    <source src="britishroman.mp4" type="video/mp4">
+                    <source src="clip-02.mp4" type="video/mp4">
                 </video>
-                <div style="padding: 15px; background: #111;">
-                    <span style="color: #888; font-size: 10px; letter-spacing: 2px;">FILE: WWII_SPY...</span>
+                <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
+                    [ CLICK TO UNMUTE: PRODUCTION_STILL_02 ]
                 </div>
             </div>
 
-            <!-- FEATURE CLIP 03: [Attorney] -->
-            <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333;">
+            <!-- FEATURE CLIP 03: [NEXT MASTERPIECE] -->
+            <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
+                 onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
                 <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                    <source src="attorney.mp4" type="video/mp4">
+                    <source src="clip-03.mp4" type="video/mp4">
                 </video>
-                <div style="padding: 15px; background: #111;">
-                    <span style="color: #888; font-size: 10px; letter-spacing: 2px;">FILE: Attorney...</span>
+                <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
+                    [ CLICK TO UNMUTE: PRODUCTION_STILL_03 ]
                 </div>
             </div>
 
         </div>
-        <p style="color: #555; margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px;">[ IMAGINX ENGINE: REAL-TIME MOTION RENDER ]</p>
+        <p style="color: #555; margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px;">[ IMAGINX ENGINE: AUDIO-VISUAL MASTER CUT ]</p>
     </div>
-
     <footer>
         &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | @VIRTUALS_IO
     </footer>
