@@ -5,23 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImaginX | Roman Law Studios Sanctuary</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-    <style>
+     <style>
         :root {
             --noir-black: #050505;
-            --noir-gray: rgba(26, 26, 26, 0.85); /* Semi-transparent for background depth */
+            --noir-gray: rgba(15, 15, 15, 0.8);
             --engine-blue: #00d2ff;
             --text-glow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
 
-        /* --- Full-Page Ambient Video CSS --- */
+        /* --- AMBIENT VIDEO (ALWAYS BACKGROUND) --- */
         #ambient-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
+            right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
             z-index: -1;
-            filter: brightness(0.25) contrast(1.2) grayscale(0.4); /* Darker for readability */
+            filter: brightness(0.25) contrast(1.1);
             object-fit: cover;
         }
 
@@ -29,105 +27,89 @@
             background-color: var(--noir-black);
             color: #ffffff;
             font-family: 'Space Grotesk', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             overflow-x: hidden;
         }
 
-        /* Container to allow scrolling over fixed video */
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
+        /* --- MOBILE-OPTIMIZED GLASS HEADER --- */
+        .glass-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 12px 0;
         }
 
-        .status-bar {
-            background: rgba(17, 17, 17, 0.9);
-            padding: 10px;
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .studio-logo {
             font-family: 'Syncopate', sans-serif;
-            font-size: 10px;
+            font-weight: 700;
             letter-spacing: 2px;
-            border-bottom: 1px solid #333;
-            text-align: center;
-            color: var(--engine-blue);
-            text-transform: uppercase;
+            font-size: 0.9rem; /* Smaller for Mobile */
+            color: #fff;
+            text-decoration: none;
         }
 
+        .engine-status-tag {
+            font-size: 8px; /* High-density signal for Mobile */
+            letter-spacing: 1px;
+            color: var(--engine-blue);
+            border: 1px solid var(--engine-blue);
+            padding: 3px 8px;
+            box-shadow: var(--text-glow);
+        }
+
+        /* --- RESPONSIVE HERO CONTAINER --- */
         .hero-container {
             width: 100%;
+            height: 40vh; /* Scales beautifully on Mobile */
             position: relative;
-            background: transparent;
-            border-bottom: 2px solid #222;
+            background: #000;
+            margin-top: 50px; /* Space for Fixed Header */
         }
 
         .hero-banner {
             width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 21 / 9;
+            height: 100%;
             object-fit: cover;
-            filter: brightness(0.8) contrast(1.2);
+            filter: brightness(0.7) contrast(1.2);
         }
 
         .hero-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
+            bottom: 0; left: 0; width: 100%; height: 50%;
             background: linear-gradient(transparent, var(--noir-black));
         }
 
+        /* --- MOBILE GRID FIX --- */
         .sanctuary-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 20px;
+            padding: 40px 15px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr; /* Single column on small screens */
+            gap: 20px;
         }
 
-        .module-card {
-            background: var(--noir-gray);
-            border: 1px solid #333;
-            padding: 30px;
-            text-align: center;
-            transition: 0.3s;
-            position: relative;
-            backdrop-filter: blur(5px); /* Adds a high-end frosted glass effect */
+        @media (min-width: 768px) {
+            .sanctuary-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                padding: 60px 20px;
+            }
+            .studio-logo { font-size: 1.2rem; }
+            .hero-container { height: 60vh; }
         }
 
-        .module-card:hover {
-            border-color: var(--engine-blue);
-            box-shadow: var(--text-glow);
-            transform: translateY(-5px);
-        }
-
-        .module-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            opacity: 0.7;
-        }
-
-        h1, h2 {
-            font-family: 'Syncopate', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
-
-        .engine-text {
-            color: var(--engine-blue);
-            text-shadow: var(--text-glow);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            font-size: 12px;
-            color: #555;
-            background: rgba(5, 5, 5, 0.9);
-            border-top: 1px solid #222;
-        }
+        h1 { font-size: 2.5rem; word-wrap: break-word; } /* Prevents text overflow */
+        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
     </style>
 </head>
 <body>
