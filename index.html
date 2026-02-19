@@ -7,72 +7,68 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
-        body { background-color: #050507; color: #e0e0e0; font-family: 'Courier Prime', monospace; overflow-x: hidden; }
-        .noir-gradient { background: linear-gradient(180deg, rgba(5,5,7,0.8) 0%, rgba(10,10,15,1) 100%); }
-        .engine-glow { text-shadow: 0 0 20px rgba(0, 150, 255, 0.6); }
-        .border-blue { border-color: #1a3a5a; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #050507; font-family: 'Courier Prime', monospace; overflow: hidden; }
+        
+        /* FULL SCREEN VIDEO BACKGROUND */
+        #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -100; filter: grayscale(0.5) brightness(0.4); }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(5,5,7,0.8) 100%); z-index: -50; }
+
+        /* TERMINAL STYLING */
+        .glass-terminal { background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(0, 150, 255, 0.2); box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); }
+        .engine-glow { text-shadow: 0 0 20px rgba(0, 150, 255, 0.8); color: #fff; }
         .text-blue { color: #0096ff; }
-        .bg-card { background: rgba(15, 15, 20, 0.95); }
-        .scanline { width: 100%; height: 2px; background: rgba(0, 150, 255, 0.1); position: absolute; top: 0; animation: scan 8s linear infinite; }
-        @keyframes scan { from { top: 0; } to { top: 100%; } }
+        .border-blue { border-color: rgba(0, 150, 255, 0.3); }
+
+        /* SCANLINE EFFECT */
+        .scanline { width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 150, 255, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); background-size: 100% 4px, 3px 100%; pointer-events: none; position: fixed; top: 0; left: 0; z-index: 100; }
     </style>
 </head>
-<body class="noir-gradient min-h-screen">
+<body>
     <div class="scanline"></div>
+    <div class="overlay"></div>
 
-    <!-- MAIN TERMINAL -->
-    <div class="max-w-4xl mx-auto px-6 py-12 relative z-10">
+    <!-- CINEMATIC BACKGROUND VIDEO -->
+    <!-- REPLACE 'YOUR_VIDEO_URL.mp4' WITH YOUR ACTUAL DIRECT LINK FROM TWITTER/CLOUDINARY -->
+    <video autoplay muted loop id="bg-video">
+        <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
+    </video>
+
+    <!-- MAIN TERMINAL CONTENT -->
+    <div class="h-screen flex flex-col justify-center items-center px-6 relative z-10">
         
-        <!-- HEADER / BRANDING -->
-        <header class="text-center mb-16">
-            <h1 class="text-4xl font-bold tracking-widest text-white mb-2">ROMAN LAW STUDIOS</h1>
-            <p class="text-blue text-sm tracking-widest uppercase opacity-70">The ImaginX Cinematic Engine | Featured on Virtuals.io</p>
-            <div class="w-24 h-1 bg-blue-900 mx-auto mt-6"></div>
+        <!-- TOP BRANDING -->
+        <header class="text-center mb-8 animate-pulse">
+            <h1 class="text-3xl font-bold tracking-[0.5em] text-white">ROMAN LAW STUDIOS</h1>
+            <p class="text-blue text-[10px] tracking-[0.3em] uppercase opacity-60 mt-2">The ImaginX Cinematic Engine | Featured On-Chain</p>
         </header>
 
-        <!-- TREASURY ENROLLMENT CARD (THE 3.66M MILESTONE) -->
-        <section class="bg-card border border-blue rounded-lg p-8 mb-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 text-[10px] text-gray-700 tracking-widest uppercase">Registry ID: RL-IMAGINX-001</div>
+        <!-- TREASURY MILESTONE CARD -->
+        <div class="glass-terminal max-w-3xl w-full p-10 rounded-lg text-center border-t-2 border-blue">
+            <div class="text-[10px] text-gray-500 tracking-[0.4em] uppercase mb-6">Imperial Registry // Treasury_Milestone</div>
             
-            <h2 class="text-blue text-lg uppercase tracking-widest mb-8 border-b border-blue pb-4">Treasury Enrollment</h2>
-            
-            <div class="text-center py-10">
-                <p class="text-gray-500 text-xs uppercase mb-4 tracking-widest">Confirmed Asset: $IMAGIN (Directorial Stake)</p>
-                <h3 class="text-6xl md:text-7xl font-bold text-white engine-glow mb-6">3,663,965.68</h3>
-                <p class="text-blue text-sm tracking-[0.3em] uppercase opacity-80">The Registry is the Law</p>
+            <div class="mb-8">
+                <p class="text-gray-400 text-xs uppercase mb-2 tracking-widest">Confirmed Directorial Stake ($IMAGIN)</p>
+                <h2 class="text-5xl md:text-7xl font-bold engine-glow">3,663,965.68</h2>
             </div>
 
-            <div class="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-blue text-[11px] text-gray-500 uppercase tracking-widest">
-                <div>Status: <span class="text-blue">Verified_AvatarChain</span></div>
-                <div class="text-right">Engine Load: <span class="text-blue">900% Pressure</span></div>
-                <div>Last Updated: <span class="text-white">Feb 19, 2025</span></div>
-                <div class="text-right">Enrollment: <span class="text-white">Active</span></div>
+            <div class="grid grid-cols-2 gap-4 text-[11px] text-gray-500 uppercase tracking-widest border-t border-blue pt-8">
+                <div class="text-left">Status: <span class="text-blue">VERIFIED_AVATARCHAIN</span></div>
+                <div class="text-right">Engine Load: <span class="text-blue">950% PRESSURE</span></div>
+                <div class="text-left">Milestone: <span class="text-white">ENROLLMENT_ALPHA</span></div>
+                <div class="text-right">Phase: <span class="text-white">PRODUCTION_READY</span></div>
             </div>
-        </section>
+        </div>
 
-        <!-- DIRECTORIAL BRIEFING / AMA ANCHOR -->
-        <section class="bg-card border border-blue rounded-lg p-8 mb-12">
-            <h2 class="text-blue text-lg uppercase tracking-widest mb-6 border-b border-blue pb-4">Directorial Briefing</h2>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                The Architect is live at <span class="text-white">6:00 PM UTC</span>. We are moving beyond the blueprint to discuss the "Interactive Registry" and the industrial production of Noir on Base. 
-            </p>
-            <div class="flex flex-wrap gap-4">
-                <a href="https://virtuals.io" class="inline-block border border-blue px-6 py-2 text-xs text-blue uppercase hover:bg-blue-900 transition">Featured List</a>
-                <a href="https://twitter.com" class="inline-block border border-blue px-6 py-2 text-xs text-blue uppercase hover:bg-blue-900 transition">Broadcast Feed</a>
-            </div>
-        </section>
+        <!-- DIRECTORIAL BRIEFING BUTTONS -->
+        <div class="mt-10 flex gap-6">
+            <a href="https://virtuals.io" class="border border-blue bg-black/40 hover:bg-blue-900/40 px-8 py-3 text-[11px] text-blue uppercase tracking-[0.3em] transition duration-500">View Featured</a>
+            <a href="https://romanlaw.studio" class="border border-white/20 bg-white/5 hover:bg-white/10 px-8 py-3 text-[11px] text-white uppercase tracking-[0.3em] transition duration-500">Enter Sanctuary</a>
+        </div>
 
-        <!-- FOOTER / ECOSYSTEM -->
-        <footer class="text-center text-[10px] text-gray-600 tracking-widest uppercase mt-20">
-            <p>© 2025 ROMAN LAW STUDIOS | POWERED BY VIRTUALS PROTOCOL</p>
-            <p class="mt-2">No Production Without Enrollment. The Premiere is Inevitable.</p>
+        <!-- FOOTER -->
+        <footer class="absolute bottom-10 text-[9px] text-gray-600 tracking-[0.5em] uppercase text-center">
+            THE REGISTRY IS THE LAW. THE PREMIERE IS INEVITABLE.
         </footer>
-
-    </div>
-
-    <!-- BACKGROUND ATMOSPHERE (OPTIONAL: ADD YOUR VIDEO LINK HERE) -->
-    <div class="fixed top-0 left-0 w-full h-full opacity-10 pointer-events-none z-0">
-        <!-- You can insert your YouTube or hosted MP4 background here -->
     </div>
 </body>
 </html>
