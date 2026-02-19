@@ -1,1 +1,99 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGINX | THE GLOBAL ARCHIVE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        body { background-color: #050507; color: #e0e0e0; font-family: 'Courier Prime', monospace; overflow-x: hidden; }
+        .noir-bg { background: radial-gradient(circle at center, #0a0a12 0%, #050507 100%); }
+        .engine-glow { text-shadow: 0 0 20px rgba(0, 150, 255, 0.8); }
+        .border-blue { border-color: rgba(0, 150, 255, 0.2); }
+        .text-blue { color: #0096ff; }
+        .glass-panel { background: rgba(15, 15, 22, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(0, 150, 255, 0.1); }
+        .genre-tag { font-size: 9px; padding: 2px 8px; border: 1px solid rgba(0, 150, 255, 0.4); color: #0096ff; text-transform: uppercase; margin-right: 5px; }
+    </style>
+</head>
+<body class="noir-bg min-h-screen relative p-8">
+
+    <!-- GLOBAL ARCHIVE HEADER -->
+    <header class="max-w-6xl mx-auto mb-16 flex justify-between items-end border-b border-blue pb-8">
+        <div>
+            <h1 class="text-3xl font-bold tracking-[0.4em] text-white">IMAGINX ARCHIVE</h1>
+            <p class="text-blue text-[10px] tracking-[0.3em] uppercase opacity-60 mt-2">The Universal Cinematic Registry // Multi-Genre Utility</p>
+        </div>
+        <div class="text-right">
+            <p class="text-[9px] text-gray-600 uppercase tracking-widest">Directorial Stake: <span class="text-white">3,663,965.68 $IMAGIN</span></p>
+            <p class="text-[9px] text-gray-600 uppercase tracking-widest">Status: <span class="text-blue">SECURE_TERMINAL</span></p>
+        </div>
+    </header>
+
+    <!-- ARTIST GALLERY GRID -->
+    <main class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-white text-sm uppercase tracking-[0.4em]">Artist Submissions</h2>
+            <div class="flex gap-4 text-[10px] text-gray-500 uppercase tracking-widest">
+                <span class="text-blue">All Genre</span> / <span>Noir</span> / <span>Sci-Fi</span> / <span>Organic</span>
+            </div>
+        </div>
+
+        <!-- THE GRID (PLACEHOLDERS FOR ARTIST WORK) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- ARTIST CARD 1 (NOIR) -->
+            <div class="glass-panel rounded-lg overflow-hidden border border-blue group hover:border-blue-400 transition duration-500">
+                <div class="aspect-video bg-gray-900 overflow-hidden relative">
+                    <img src="![](https://images.useotto.xyz/images/1771475958807.png)" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition">
+                    <div class="absolute top-2 left-2 genre-tag">Noir</div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">The Chicago Vault</span>
+                        <span class="text-blue text-xs font-bold engine-glow">9.8/10</span>
+                    </div>
+                    <button class="w-full border border-blue py-2 text-[9px] text-blue uppercase tracking-widest hover:bg-blue-900/30">Rate Fidelity</button>
+                </div>
+            </div>
+
+            <!-- ARTIST CARD 2 (SCI-FI) -->
+            <div class="glass-panel rounded-lg overflow-hidden border border-blue group hover:border-blue-400 transition duration-500 opacity-50">
+                <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                    <span class="text-[10px] text-gray-700 tracking-[0.5em] uppercase">Pending Submission</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] text-gray-500 uppercase tracking-widest">Artist_Unknown</span>
+                        <span class="text-gray-700 text-xs font-bold">0.0/10</span>
+                    </div>
+                    <button class="w-full border border-gray-800 py-2 text-[9px] text-gray-700 uppercase tracking-widest">Upload Content</button>
+                </div>
+            </div>
+
+            <!-- ARTIST CARD 3 (NATURE/ORGANIC) -->
+            <div class="glass-panel rounded-lg overflow-hidden border border-blue group hover:border-blue-400 transition duration-500 opacity-50">
+                <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                    <span class="text-[10px] text-gray-700 tracking-[0.5em] uppercase">Pending Submission</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] text-gray-500 uppercase tracking-widest">Artist_Unknown</span>
+                        <span class="text-gray-700 text-xs font-bold">0.0/10</span>
+                    </div>
+                    <button class="w-full border border-gray-800 py-2 text-[9px] text-gray-700 uppercase tracking-widest">Upload Content</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER NAVIGATION -->
+    <footer class="mt-20 text-center">
+        <a href="index.html" class="text-blue text-[10px] tracking-[0.5em] uppercase hover:text-white transition">Return to Sanctuary</a>
+        <p class="text-[8px] text-gray-700 mt-6 tracking-[0.8em] uppercase">No Production Without Enrollment. The Premiere is Inevitable.</p>
+    </footer>
+
+</body>
+</html>
