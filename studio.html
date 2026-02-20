@@ -3,140 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROMAN LAW STUDIOS | THE REGISTRY</title>
+    <title>IMAGINX | SOCIAL HUB ARCHIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body, html { 
-            margin: 0; padding: 0; width: 100vw; height: 100vh; 
-            background-color: black; overflow: hidden; 
-            font-family: 'Courier New', monospace; color: white; 
+        :root {
+            --noir-black: #050505;
+            --noir-gray: rgba(15, 15, 15, 0.9);
+            --engine-blue: #00d2ff;
+            --text-glow: 0 0 15px rgba(0, 210, 255, 0.6);
         }
-        
-        /* CINEMATIC ENGINE */
-        #bg-video {
-            position: fixed; top: 50%; left: 50%;
+
+        body {
+            background-color: var(--noir-black);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- AMBIENT VIDEO BACKGROUND (Inherited from index) --- */
+        #ambient-video {
+            position: fixed;
+            right: 0; bottom: 0;
             min-width: 100%; min-height: 100%;
-            transform: translate(-50%, -50%);
-            z-index: 1; object-fit: cover;
-            filter: brightness(45%); display: block;
+            z-index: -1;
+            filter: brightness(0.2) blur(8px);
+            object-fit: cover;
         }
 
-        /* HUD OVERLAY LAYER */
-        #overlay { position: relative; z-index: 10; padding: 40px; pointer-events: none; }
-        
-        h1 { 
-            font-size: 1.8rem; letter-spacing: 10px; 
-            border-bottom: 2px solid rgba(255,255,255,0.7); 
-            display: inline-block; padding-bottom: 10px; margin: 0; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-        }
-        
-        /* TRANSPARENT AGENT CARD */
-        #agent-card { 
-            background: rgba(0,0,0,0); /* FULL TRANSPARENCY */
-            padding: 20px; 
-            border-left: 2px solid white; 
-            max-width: 400px; 
-            margin-top: 30px; 
-            pointer-events: auto; 
+        /* --- HUB HEADER --- */
+        .glass-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 15px 0;
         }
 
-        h2 { 
-            letter-spacing: 4px; color: #fff; margin-top: 0; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
 
-        p { 
-            line-height: 1.6; color: rgba(255,255,255,0.9); 
-            font-size: 0.9rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+        .studio-logo {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 1rem;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
         }
 
-        /* HUD CONTROLS */
-        #controls { 
-            position: fixed; bottom: 8%; left: 40px; 
-            display: flex; flex-direction: column; gap: 12px; z-index: 20; 
+        /* --- MAIN TERMINAL CONTENT --- */
+        .hub-container {
+            max-width: 1200px;
+            margin: 100px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
-        button { 
-            background: rgba(0,0,0,0.2); 
-            border: 1px solid rgba(255,255,255,0.5); 
-            color: white; padding: 15px; width: 240px; 
-            cursor: pointer; text-transform: uppercase; 
-            letter-spacing: 2px; font-weight: bold; 
-            transition: 0.4s; text-align: left;
-            backdrop-filter: blur(2px);
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            color: var(--engine-blue);
+            text-shadow: var(--text-glow);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+            padding-bottom: 20px;
         }
 
-        button:hover, .active-btn { 
-            background: white; color: black; 
-            border-color: white; padding-left: 30px; 
+        /* --- ARTIST GALLERY GRID --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
         }
 
-        /* MOBILE RESPONSIVE TWEAKS */
-        @media (max-width: 600px) {
-            #overlay { padding: 25px; }
-            h1 { font-size: 1.2rem; letter-spacing: 5px; }
-            #agent-card { max-width: 85%; margin-top: 20px; }
-            #agent-card p { font-size: 0.75rem; }
-            #controls { bottom: 5%; left: 25px; gap: 8px; }
-            button { width: 190px; padding: 12px; font-size: 0.7rem; }
+        .artist-card {
+            background: var(--noir-gray);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
         }
+
+        .artist-card:hover {
+            border-color: var(--engine-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--text-glow);
+        }
+
+        .card-visual {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: 0.5s;
+        }
+
+        .artist-card:hover .card-visual img { opacity: 1; }
+
+        .card-content { padding: 25px; }
+
+        .card-tag {
+            font-size: 9px;
+            color: var(--engine-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-rating {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            color: var(--engine-blue);
+            font-size: 1.2rem;
+        }
+
+        /* --- BUTTON STYLING --- */
+        .hub-btn {
+            background: transparent;
+            border: 1px solid var(--engine-blue);
+            color: var(--engine-blue);
+            padding: 10px 20px;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .hub-btn:hover {
+            background: rgba(0, 210, 255, 0.15);
+            box-shadow: var(--text-glow);
+        }
+
+        /* --- FOOTER NAV --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #222;
+            background: rgba(5,5,5,0.9);
+        }
+
+        .back-link {
+            color: #555;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .back-link:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
     </style>
 </head>
 <body>
 
-    <!-- VIDEO PLAYER -->
-    <video id="bg-video" autoplay muted loop playsinline preload="auto">
-        <source id="video-source" src="britishroman.mp4" type="video/mp4">
+    <!-- THE AMBIENT CINEMATIC ENGINE (Blurred for Focus) -->
+    <video autoplay muted loop playsinline id="ambient-video">
+        <source src="ambient-chicago.mp4" type="video/mp4">
     </video>
 
-    <!-- INTERFACE -->
-    <div id="overlay">
-        <h1>ROMAN LAW STUDIOS</h1>
-        <div id="agent-card">
-            <h2 id="agent-name">THE SPY</h2>
-            <p id="agent-desc">DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.</p>
+    <!-- HUB HEADER -->
+    <header class="glass-header">
+        <div class="header-content">
+            <a href="index.html" class="studio-logo">IMAGINX <span style="color:var(--engine-blue)">SOCIAL HUB</span></a>
+            <div style="font-size: 9px; letter-spacing: 2px; color: #555;">[ SESSION_STATUS: ACTIVE ]</div>
         </div>
-    </div>
+    </header>
 
-    <!-- SELECTOR -->
-    <div id="controls">
-        <button onclick="switchDNA('britishroman', 'THE SPY', 'DNA: BRITISH INTEL<br>STATUS: ACTIVE / MONITORING<br><br>Primary reconnaissance and alpha generation unit.', this)" class="active-btn">RECON</button>
-        <button onclick="switchDNA('greaser', 'THE GREASER', 'DNA: URBAN STREETS<br>STATUS: ACTIVE / SECURED<br><br>Internal security and protocol enforcement specialist.', this)">SECURITY</button>
-        <button onclick="switchDNA('attorney', 'THE ATTORNEY', 'DNA: CORPORATE LAW<br>STATUS: ACTIVE / GOVERNING<br><br>High-level protocol governance and strategic negotiation.', this)">GOVERNANCE</button>
-    </div>
+    <div class="hub-container">
+        
+        <h2 class="section-title">GLOBAL_ARTIST_ARCHIVE</h2>
 
-    <script>
-        function switchDNA(file, name, desc, btn) {
-            const video = document.getElementById('bg-video');
-            const nameField = document.getElementById('agent-name');
-            const descField = document.getElementById('agent-desc');
-            const buttons = document.querySelectorAll('button');
-
-            // 1. Update Asset
-            video.src = file + ".mp4";
-            nameField.innerText = name;
-            descField.innerHTML = desc;
-
-            // 2. Audio Handshake (Lift Mute on Interaction)
-            video.muted = false;
-            video.volume = 0.8;
+        <div class="gallery-grid">
             
-            video.load();
-            video.play().catch(e => console.log("Awaiting manual trigger for audio..."));
+            <!-- SAMPLE CARD 01 (Noir Vault) -->
+            <div class="artist-card">
+                <div class="card-visual">
+                    <img src="![](https://images.useotto.xyz/images/1771475958807.png)" alt="Chicago Vault">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Genre: Noir // Original</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0; font-size: 14px;">The 3.6M Vault</h3>
+                        <div class="card-rating">9.9</div>
+                    </div>
+                    <button class="hub-btn">Rate Fidelity</button>
+                </div>
+            </div>
 
-            // 3. HUD Feedback
-            buttons.forEach(b => b.classList.remove('active-btn'));
-            btn.classList.add('active-btn');
-        }
+            <!-- UPLOAD PORTAL -->
+            <div class="artist-card" style="border-style: dashed; border-color: rgba(0, 210, 255, 0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; background: rgba(0, 210, 255, 0.02);">
+                <div style="font-size: 40px; color: var(--engine-blue); opacity: 0.4;">+</div>
+                <p style="font-size: 10px; letter-spacing: 4px; color: #555; text-transform: uppercase;">Submit Your Vision</p>
+                <button class="hub-btn" style="width: auto; padding: 10px 30px;">Initialize</button>
+            </div>
 
-        // AUDIO ACTIVATOR: First tap on the screen unmutes current cinematic
-        document.addEventListener('click', function() {
-            const v = document.getElementById('bg-video');
-            if(v.muted) {
-                v.muted = false;
-                v.play();
-            }
-        }, { once: true });
-    </script>
+            <!-- PENDING SLOT -->
+            <div class="artist-card" style="opacity: 0.3; cursor: not-allowed;">
+                <div class="card-content" style="text-align: center; padding-top: 100px;">
+                    <p style="font-size: 9px; letter-spacing: 3px; color: #555; text-transform: uppercase;">[ ARCHIVE_SLOT_03: LOCKED ]</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <a href="index.html" class="back-link">Return to Sanctuary_Core</a>
+    </footer>
+
 </body>
 </html>
