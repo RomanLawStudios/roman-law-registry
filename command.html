@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | LORE CREATION // COMMAND_CONSOLE</title>
+    <title>IMAGINX | LORE CREATION // COMMAND CONSOLE</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --noir-black: #050505; --engine-blue: #00d2ff; --steel-gray: #222; --noir-gray: rgba(10, 10, 10, 0.98); --text-glow: 0 0 15px rgba(0, 210, 255, 0.5); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
@@ -13,41 +13,44 @@
         .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.08) grayscale(0.8); }
 
         .command-layout { display: flex; max-width: 1400px; margin: 100px auto; gap: 40px; padding: 0 40px; }
-        
-        /* LEFT SIDE: COMMAND & MISSION */
         .sidebar { flex: 0 0 400px; display: flex; flex-direction: column; gap: 40px; }
         .command-box { background: var(--noir-gray); border: 2px solid var(--steel-gray); padding: 40px; box-shadow: 20px 20px 60px rgba(0,0,0,1); }
         h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 8px; color: var(--engine-blue); margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 15px; text-shadow: var(--text-glow); }
-        
-        /* RIGHT SIDE: LORE REPOSITORY */
         .lore-main { flex: 1; background: var(--noir-gray); border: 2px solid var(--steel-gray); padding: 60px; box-shadow: 30px 30px 80px rgba(0,0,0,1); }
-
-        /* CONTENT ELEMENTS */
-        .roadmap-card { border-left: 2px solid #222; padding-left: 20px; margin-bottom: 25px; transition: 0.4s; }
-        .roadmap-card:hover { border-color: var(--engine-blue); }
-        .day-badge { font-size: 9px; color: #444; letter-spacing: 3px; font-weight: 700; display: block; margin-bottom: 5px; }
-        .roadmap-text { font-size: 13px; color: #666; line-height: 1.6; }
-
         .input-forge { width: 100%; background: #000; border: 1px solid #111; padding: 25px; color: var(--engine-blue); font-family: 'Space Grotesk'; font-size: 14px; margin-top: 20px; resize: none; outline: none; box-sizing: border-box; }
         .btn-action { display: block; width: 100%; padding: 20px; border: 1px solid var(--engine-blue); background: transparent; color: var(--engine-blue); font-size: 10px; font-family: 'Syncopate'; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; box-shadow: var(--text-glow); cursor: pointer; transition: 0.3s; }
         .btn-action:hover { background: var(--engine-blue); color: #000; }
 
-        .lore-section { border-bottom: 1px solid #111; padding-bottom: 40px; margin-bottom: 40px; }
-        .lore-section h3 { font-family: 'Syncopate'; font-size: 1rem; color: #fff; letter-spacing: 2px; margin-bottom: 20px; }
-        .lore-text { font-size: 15px; color: #888; line-height: 2; font-weight: 300; letter-spacing: 1px; }
+        /* --- THE INDUSTRIAL FORGE OVERLAY --- */
+        #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .forge-anvil { width: 120px; height: auto; margin-bottom: 30px; filter: drop-shadow(var(--text-glow)); animation: forge-thump 1s infinite; }
+        @keyframes forge-thump { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); filter: brightness(1.5); } }
+        .forge-status { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 6px; color: var(--engine-blue); margin-bottom: 20px; text-align: center; }
+        .forge-progress-container { width: 300px; height: 4px; background: #111; border: 1px solid #222; position: relative; }
+        #forge-bar { width: 0%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); transition: 0.2s; }
 
+        .lore-section { border-bottom: 1px solid #111; padding-bottom: 40px; margin-bottom: 40px; }
+        .lore-text { font-size: 15px; color: #888; line-height: 2; font-weight: 300; letter-spacing: 1px; }
         .return-link { display: block; margin-top: 40px; color: #333; font-size: 9px; text-decoration: none; letter-spacing: 5px; text-align: center; text-transform: uppercase; }
     </style>
 </head>
 <body>
     <div class="bg-engine"></div>
+
+    <!-- THE FORGE ANIMATION OVERLAY -->
+    <div id="forge-overlay">
+        <img src="pipeline.PNG" class="forge-anvil" alt="Anvil">
+        <div id="status-text" class="forge-status">STRIKING METADATA...</div>
+        <div class="forge-progress-container">
+            <div id="forge-bar"></div>
+        </div>
+        <p style="font-size: 9px; color: #444; margin-top: 20px; letter-spacing: 4px;">[ SENDING SIGNAL TO DISCORD FORGE ]</p>
+    </div>
     
     <div class="command-layout">
-        
-        <!-- SIDEBAR: ROADMAP & SUBMISSION -->
         <div class="sidebar">
             <div class="command-box">
-                <h2>60_DAY_ROADMAP</h2>
+                <h2>60 DAY ROADMAP</h2>
                 <div class="roadmap-card">
                     <span class="day-badge">DAY 01-15</span>
                     <div class="roadmap-text">[ COMPLETED ]: Sanctuary & Industrial HUD initialized.</div>
@@ -62,83 +65,76 @@
                 </div>
             </div>
 
-            <!-- THE FUNCTIONAL CREATOR FORGE -->
             <div class="command-box">
-                <h2>CREATOR_FORGE</h2>
+                <h2>CREATOR FORGE</h2>
                 <p style="font-size: 11px; color: #444; line-height: 1.6;">Contribute metadata to the ImaginX engine. Build upon our worlds or forge a parallel path.</p>
-                <!-- ADDED ID="loreInput" FOR SCRIPT ACCESS -->
-                <textarea id="loreInput" class="input-forge" rows="4" placeholder="SUBMIT_SCRIPT_SCRAP..."></textarea>
-                <!-- CHANGED TO BUTTON WITH ONCLICK ACTION -->
-                <button onclick="submitLore()" class="btn-action">SUBMIT TO ENGINE</button>
+                <textarea id="loreInput" class="input-forge" rows="4" placeholder="SUBMIT SCRIPT SCRAP..."></textarea>
+                <button onclick="submitLore()" class="btn-action">FORGE SCRIPT SCRAP</button>
             </div>
             
-            <a href="index.html" class="return-link">RETURN_TO_SANCTUARY</a>
+            <a href="index.html" class="return-link">RETURN TO SANCTUARY</a>
         </div>
 
-        <!-- MAIN: LORE REPOSITORY -->
         <div class="lore-main">
             <h2>LORE ARCHIVE // THE FOUNDATION</h2>
-            
             <div class="lore-section">
                 <h3>CHICAGO BREACH</h3>
-                <div class="lore-text">
-                    In the year 2042, the high-fidelity signal was lost at the South-Side station. The breach was not a physical crack, but a rendering error in reality. 
-                    <br><br>
-                    As the ImaginX Engine attempts to patch the world, AI agents have begun to occupy the ruins, creating a society based on raw industrial metadata.
-                </div>
+                <div class="lore-text">In 2042, the signal was lost at South-Side station. AI agents occupy the ruins. You are the architect.</div>
             </div>
-
             <div class="lore-section">
                 <h3>WWII SPY PROTOCOL</h3>
-                <div class="lore-text">
-                    Deep within the underground archives of Roman Law, a coded transmission from 1944 was decrypted. The transmission was not human—it was a high-fidelity render from the future sent back to protect the origins of the Engine.
-                </div>
+                <div class="lore-text">A 1944 transmission decrypted from the future. Temporal espionage is the only key.</div>
             </div>
-
             <div class="lore-section">
                 <h3>THE ATTORNEY</h3>
-                <div class="lore-text">
-                    Standing at the rain-slicked platform of 14th Street, The Attorney holds the master key to the 54+ Partner Registry. He is the guardian of the $IMAGIN reserves.
-                </div>
+                <div class="lore-text">The guardian of the Registry. Every script scrap is evidence in his final trial.</div>
             </div>
         </div>
     </div>
 
-    <!-- THE DISCORD FORUM SIGNAL TRANSMISSION ENGINE -->
     <script>
         async function submitLore() {
             const loreText = document.getElementById('loreInput').value;
-            // FIXED: Added quotes around the URL for valid transmission
             const webhookURL = 'https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7'; 
 
             if (!loreText) {
-                alert("THE FORGE REQUIRES METADATA. INPUT SCRIPT SCRAP.");
+                alert("THE FORGE REQUIRES METADATA.");
                 return;
             }
 
+            const overlay = document.getElementById('forge-overlay');
+            const bar = document.getElementById('forge-bar');
+            const status = document.getElementById('status-text');
+            overlay.style.display = 'flex';
+
             try {
+                bar.style.width = '30%';
                 const response = await fetch(webhookURL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         thread_name: `SCRIPT_SCRAP_${new Date().getTime()}`, 
-                        content: `🚨 **NEW_LORE_SIGNAL_ENQUEUED**\n\n**METADATA:** ${loreText}\n\n[ IMAGINX ENGINE // HIGH-FIDELITY_SYNC ]`
+                        content: `🚨 **NEW LORE SIGNAL ENQUEUED**\n\n**METADATA:** ${loreText}\n\n[ IMAGINX ENGINE // HIGH FIDELITY SYNC ]`
                     })
                 });
 
-                 if (response.ok) {
-                    // THE DIRECTOR'S WINK PROTOCOL (UPDATED)
-                    alert("Classified Detail Received. Just kidding. Your words are currently being brought to life through your eyes.");
-                    window.location.href = "index.html"; 
-                } else {
-                    alert("SIGNAL_PENDING. (VERIFY WEBHOOK URL CONFIGURATION)");
+                if (response.ok) {
+                    bar.style.width = '70%';
+                    status.innerText = "SIGNAL STABILIZED...";
+                    
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        status.innerText = "Classified Detail Received. Just kidding.";
+                        setTimeout(() => {
+                            window.location.href = "index.html"; 
+                        }, 1500);
+                    }, 1000);
                 }
             } catch (error) {
-                alert("SIGNAL_INTERRUPTED. (LOCAL_CACHE_SYNCED)");
-                window.location.href = "index.html";
+                overlay.style.display = 'none';
+                alert("SIGNAL INTERRUPTED.");
             }
         }
     </script>
-
 </body>
 </html>
