@@ -8,273 +8,132 @@
     <style>
         :root {
             --noir-black: #050505;
-            --noir-gray: rgba(15, 15, 15, 0.8);
+            --noir-gray: rgba(10, 10, 10, 0.95);
             --engine-blue: #00d2ff;
-            --text-glow: 0 0 10px rgba(0, 210, 255, 0.5);
+            --steel-gray: #333;
+            --text-glow: 0 0 15px rgba(0, 210, 255, 0.5);
+            --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-        /* --- AMBIENT VIDEO BACKGROUND --- */
-        #ambient-video {
-            position: fixed;
-            right: 0; bottom: 0;
-            min-width: 100%; min-height: 100%;
-            z-index: -1;
-            filter: brightness(0.25) contrast(1.1);
-            object-fit: cover;
+        /* --- WWII CINEMATIC GRAIN --- */
+        body::after {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--vintage-grain);
+            opacity: 0.04; pointer-events: none; z-index: 5000;
+            animation: grain-flicker 0.2s steps(2) infinite;
+        }
+        @keyframes grain-flicker {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(-0.5%, -0.5%); }
+            100% { transform: translate(0.5%, 0.5%); }
         }
 
-        body {
-            background-color: var(--noir-black);
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
-            margin: 0; padding: 0;
-            overflow-x: hidden;
-        }
+        body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* --- MOBILE-OPTIMIZED GLASS HEADER --- */
-        .glass-header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            z-index: 100;
-            background: rgba(5, 5, 5, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
-            padding: 12px 0;
-        }
+        /* --- AMBIENT ENGINE BACKGROUND --- */
+        #ambient-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: sepia(0.2) contrast(1.2) brightness(0.18) grayscale(0.6); object-fit: cover; }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+        /* --- THE HUD HEADER & TABS --- */
+        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.9); border-bottom: 2px solid var(--steel-gray); padding: 15px 0; backdrop-filter: blur(20px); }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .studio-logo { font-family: 'Syncopate'; font-weight: 700; letter-spacing: 5px; font-size: 1rem; color: #fff; text-decoration: none; }
+        
+        .tab-nav { display: flex; gap: 40px; }
+        .tab-link { color: #555; text-decoration: none; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
+        .tab-link:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
-        .studio-logo {
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-size: clamp(0.7rem, 3vw, 1.1rem);
-            color: #fff;
-            text-decoration: none;
-        }
+        /* --- SECTIONS --- */
+        .section-container { max-width: 1200px; margin: 0 auto; padding: 150px 20px 100px; }
+        h2 { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: #222; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 20px; margin-bottom: 60px; }
 
-        .engine-status-tag {
-            font-size: clamp(6px, 2vw, 9px);
-            letter-spacing: 1px;
-            color: var(--engine-blue);
-            border: 1px solid var(--engine-blue);
-            padding: 3px 8px;
-            box-shadow: var(--text-glow);
-            text-transform: uppercase;
-        }
+        /* --- PRODUCTION CARDS --- */
+        .sanctuary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 60px; }
+        .module-card { background: var(--noir-gray); border: 1px solid var(--steel-gray); overflow: hidden; transition: 0.6s; box-shadow: 20px 20px 60px rgba(0,0,0,0.8); }
+        .module-card:hover { border-color: var(--engine-blue); transform: scale(1.02); }
+        .showcase-video { width: 100%; display: block; filter: contrast(1.1) brightness(0.9) saturate(0.8) sepia(0.1); }
+        .card-info { padding: 40px; }
 
-        /* --- PAGE WRAPPER & HERO --- */
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-            padding-top: 60px; /* Space for fixed header */
-        }
+        /* --- THE CINEMATIC PIPELINE (INTEGRATED SOCIAL HUB) --- */
+        #pipeline { margin-top: 150px; background: rgba(0,0,0,0.8); border: 1px solid #111; padding: 80px 40px; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .hub-pane { background: rgba(10, 10, 10, 0.95); border: 1px solid #222; padding: 40px; }
+        .hub-pane:hover { border-color: var(--engine-blue); }
 
-        .hero-container {
-            width: 100%;
-            height: clamp(30vh, 50vh, 60vh);
-            position: relative;
-            background: #000;
-            overflow: hidden;
-        }
+        .btn-action { display: block; width: 100%; padding: 18px; border: 1px solid var(--steel-gray); color: #666; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 30px; }
+        .btn-action:hover { border-color: var(--engine-blue); color: var(--engine-blue); }
 
-        .hero-banner {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7) contrast(1.2);
-        }
+        .stat-value { font-size: 42px; font-weight: bold; color: #fff; margin: 10px 0; }
+        .stat-label { font-size: 9px; color: #333; letter-spacing: 5px; text-transform: uppercase; }
 
-        .hero-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(transparent, var(--noir-black));
-        }
-
-        /* --- FLUID TYPOGRAPHY: THE UNBREAKABLE LOGO --- */
-        .mission-section {
-            text-align: center; 
-            padding: clamp(60px, 10vh, 120px) 20px; 
-            position: relative;
-        }
-
-        h1 { 
-            font-size: clamp(2.2rem, 11vw, 5rem); 
-            margin-bottom: 0px; 
-            filter: drop-shadow(var(--text-glow)); 
-            font-family: 'Syncopate', sans-serif;
-            white-space: nowrap; /* No more IMAGI-NX split */
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-
-        h2.studio-tagline { 
-            font-size: clamp(0.6rem, 2.5vw, 1.1rem); 
-            color: #fff; 
-            letter-spacing: clamp(2px, 1vw, 6px); 
-            margin-top: 10px; 
-            opacity: 0.8; 
-            font-weight: 400;
-            white-space: nowrap;
-            text-transform: uppercase;
-        }
-
-        .mission-text {
-            max-width: 800px; 
-            margin: 0 auto; 
-            font-size: clamp(1rem, 4vw, 1.3rem); 
-            line-height: 1.7; 
-            color: #ccc; 
-            font-weight: 300; 
-            letter-spacing: 1px;
-            padding-top: 30px;
-        }
-
-        /* --- GRID SYSTEM --- */
-        .sanctuary-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 768px) {
-            .sanctuary-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        }
-
-        .module-card {
-            background: var(--noir-gray);
-            border: 1px solid #333;
-            padding: 30px;
-            text-align: center;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
-        }
-
-        .module-card:hover {
-            border-color: var(--engine-blue);
-            box-shadow: var(--text-glow);
-        }
-
-        .module-icon { width: 80px; height: 80px; margin-bottom: 20px; opacity: 0.7; }
-
-        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
-
-        footer { text-align: center; padding: 60px; font-size: 10px; color: #555; border-top: 1px solid #222; background: rgba(5,5,5,0.9); }
+        footer { text-align: center; padding: 100px; font-size: 10px; color: #222; letter-spacing: 3px; }
     </style>
 </head>
 <body>
 
-    <!-- THE AMBIENT CINEMATIC ENGINE -->
     <video autoplay muted loop playsinline id="ambient-video">
-        <source src="ambient-chicago.mp4" type="video/mp4">
+        <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
     </video>
 
-    <!-- MOBILE-HARDENED GLASS HEADER -->
+    <!-- HEADER WITH WORKING TABS -->
     <header class="glass-header">
         <div class="header-content">
-            <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE</div>
+            <a href="#" class="studio-logo">ROMAN LAW <span style="color:var(--engine-blue)">STUDIOS</span></a>
+            <nav class="tab-nav">
+                <a href="#archive" class="tab-link">PRODUCTION_ARCHIVE</a>
+                <a href="#pipeline" class="tab-link">CINEMATIC_PIPELINE</a>
+                <a href="#registry" class="tab-link">REGISTRY_STAKE</a>
+            </nav>
         </div>
     </header>
 
-    <div class="page-wrapper">
-        <!-- 2. HERO BANNER -->
-        <div class="hero-container">
-            <img src="hero-banner.png" alt="ImaginX Cinematic Engine" class="hero-banner">
-            <div class="hero-overlay"></div>
-        </div>
-
-        <!-- 3. MISSION STATEMENT (STUDIO HIERARCHY) -->
-        <div class="mission-section">
-            <h1>IMAGIN<span class="engine-text">X</span></h1>
-            <h2 class="studio-tagline">THE CINEMATIC ENGINE <span class="engine-text">POWERED BY</span> ROMAN LAW STUDIOS</h2>
-            
-            <div style="width: 60px; height: 1px; background: var(--engine-blue); margin: 30px auto; box-shadow: var(--text-glow);"></div>
-
-            <p class="mission-text">
-                Building the first on-chain Noir studio for AI agents. 
-                <span class="engine-text" style="font-weight: 500;">$IMAGIN</span> is the fuel for a proprietary production suite transforming raw metadata into high-fidelity cinema.
-            </p>
-        </div>
-
-        <!-- 4. TECHNICAL MODULES -->
+    <!-- SECTION 01: ARCHIVE -->
+    <div id="archive" class="section-container">
+        <h2>PRODUCTION_ARCHIVE</h2>
         <div class="sanctuary-grid">
             <div class="module-card">
-                <img src="pipeline.PNG" alt="Cinematic Pipeline" class="module-icon">
-                <h3>Cinematic Pipeline</h3>
-                <p style="color: #888;">Procedural Noir-lighting and storytelling tools for high-fidelity agent visual conversion.</p>
+                <video autoplay muted loop playsinline class="showcase-video"><source src="chicago-breach.mp4" type="video/mp4"></video>
+                <div class="card-info"><span style="color:var(--engine-blue); font-size:9px; letter-spacing:3px;">PROD_01 // BREACH</span></div>
             </div>
             <div class="module-card">
-                <img src="registry.PNG" alt="The Registry" class="module-icon">
-                <h3>The Registry</h3>
-                <p style="color: #888;">Cryptographically verified ledger of every frame produced by Roman Law Studios.</p>
-            </div>
-            <div class="module-card">
-                <img src="governance.PNG" alt="Executive Governance" class="module-icon">
-                <h3>Executive Governance</h3>
-                <p style="color: #888;">$IMAGIN holders act as Executive Producers, voting on the 60-day Script Directions.</p>
+                <video autoplay muted loop playsinline class="showcase-video"><source src="attorney.mp4" type="video/mp4"></video>
+                <div class="card-info"><span style="color:var(--engine-blue); font-size:9px; letter-spacing:3px;">PROD_02 // ATTORNEY</span></div>
             </div>
         </div>
-
-        <!-- 5. CINEMATIC SHOWCASE: ENGINE POTENTIAL -->
-        <div style="text-align: center; padding: 80px 20px; background: rgba(8, 8, 8, 0.7); border-top: 1px solid #222;">
-            <h2 class="engine-text" style="margin-bottom: 40px; font-family: 'Syncopate';">Live Showcase</h2>
-            <div class="sanctuary-grid" style="margin-top: 0;">
-                
-                <!-- FEATURE CLIP 01 -->
-                <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid var(--engine-blue); cursor: pointer;"
-                     onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
-                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                        <source src="chicago-breach.mp4" type="video/mp4">
-                    </video>
-                    <div style="padding: 10px; background: #111; font-size: 10px; color: var(--engine-blue); letter-spacing: 2px;">
-                        [ CLICK TO UNMUTE: CHICAGO_STATION_BREACH ]
-                    </div>
-                </div>
-
-                <!-- FEATURE CLIP 02 -->
-                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
-                     onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
-                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                        <source src="britishroman.mp4" type="video/mp4">
-                    </video>
-                    <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
-                        [ CLICK TO UNMUTE: WWII_SPY ]
-                    </div>
-                </div>
-
-                <!-- FEATURE CLIP 03 -->
-                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #333; cursor: pointer;"
-                     onclick="const v = this.querySelector('video'); v.muted = !v.muted; v.controls = !v.controls;">
-                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; display: block;">
-                        <source src="attorney.mp4" type="video/mp4">
-                    </video>
-                    <div style="padding: 10px; background: #111; font-size: 10px; color: #888; letter-spacing: 2px;">
-                        [ CLICK TO UNMUTE: ATTORNEY ]
-                    </div>
-                </div>
-            </div>
-            <p style="color: #555; margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px;">[ IMAGINX ENGINE: AUDIO-VISUAL MASTER CUT ]</p>
-        </div>
-
-        <footer>
-            &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | @VIRTUALS_IO
-        </footer>
     </div>
-<!-- IMAGINX SOCIAL HUB GATE -->
-<div style="position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 100;">
-    <a href="terminal.html" style="border: 1px solid #00d2ff; color: #00d2ff; padding: 15px 40px; text-decoration: none; font-family: 'Syncopate'; font-size: 10px; letter-spacing: 5px;">
-    ACCESS_CREATORS_HUB
-</a>
-</div>
+
+    <!-- SECTION 02: CINEMATIC PIPELINE (SOCIAL HUB) -->
+    <div id="pipeline">
+        <div class="section-container" style="padding-top:0;">
+            <h2>CINEMATIC_PIPELINE // SOCIAL_HUB</h2>
+            <div class="hub-grid">
+                <div class="hub-pane">
+                    <span style="font-size:9px; color:#444; letter-spacing:3px;">LORE_FORGE</span>
+                    <p style="font-size:14px; color:#888; line-height:1.8; margin-top:20px;">"The Chicago rain is falling on 54 partners. Registry expansion confirmed."</p>
+                    <a href="#" class="btn-action">Initiate Script</a>
+                </div>
+                <div class="hub-pane" style="text-align:center;">
+                    <span style="font-size:9px; color:#444; letter-spacing:3px;">COLLECTIVE_VAULT</span>
+                    <div class="stat-value">54+</div>
+                    <div class="stat-label">ENROLLED_PARTNERS</div>
+                    <div style="font-size:8px; color:#222; margin-top:20px; letter-spacing:2px;">$APACHE / $XIO / $GYM / $SENTA / $CATALIEN</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 03: REGISTRY STAKE -->
+    <div id="registry" class="section-container">
+        <h2>REGISTRY_STAKE</h2>
+        <div class="hub-pane" style="max-width:400px; margin: 0 auto; text-align:center;">
+            <div class="stat-label">VAULT_POWER</div>
+            <div class="stat-value" style="color:var(--engine-blue)">3,663,965</div>
+            <div style="font-size:10px; color:#444; letter-spacing:4px;">$IMAGIN // BASE_MAINNET</div>
+            <a href="#" class="btn-action" style="border-color:var(--engine-blue); color:var(--engine-blue);">Enroll Assets</a>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX</footer>
+
 </body>
 </html>
