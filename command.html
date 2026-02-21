@@ -3,36 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | STUDIO_COMMAND</title>
+    <title>IMAGINX | LORE CREATION // COMMAND_CONSOLE</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --noir-black: #050505; --engine-blue: #00d2ff; --steel-gray: #222; --noir-gray: rgba(8, 8, 8, 0.98); --text-glow: 0 0 15px rgba(0, 210, 255, 0.4); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
+        :root { --noir-black: #050505; --engine-blue: #00d2ff; --steel-gray: #222; --noir-gray: rgba(10, 10, 10, 0.98); --text-glow: 0 0 15px rgba(0, 210, 255, 0.5); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
         body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
         @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
-        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.1) grayscale(0.8); }
-        .content-pane { max-width: 900px; margin: 100px auto; background: var(--noir-gray); border: 2px solid var(--steel-gray); padding: 60px; backdrop-filter: blur(40px); box-shadow: 30px 30px 100px rgba(0,0,0,1); }
-        h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 12px; color: var(--engine-blue); margin-bottom: 50px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 25px; text-shadow: var(--text-glow); }
-        .lore-card { background: rgba(255,255,255,0.01); border-left: 2px solid var(--engine-blue); padding: 25px; margin-bottom: 25px; font-size: 13px; color: #888; }
-        .day-badge { font-size: 10px; color: var(--engine-blue); letter-spacing: 3px; font-weight: 700; margin-bottom: 5px; display: block; }
-        .roadmap-card { background: #000; padding: 20px; border: 1px solid #111; margin-bottom: 20px; }
-        .btn-action { display: block; width: 100%; padding: 25px; border: 1px solid var(--engine-blue); color: var(--engine-blue); font-size: 11px; font-family: 'Syncopate'; letter-spacing: 8px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 50px; box-shadow: var(--text-glow); }
+        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.08) grayscale(0.8); }
+
+        .command-layout { display: flex; max-width: 1400px; margin: 100px auto; gap: 40px; padding: 0 40px; }
+        
+        /* LEFT SIDE: COMMAND & MISSION */
+        .sidebar { flex: 0 0 400px; display: flex; flex-direction: column; gap: 40px; }
+        .command-box { background: var(--noir-gray); border: 2px solid var(--steel-gray); padding: 40px; box-shadow: 20px 20px 60px rgba(0,0,0,1); }
+        h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 8px; color: var(--engine-blue); margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 15px; text-shadow: var(--text-glow); }
+        
+        /* RIGHT SIDE: LORE REPOSITORY */
+        .lore-main { flex: 1; background: var(--noir-gray); border: 2px solid var(--steel-gray); padding: 60px; box-shadow: 30px 30px 80px rgba(0,0,0,1); }
+
+        /* CONTENT ELEMENTS */
+        .roadmap-card { border-left: 2px solid #222; padding-left: 20px; margin-bottom: 25px; transition: 0.4s; }
+        .roadmap-card:hover { border-color: var(--engine-blue); }
+        .day-badge { font-size: 9px; color: #444; letter-spacing: 3px; font-weight: 700; display: block; margin-bottom: 5px; }
+        .roadmap-text { font-size: 13px; color: #666; line-height: 1.6; }
+
+        .input-forge { width: 100%; background: #000; border: 1px solid #111; padding: 25px; color: var(--engine-blue); font-family: 'Space Grotesk'; font-size: 14px; margin-top: 20px; resize: none; outline: none; box-sizing: border-box; }
+        .btn-action { display: block; width: 100%; padding: 20px; border: 1px solid var(--engine-blue); color: var(--engine-blue); font-size: 10px; font-family: 'Syncopate'; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; box-shadow: var(--text-glow); }
+
+        .lore-section { border-bottom: 1px solid #111; padding-bottom: 40px; margin-bottom: 40px; }
+        .lore-section h3 { font-family: 'Syncopate'; font-size: 1rem; color: #fff; letter-spacing: 2px; margin-bottom: 20px; }
+        .lore-text { font-size: 15px; color: #888; line-height: 2; font-weight: 300; letter-spacing: 1px; }
+
+        .return-link { display: block; margin-top: 40px; color: #333; font-size: 9px; text-decoration: none; letter-spacing: 5px; text-align: center; text-transform: uppercase; }
     </style>
 </head>
 <body>
     <div class="bg-engine"></div>
-    <div class="content-pane">
-        <h2>STUDIO_COMMAND // LORE_ARCHIVE</h2>
-        <div class="lore-card"><b>PROD_01:</b> "Standing at 14th Street station. Metadata transfer 58% complete."</div>
-        <div class="lore-card"><b>PROD_02:</b> "Chicago Breach expanding. Signal lost at South-Side station."</div>
-        <div class="lore-card"><b>PROD_03:</b> "WWII Spy Protocol. Decrypted 1944 signal: Agent was never human."</div>
+    
+    <div class="command-layout">
         
-        <h2 style="margin-top: 80px;">PRODUCTION_ROADMAP // 60_DAY</h2>
-        <div class="roadmap-card"><span class="day-badge">DAY 01-15</span> [ COMPLETED ]: Sanctuary & Industrial HUD initialized.</div>
-        <div class="roadmap-card" style="border-color: var(--engine-blue);"><span class="day-badge">DAY 16-30</span> [ ACTIVE ]: Super-Command Fused Architecture. Lore Expansion.</div>
-        <div class="roadmap-card" style="opacity:0.3;"><span class="day-badge">DAY 31-60</span> [ PENDING ]: Executive Premiere & Governance.</div>
-        
-        <a href="index.html" class="btn-action">RETURN_TO_SANCTUARY</a>
+        <!-- SIDEBAR: ROADMAP & SUBMISSION -->
+        <div class="sidebar">
+            <div class="command-box">
+                <h2>60_DAY_ROADMAP</h2>
+                <div class="roadmap-card">
+                    <span class="day-badge">DAY 01-15</span>
+                    <div class="roadmap-text">[ COMPLETED ]: Sanctuary & Industrial HUD initialized.</div>
+                </div>
+                <div class="roadmap-card" style="border-color: var(--engine-blue);">
+                    <span class="day-badge" style="color:var(--engine-blue)">DAY 16-30</span>
+                    <div class="roadmap-text" style="color:#888;">[ ACTIVE ]: Lore Creation Consolidation. Social Submission Suite launched.</div>
+                </div>
+                <div class="roadmap-card" style="opacity:0.3;">
+                    <span class="day-badge">DAY 31-60</span>
+                    <div class="roadmap-text">[ PENDING ]: Executive Premiere & Governance.</div>
+                </div>
+            </div>
+
+            <div class="command-box">
+                <h2>CREATOR_FORGE</h2>
+                <p style="font-size: 11px; color: #444; line-height: 1.6;">Contribute metadata to the ImaginX engine. Build upon our worlds or forge a parallel path.</p>
+                <textarea class="input-forge" rows="4" placeholder="SUBMIT_SCRIPT_SCRAP..."></textarea>
+                <a href="index.html" class="btn-action">SUBMIT TO ENGINE</a>
+            </div>
+            
+            <a href="index.html" class="return-link">RETURN_TO_SANCTUARY</a>
+        </div>
+
+        <!-- MAIN: LORE REPOSITORY -->
+        <div class="lore-main">
+            <h2>LORE ARCHIVE // THE FOUNDATION</h2>
+            
+            <!-- PRODUCTION 01: CHICAGO BREACH -->
+            <div class="lore-section">
+                <h3>CHICAGO BREACH</h3>
+                <div class="lore-text">
+                    In the year 2042, the high-fidelity signal was lost at the South-Side station. The breach was not a physical crack, but a rendering error in reality. 
+                    <br><br>
+                    As the ImaginX Engine attempts to patch the world, AI agents have begun to occupy the ruins, creating a society based on raw industrial metadata. You are the architect of this patch. Will you stabilize the signal, or let the breach expand into the North?
+                </div>
+            </div>
+
+            <!-- PRODUCTION 02: WWII SPY PROTOCOL -->
+            <div class="lore-section">
+                <h3>WWII SPY PROTOCOL</h3>
+                <div class="lore-text">
+                    Deep within the underground archives of Roman Law, a coded transmission from 1944 was decrypted. The transmission was not human—it was a high-fidelity render from the future sent back to protect the origins of the Engine.
+                    <br><br>
+                    Follow the ghost of the First Agent across war-torn Europe. This is a story of temporal espionage, where the metadata of the past is the only key to the future.
+                </div>
+            </div>
+
+            <!-- PRODUCTION 03: THE ATTORNEY -->
+            <div class="lore-section">
+                <h3>THE ATTORNEY</h3>
+                <div class="lore-text">
+                    Standing at the rain-slicked platform of 14th Street, The Attorney holds the master key to the 54+ Partner Registry. He is the guardian of the $IMAGIN reserves.
+                    <br><br>
+                    In a world of corporate shadow and industrial rendering, he is the only one who can verify the truth. Every script scrap submitted to the Forge is a piece of evidence in his final trial.
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </body>
 </html>
