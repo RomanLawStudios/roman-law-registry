@@ -10,7 +10,7 @@
             --noir-black: #050505;
             --noir-gray: rgba(15, 15, 15, 0.85);
             --engine-blue: #00d2ff;
-            --text-glow: 0 0 15px rgba(0, 210, 255, 0.5);
+            --text-glow: 0 0 20px rgba(0, 210, 255, 0.7);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
@@ -50,30 +50,39 @@
 
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
 
-        /* --- MISSION SECTION & UPSCALED HUD --- */
+        /* --- MISSION SECTION & LUMINESCENT HUD --- */
         .mission-section { 
             display: flex; flex-direction: column; align-items: center; 
             text-align: center; padding: clamp(100px, 18vh, 180px) 20px; position: relative;
         }
 
-        /* THE UPSCALED FRONT-AND-CENTER REGISTRY HUD */
+        /* THE HIGH-GLOW REGISTRY HUD */
         .registry-hud {
             position: absolute; right: 5%; top: 120px; text-align: right;
-            border-right: 3px solid var(--engine-blue); padding-right: 25px;
+            border-right: 4px solid var(--engine-blue); padding-right: 30px;
             display: none; /* Desktop Only */
         }
         @media (min-width: 1200px) { .registry-hud { display: block; } }
 
-        .hud-label { font-size: 10px; color: #555; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; }
-        .hud-value { font-size: 28px; color: #fff; font-family: 'Syncopate'; margin-bottom: 5px; font-weight: 700; }
-        .ticker-text { font-size: 11px; color: var(--engine-blue); letter-spacing: 3px; font-weight: 500; background: rgba(0,0,0,0.4); padding: 5px 10px; display: inline-block; margin-top: 10px; text-transform: uppercase; border: 1px solid #111; }
+        .hud-label { font-size: 11px; color: #555; letter-spacing: 5px; text-transform: uppercase; margin-top: 25px; }
+        .hud-value { 
+            font-size: 42px; color: var(--engine-blue); font-family: 'Syncopate'; 
+            margin-bottom: 5px; font-weight: 700; filter: drop-shadow(var(--text-glow));
+            letter-spacing: -2px;
+        }
+        .ticker-text { 
+            font-size: 13px; color: #fff; letter-spacing: 4px; font-weight: 700; 
+            background: rgba(0, 210, 255, 0.1); padding: 8px 15px; display: inline-block; 
+            margin-top: 15px; text-transform: uppercase; border: 1px solid var(--engine-blue); 
+            box-shadow: var(--text-glow);
+        }
 
         h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
         .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
         .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
 
-        /* --- GRID --- */
+        /* --- GRID & SHOWCASE --- */
         .sanctuary-grid { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; }
         @media (min-width: 768px) { .sanctuary-grid { grid-template-columns: repeat(3, 1fr); } }
 
@@ -101,13 +110,13 @@
 
     <div class="page-wrapper">
         <div class="mission-section">
-            <!-- UPSCALED FRONT AND CENTER HUD -->
+            <!-- LUMINESCENT FRONT AND CENTER HUD -->
             <div class="registry-hud">
                 <div class="hud-label">STUDIO_PARTNERS</div>
                 <div class="hud-value">54+</div>
                 
                 <div class="hud-label">REGISTRY_STAKE</div>
-                <div class="hud-value" style="color:var(--engine-blue)">3.66M</div>
+                <div class="hud-value">3.66M</div>
                 
                 <div class="hud-label">RESERVE_PORTFOLIO</div>
                 <div class="ticker-text">$CATALIEN / $SENTA / $DROID / $GYMBOT / $XIO</div>
