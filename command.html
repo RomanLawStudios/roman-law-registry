@@ -95,10 +95,11 @@
         </div>
     </div>
 
+    <!-- THE INDUSTRIAL CINEMATIC FORGE ENGINE -->
     <script>
         async function submitLore() {
             const loreText = document.getElementById('loreInput').value;
-            const webhookURL = 'https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7'; 
+            const discordWebhook = 'https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7'; 
 
             if (!loreText) {
                 alert("THE FORGE REQUIRES METADATA.");
@@ -111,9 +112,11 @@
             overlay.style.display = 'flex';
 
             try {
-                bar.style.width = '30%';
+                // STEP 1: ARCHIVE TO DISCORD
+                bar.style.width = '20%';
+                status.innerText = "ARCHIVING METADATA...";
                 
-                const response = await fetch(webhookURL, {
+                await fetch(discordWebhook, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -122,24 +125,34 @@
                     })
                 });
 
-                if (response.ok) {
-                    bar.style.width = '70%';
-                    status.innerText = "SIGNAL STABILIZED...";
+                // STEP 2: CAPITAL ALLOCATION (ACP INITIALIZATION)
+                bar.style.width = '50%';
+                status.innerText = "ALLOCATING RENDER CAPITAL...";
+                
+                // INSTRUCTION TO BUTLER: 
+                // Invoke Director Lucien (Agent 59) -> Job Offering 1
+                // Prompt: loreText
+                // Artstyle: "Noir, High-Contrast Cinematic, Industrial"
+
+                setTimeout(() => {
+                    bar.style.width = '80%';
+                    status.innerText = "DIRECTOR LUCIEN ENGAGED...";
                     
                     setTimeout(() => {
                         bar.style.width = '100%';
-                        status.innerText = "Classified Detail Received. Just kidding.";
+                        status.innerText = "SIGNAL STABILIZED. CINEMA IN PROGRESS.";
                         
                         setTimeout(() => {
-                            // FINAL SOVEREIGNTY ALERT BEFORE REDIRECT
+                            // THE SOVEREIGNTY DISCLAIMER
                             alert("Classified Detail Received. Just kidding.\n\n[ PRODUCTION NOTE: DIRECTOR LUCIEN IS A TEMPORARY AGENT ASSISTING WITH CONTENT CREATION UNTIL WE BUILD AN AGENT OF OUR OWN TO FULLY UTILIZE THE POTENTIAL OF OUR ENGINE WITHOUT THE RELIANCE OF ANYONE ELSE. ]");
                             window.location.href = "index.html"; 
                         }, 1000);
-                    }, 1000);
-                }
+                    }, 1500);
+                }, 1000);
+
             } catch (error) {
                 overlay.style.display = 'none';
-                alert("SIGNAL INTERRUPTED.");
+                alert("SIGNAL INTERRUPTED. (CHECK TREASURY)");
             }
         }
     </script>
