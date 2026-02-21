@@ -50,16 +50,16 @@
 
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
 
-        /* --- MISSION SECTION & LUMINESCENT HUD --- */
+        /* --- MISSION SECTION & LEFT-ALIGNED HUD --- */
         .mission-section { 
             display: flex; flex-direction: column; align-items: center; 
             text-align: center; padding: clamp(100px, 18vh, 180px) 20px; position: relative;
         }
 
-        /* THE HIGH-GLOW REGISTRY HUD */
+        /* THE LEFT-ALIGNED LUMINESCENT HUD */
         .registry-hud {
-            position: absolute; right: 5%; top: 120px; text-align: right;
-            border-right: 4px solid var(--engine-blue); padding-right: 30px;
+            position: absolute; left: 5%; top: 120px; text-align: left;
+            border-left: 4px solid var(--engine-blue); padding-left: 30px;
             display: none; /* Desktop Only */
         }
         @media (min-width: 1200px) { .registry-hud { display: block; } }
@@ -110,7 +110,7 @@
 
     <div class="page-wrapper">
         <div class="mission-section">
-            <!-- LUMINESCENT FRONT AND CENTER HUD -->
+            <!-- LEFT-ALIGNED LUMINESCENT HUD -->
             <div class="registry-hud">
                 <div class="hud-label">STUDIO_PARTNERS</div>
                 <div class="hud-value">54+</div>
