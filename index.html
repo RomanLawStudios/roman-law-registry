@@ -14,7 +14,7 @@
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-        /* --- THE WWII CINEMATIC GRAIN OVERLAY --- */
+        /* --- THE WWII CINEMATIC GRAIN --- */
         body::after {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -35,7 +35,7 @@
             object-fit: cover;
         }
 
-        body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
         /* --- MOBILE-OPTIMIZED GLASS HEADER --- */
         .glass-header {
@@ -48,28 +48,39 @@
         .studio-logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 4px; font-size: clamp(0.7rem, 3vw, 1rem); color: #fff; text-decoration: none; }
         .engine-status-tag { font-size: clamp(6px, 2vw, 9px); letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase; }
 
-        /* --- HERO & LOGO SECTIONS --- */
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
-        .hero-container { width: 100%; height: clamp(40vh, 60vh, 70vh); position: relative; background: #000; overflow: hidden; border-bottom: 1px solid #111; }
-        .hero-banner { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) contrast(1.2) grayscale(0.4); }
-        .hero-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(transparent, var(--noir-black)); }
 
-        .mission-section { text-align: center; padding: clamp(80px, 15vh, 150px) 20px; }
+        /* --- HERO & MISSION (WITH REGISTRY HUD) --- */
+        .mission-section { 
+            display: flex; flex-direction: column; align-items: center; 
+            text-align: center; padding: clamp(80px, 15vh, 150px) 20px; position: relative;
+        }
+
+        /* THE FRONT-AND-CENTER REGISTRY HUD */
+        .registry-hud {
+            position: absolute; right: 20px; top: 100px; text-align: right;
+            border-right: 2px solid var(--engine-blue); padding-right: 15px;
+            display: none; /* Hide on small screens, show on desktop */
+        }
+        @media (min-width: 1100px) { .registry-hud { display: block; } }
+
+        .hud-label { font-size: 8px; color: #444; letter-spacing: 3px; text-transform: uppercase; }
+        .hud-value { font-size: 18px; color: #fff; font-family: 'Syncopate'; margin-bottom: 10px; }
+
         h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
-        h2.studio-tagline { font-size: clamp(0.6rem, 2.5vw, 1rem); color: #fff; letter-spacing: clamp(4px, 1.5vw, 10px); margin-top: 15px; opacity: 0.7; font-weight: 400; text-transform: uppercase; }
+        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
         .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
 
-        /* --- TECHNICAL MODULES & REGISTRY --- */
+        /* --- TECHNICAL MODULES --- */
         .sanctuary-grid { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; }
         @media (min-width: 768px) { .sanctuary-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        .module-card { background: var(--noir-gray); border: 1px solid #222; padding: 40px; text-align: center; transition: 0.5s; backdrop-filter: blur(10px); }
+        .module-card { background: var(--noir-gray); border: 1px solid #222; padding: 40px; text-align: center; transition: 0.5s; backdrop-filter: blur(10px); text-decoration: none; color: inherit; display: block; }
         .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
         .module-icon { width: 70px; height: 70px; margin-bottom: 25px; opacity: 0.6; filter: grayscale(1) invert(1); }
-        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
-        /* --- LIVE SHOWCASE --- */
+        /* --- SHOWCASE --- */
         .showcase-section { text-align: center; padding: 120px 20px; background: rgba(5, 5, 5, 0.9); border-top: 1px solid #111; }
 
         footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
@@ -77,7 +88,6 @@
 </head>
 <body>
 
-    <!-- THE AMBIENT CINEMATIC ENGINE -->
     <video autoplay muted loop playsinline id="ambient-video">
         <source src="ambient-chicago.mp4" type="video/mp4">
     </video>
@@ -85,53 +95,51 @@
     <header class="glass-header">
         <div class="header-content">
             <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // 58.2% GRADUATION</div>
+            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // 58.2%</div>
         </div>
     </header>
 
     <div class="page-wrapper">
-        <div class="hero-container">
-            <img src="hero-banner.png" alt="ImaginX Cinematic Engine" class="hero-banner">
-            <div class="hero-overlay"></div>
-        </div>
-
         <div class="mission-section">
+            <!-- FRONT AND CENTER REGISTRY DATA -->
+            <div class="registry-hud">
+                <div class="hud-label">STUDIO_PARTNERS</div>
+                <div class="hud-value">54+</div>
+                <div class="hud-label">REGISTRY_STAKE</div>
+                <div class="hud-value" style="color:var(--engine-blue)">3.66M</div>
+                <div class="hud-label">RESERVES</div>
+                <div style="font-size:7px; color:#222; letter-spacing:1px; margin-top:5px;">$CATALIEN / $SENTA / $DROID / $GYMBOT</div>
+            </div>
+
             <h1>IMAGIN<span class="engine-text">X</span></h1>
             <h2 class="studio-tagline">THE CINEMATIC ENGINE <span class="engine-text">POWERED BY</span> ROMAN LAW STUDIOS</h2>
+            
             <div style="width: 80px; height: 1px; background: var(--engine-blue); margin: 40px auto; box-shadow: var(--text-glow);"></div>
+
             <p class="mission-text">
                 The first on-chain Noir studio for AI agents. 
                 <span class="engine-text" style="font-weight: 500;">$IMAGIN</span> is the industrial fuel powering a proprietary suite transforming raw metadata into high-fidelity cinema.
             </p>
         </div>
 
-        <!-- MULTI-PAGE CINEMATIC MODULES -->
         <div class="sanctuary-grid">
-            <!-- MODULE 01: LORE PIPELINE -->
-            <a href="pipeline.html" style="text-decoration: none; color: inherit;">
-                <div class="module-card">
-                    <img src="pipeline.PNG" alt="Cinematic Pipeline" class="module-icon">
-                    <h3>Lore Pipeline</h3>
-                    <p style="color: #666; font-size: 13px;">Procedural Noir-lighting and a <span class="engine-text">Social Lore Forge</span> for high-fidelity conversion.</p>
-                </div>
+            <!-- MODULE 01 -->
+            <a href="wip.html" class="module-card">
+                <img src="pipeline.PNG" alt="Cinematic Pipeline" class="module-icon">
+                <h3>Lore Pipeline</h3>
+                <p style="color: #666; font-size: 13px;">Procedural Noir-lighting and a <span class="engine-text">Social Lore Forge</span> for high-fidelity conversion.</p>
             </a>
-
-            <!-- MODULE 02: THE VAULT -->
-            <a href="vault.html" style="text-decoration: none; color: inherit;">
-                <div class="module-card" style="border-color: #444;">
-                    <img src="registry.PNG" alt="The Registry" class="module-icon">
-                    <h3 class="engine-text">Collective Vault</h3>
-                    <p style="color: #888; font-size: 13px;">Holding <span class="engine-text">54+</span> Studio Partners and <span class="engine-text">3.66M</span> $IMAGIN registry stake.</p>
-                </div>
+            <!-- MODULE 02 (VAULT) -->
+            <a href="wip.html" class="module-card" style="border-color: #444;">
+                <img src="registry.PNG" alt="The Registry" class="module-icon">
+                <h3 class="engine-text">The Vault</h3>
+                <p style="color: #888; font-size: 13px;">Holding <span class="engine-text">54+</span> Partners & <span class="engine-text">3.66M</span> $IMAGIN registry stake.</p>
             </a>
-
-            <!-- MODULE 03: PRODUCTION STATUS -->
-            <a href="status.html" style="text-decoration: none; color: inherit;">
-                <div class="module-card">
-                    <img src="governance.PNG" alt="Executive Governance" class="module-icon">
-                    <h3>Production Status</h3>
-                    <p style="color: #666; font-size: 13px;">$IMAGIN holders act as Executive Producers on our 60-day industrial directions.</p>
-                </div>
+            <!-- MODULE 03 -->
+            <a href="wip.html" class="module-card">
+                <img src="governance.PNG" alt="Executive Governance" class="module-icon">
+                <h3>Production Status</h3>
+                <p style="color: #666; font-size: 13px;">$IMAGIN holders act as Executive Producers on our 60-day industrial directions.</p>
             </a>
         </div>
 
@@ -140,15 +148,12 @@
             <div class="sanctuary-grid" style="margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
                 <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #222;">
                     <video autoplay muted loop playsinline style="width: 100%; display: block; filter: contrast(1.1) grayscale(0.2);"><source src="chicago-breach.mp4" type="video/mp4"></video>
-                    <div style="padding: 15px; background: #000; font-size: 9px; color: #444; letter-spacing: 3px;">[ PRODUCTION_01: CHICAGO_BREACH ]</div>
                 </div>
                 <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #222;">
                     <video autoplay muted loop playsinline style="width: 100%; display: block; filter: contrast(1.1) grayscale(0.2);"><source src="britishroman.mp4" type="video/mp4"></video>
-                    <div style="padding: 15px; background: #000; font-size: 9px; color: #444; letter-spacing: 3px;">[ PRODUCTION_02: WWII_SPY ]</div>
                 </div>
                 <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #222;">
                     <video autoplay muted loop playsinline style="width: 100%; display: block; filter: contrast(1.1) grayscale(0.2);"><source src="attorney.mp4" type="video/mp4"></video>
-                    <div style="padding: 15px; background: #000; font-size: 9px; color: #444; letter-spacing: 3px;">[ PRODUCTION_03: THE_ATTORNEY ]</div>
                 </div>
             </div>
         </div>
