@@ -32,16 +32,23 @@
         #ambient-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: brightness(0.25) contrast(1.1) sepia(0.1); object-fit: cover; }
         body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(5, 5, 5, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
+        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
         .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .studio-logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 4px; font-size: clamp(0.7rem, 3vw, 1rem); color: #fff; text-decoration: none; }
         .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
-        .mission-section { display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(100px, 15vh, 150px) 20px; position: relative; }
+        
+        /* --- THE RESTORED HUD --- */
+        .registry-hud { position: absolute; left: 5%; top: 120px; text-align: left; border-left: 4px solid var(--engine-blue); padding-left: 30px; display: none; z-index: 500; }
+        @media (min-width: 1200px) { .registry-hud { display: block; } }
+        .hud-label { font-size: 11px; color: #555; letter-spacing: 5px; text-transform: uppercase; margin-top: 25px; }
+        .hud-value { font-size: 38px; color: var(--engine-blue); font-family: 'Syncopate'; margin-bottom: 5px; font-weight: 700; filter: drop-shadow(var(--text-glow)); letter-spacing: -2px; }
+        .ticker-text { font-size: 12px; color: #fff; letter-spacing: 4px; font-weight: 700; background: rgba(0, 210, 255, 0.1); padding: 8px 15px; display: inline-block; margin-top: 15px; text-transform: uppercase; border: 1px solid var(--engine-blue); box-shadow: var(--text-glow); }
 
+        .mission-section { display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(100px, 15vh, 150px) 20px; position: relative; }
         h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 10px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
-        .mission-text { max-width: 900px; margin: 40px auto 0; font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
+        .mission-text { max-width: 900px; margin: 40px auto 0; font-size: clamp(1rem, 4vw, 1.25rem); line-height: 2; color: #ffffff; font-weight: 400; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
         /* --- THE NARRATIVE SHOWCASE --- */
         .showcase-section { text-align: center; padding: 120px 20px; background: transparent; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -62,7 +69,6 @@
         .close-imax { position: absolute; top: 40px; right: 40px; color: #fff; font-family: 'Syncopate'; font-size: 10px; letter-spacing: 5px; cursor: pointer; border: 1px solid #fff; padding: 10px 20px; z-index: 10001; }
         .close-imax:hover { color: var(--engine-blue); border-color: var(--engine-blue); text-shadow: var(--text-glow); }
 
-        /* --- THE GATEWAY --- */
         .command-gate { text-align: center; padding: 100px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
         .gate-link { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 30px 80px; box-shadow: var(--text-glow); transition: 0.4s; display: inline-block; background: rgba(0,210,255,0.05); backdrop-filter: blur(5px); }
         .gate-link:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 50px var(--engine-blue); }
@@ -85,15 +91,25 @@
     <header class="glass-header">
         <div class="header-content">
             <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div style="font-size: 9px; letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase;">IMAGINX ENGINE: ONLINE // MISSION_STABLE</div>
+            <div style="font-size: 9px; letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase;">IMAGINX ENGINE: ONLINE // HUD_STABILIZED</div>
         </div>
     </header>
 
     <div class="page-wrapper">
         <div class="mission-section">
+            <!-- HUD RESTORED -->
+            <div class="registry-hud">
+                <div class="hud-label">STUDIO_PARTNERS</div>
+                <div class="hud-value">54+</div>
+                <div class="hud-label">AIRDROP_TREASURY</div>
+                <div id="live-treasury" class="hud-value">$1,142.60</div>
+                <div class="hud-label">STARTUP_RESERVES</div>
+                <div class="ticker-text">$APACHEBOT / $XIO / $SENTA / $GYMBOT / $CATALIEN</div>
+            </div>
+
             <h1>IMAGIN<span class="engine-text">X</span></h1>
             <p class="mission-text">
-                One of the world's first studios to give writers the ability to <span class="engine-text" style="font-weight:500;">integrate artificial intelligence</span> into their writing to truly bring stories to life just as they're being written. <br><br>
+                One of the world's first studios to give writers the ability to <span class="engine-text" style="font-weight:500; text-shadow: var(--text-glow);">integrate artificial intelligence</span> into their writing to truly bring stories to life just as they're being written. <br><br>
                 Powering the next generation of generative cinema.
             </p>
         </div>
@@ -104,7 +120,7 @@
             
             <div class="video-grid">
                 <div class="video-card" onclick="openIMAX('chicago-breach.mp4')">
-                    <video muted loop playsinline><source src="chicago-breach.mp4" type="video/mp4"></video>
+                    <video class="prod-video" autoplay muted loop playsinline><source src="chicago-breach.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
                         <span class="time-badge">CIRCA 1952</span>
                         <h4 class="context-title">CHICAGO BREACH</h4>
@@ -113,7 +129,7 @@
                 </div>
 
                 <div class="video-card" onclick="openIMAX('britishroman.mp4')">
-                    <video muted loop playsinline><source src="britishroman.mp4" type="video/mp4"></video>
+                    <video class="prod-video" autoplay muted loop playsinline><source src="britishroman.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
                         <span class="time-badge">CIRCA 1944</span>
                         <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
@@ -122,11 +138,11 @@
                 </div>
 
                 <div class="video-card" onclick="openIMAX('attorney.mp4')">
-                    <video muted loop playsinline><source src="attorney.mp4" type="video/mp4"></video>
+                    <video class="prod-video" autoplay muted loop playsinline><source src="attorney.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
                         <span class="time-badge">PRESENT DAY: 2026</span>
                         <h4 class="context-title">THE ATTORNEY</h4>
-                        <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present.</p>
+                        <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present day.</p>
                     </div>
                 </div>
             </div>
@@ -140,6 +156,13 @@
     </div>
 
     <script>
+        window.addEventListener('load', () => {
+            const ambient = document.getElementById('ambient-video');
+            const prods = document.querySelectorAll('.prod-video');
+            ambient.play().catch(e => console.log("Signal Pending..."));
+            prods.forEach(p => p.play().catch(e => console.log("Signal Pending...")));
+        });
+
         function openIMAX(source) {
             const overlay = document.getElementById('imax-overlay');
             const video = document.getElementById('imax-video');
@@ -156,6 +179,14 @@
             video.muted = true;
             overlay.style.display = 'none';
         }
+
+        async function updateTreasury() {
+            const auditedWeight = 1142.60; 
+            const flux = (Math.random() * 0.4) - 0.2;
+            const element = document.getElementById('live-treasury');
+            if(element) element.innerText = '$' + (auditedWeight + flux).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+        setInterval(updateTreasury, 15000);
     </script>
 </body>
 </html>
