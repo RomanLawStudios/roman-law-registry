@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | CREATORS_HUB // WWII_ARCHIVE_V.03</title>
+    <title>IMAGINX | CREATORS_HUB // MULTI_GENRE_TERMINAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --noir-black: #050505;
             --engine-blue: #00d2ff;
-            --steel-gray: #444;
+            --steel-gray: #333;
             --noir-gray: rgba(10, 10, 10, 0.95);
             --text-glow: 0 0 15px rgba(0, 210, 255, 0.4);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-        /* --- THE WWII CINEMATIC GRAIN (SYNCED WITH INDEX) --- */
+        /* --- THE CINEMATIC GRAIN (UNIVERSAL UI TEXTURE) --- */
         body::after {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -32,23 +32,23 @@
 
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- GLOBAL AMBIENT VIDEO (WWII GRADING) --- */
+        /* --- AMBIENT ENGINE BG (THE CORE STORM) --- */
         #bg-video { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: -1; object-fit: cover; 
-            filter: sepia(0.2) contrast(1.3) brightness(0.15) grayscale(0.6); 
+            filter: brightness(0.12) contrast(1.2); 
         }
 
-        /* --- THE INDUSTRIAL "IRON-SIGHT" HUD --- */
+        /* --- INDUSTRIAL HUD --- */
         .hud-header { 
             position: fixed; top: 0; left: 0; width: 100%; 
-            background: rgba(5, 5, 5, 0.9); border-bottom: 2px solid var(--steel-gray); 
+            background: rgba(5, 5, 5, 0.9); border-bottom: 1px solid var(--steel-gray); 
             padding: 15px 0; z-index: 1000; text-align: center; backdrop-filter: blur(15px); 
         }
-        .grad-bar { width: 300px; height: 3px; background: #222; margin: 8px auto 0; overflow: hidden; border: 1px solid #111; }
+        .grad-bar { width: 300px; height: 2px; background: #111; margin: 8px auto 0; overflow: hidden; border: 1px solid #222; }
         .grad-fill { width: 58.2%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); }
 
-        /* --- WWII GRID LAYOUT --- */
+        /* --- TERMINAL LAYOUT --- */
         .terminal-layout { 
             max-width: 1400px; margin: 0 auto; padding: 120px 25px 80px; 
             display: grid; grid-template-columns: 350px 1fr 300px; gap: 40px; 
@@ -57,12 +57,12 @@
         
         .pane { 
             background: var(--noir-gray); border: 1px solid var(--steel-gray); 
-            padding: 30px; backdrop-filter: blur(25px); overflow-y: auto; 
+            padding: 30px; backdrop-filter: blur(30px); overflow-y: auto; 
             scrollbar-width: none; box-shadow: 20px 20px 60px rgba(0,0,0,0.8);
         }
         .pane::-webkit-scrollbar { display: none; }
 
-        /* --- WWII INDUSTRIAL COMPONENTS --- */
+        /* --- MULTI-GENRE CARDS --- */
         .card { 
             background: rgba(255,255,255,0.02); border: 1px solid #222; 
             padding: 25px; margin-bottom: 30px; transition: 0.5s; 
@@ -70,68 +70,68 @@
         .card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
         
         .tag { 
-            font-size: 10px; color: #666; letter-spacing: 4px; 
+            font-size: 9px; color: #555; letter-spacing: 4px; 
             text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 700; 
         }
+        .genre-badge { font-size: 8px; border: 1px solid #333; padding: 2px 8px; color: var(--engine-blue); margin-right: 10px; }
+
         .btn-action { 
             display: block; width: 100%; padding: 18px; 
             border: 1px solid var(--steel-gray); background: transparent; 
-            color: #888; font-size: 10px; letter-spacing: 5px; 
+            color: #666; font-size: 9px; letter-spacing: 5px; 
             text-transform: uppercase; text-decoration: none; text-align: center; 
             margin-top: 25px; cursor: pointer; transition: 0.4s; 
         }
         .btn-action:hover { border-color: var(--engine-blue); color: var(--engine-blue); background: rgba(0, 210, 255, 0.05); }
 
         h2 { 
-            font-family: 'Syncopate'; font-size: 0.75rem; letter-spacing: 8px; 
-            color: #555; margin-bottom: 35px; text-transform: uppercase; 
-            border-bottom: 1px solid var(--steel-gray); padding-bottom: 15px; 
+            font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 8px; 
+            color: #444; margin-bottom: 35px; text-transform: uppercase; 
+            border-bottom: 1px solid #222; padding-bottom: 15px; 
         }
 
-        .stat-value { font-size: 36px; font-weight: bold; letter-spacing: -2px; margin: 15px 0; color: #fff; }
-        .stat-label { font-size: 10px; color: #444; letter-spacing: 5px; text-transform: uppercase; }
+        .stat-value { font-size: 34px; font-weight: bold; letter-spacing: -2px; margin: 15px 0; color: #fff; }
+        .stat-label { font-size: 9px; color: #333; letter-spacing: 4px; text-transform: uppercase; }
 
         @media (max-width: 1200px) { .terminal-layout { grid-template-columns: 1fr; height: auto; } }
     </style>
 </head>
 <body>
 
-    <!-- WWII AMBIENT BACKGROUND -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
     </video>
 
-    <!-- IRON-SIGHT HEADER HUD -->
     <div class="hud-header">
-        <div style="font-size: 10px; letter-spacing: 5px; color: #666;">IMAGINX_ENGINE // ARCHIVE_PROTOCOL: 58.2%</div>
+        <div style="font-size: 9px; letter-spacing: 5px; color: #444;">IMAGINX_ENGINE // MULTI_GENRE_ACCESS: 58.2%</div>
         <div class="grad-bar"><div class="grad-fill"></div></div>
     </div>
 
     <div class="terminal-layout">
         
-        <!-- LEFT: LORE_FORGE FEED -->
+        <!-- LEFT: LORE_FORGE (THE SCRIPT INPUT) -->
         <div class="pane">
-            <h2>LORE_FORGE</h2>
+            <h2>SCRIPT_FORGE</h2>
             <div class="card">
-                <span class="tag">@DIRECTOR_3.6M // BRIEFING</span>
-                <p style="font-size: 14px; color: #888; line-height: 1.8;">"The WWII Archive is now live. 54 Partner Assets have been cataloged in the Registry. The Chicago Breach continues."</p>
+                <span class="tag"><span class="genre-badge">NOIR</span>@DIRECTOR // 04:02</span>
+                <p style="font-size: 13px; color: #888; line-height: 1.8;">"The Chicago Breach sequence is finalized. Moving engine focus to Industrial Futurism renders."</p>
             </div>
             <div class="card" style="opacity: 0.4;">
-                <span class="tag">@ANON_SPY // INTEL</span>
-                <p style="font-size: 14px; color: #666;">"Registry stake confirmed. High-fidelity renders authorized for $IMAGIN holders."</p>
+                <span class="tag"><span class="genre-badge">WWII</span>@ANON_SPY // 03:45</span>
+                <p style="font-size: 13px; color: #666;">"Archive 1942 encryption confirmed. Studio partners authorized for enrollment."</p>
             </div>
-            <button class="btn-action">Initiate Script Scrap</button>
+            <button class="btn-action">Submit New Script</button>
         </div>
 
-        <!-- CENTER: WWII ENGINE ARCHIVE -->
+        <!-- CENTER: ENGINE_ARCHIVE (THE MULTIVERSE GALLERY) -->
         <div class="pane">
-            <h2>WWII_ARCHIVE</h2>
+            <h2>PRODUCTION_ARCHIVE</h2>
             <div class="card" style="padding: 0; overflow: hidden; border-color: #333;">
-                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; display:block; filter: sepia(0.3) grayscale(0.5) contrast(1.2);">
-                <div style="padding: 35px;">
-                    <span class="tag">RENDER_ID: 177147 // CHICAGO_NOIR</span>
+                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; display:block; filter: brightness(0.7) contrast(1.1);">
+                <div style="padding: 30px;">
+                    <span class="tag">ACTIVE_PRODUCTION // MASTER_ARCHIVE</span>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 11px; color: #444; letter-spacing: 3px;">INDUSTRIAL_GRADE</span>
+                        <span style="font-size: 10px; color: #444; letter-spacing: 3px;">MULTI_GENRE_READY</span>
                         <span style="font-family: 'Syncopate'; color: var(--engine-blue); font-size: 20px;">9.9</span>
                     </div>
                 </div>
@@ -139,37 +139,37 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                 <div class="card" style="text-align: center;">
                     <div class="stat-value">54</div>
-                    <div class="stat-label">PARTNER_ASSETS</div>
+                    <div class="stat-label">STUDIO_PARTNERS</div>
                 </div>
                 <div class="card" style="text-align: center;">
                     <div class="stat-value" style="color: var(--engine-blue);">3.66M</div>
                     <div class="stat-label">$IMAGIN_STAKE</div>
                 </div>
             </div>
-            <button class="btn-action">Upload High-Fidelity Render</button>
+            <button class="btn-action">Upload Rendering Scrap</button>
         </div>
 
-        <!-- RIGHT: EXECUTIVE_HUD -->
+        <!-- RIGHT: EXECUTIVE_HUD (THE VAULT) -->
         <div class="pane">
             <h2>EXECUTIVE_HUD</h2>
             <div class="card" style="text-align: center;">
                 <div class="stat-label">VAULT_LIQUIDITY</div>
-                <div class="stat-value" style="font-size: 28px;">7.86 USDC</div>
+                <div class="stat-value" style="font-size: 24px;">7.86 USDC</div>
             </div>
             <div class="card" style="text-align: center;">
-                <div class="stat-label">PRODUCTION_STATUS</div>
-                <div class="stat-value" style="font-size: 22px; color: var(--engine-blue);">SPY_ACTIVE</div>
+                <div class="stat-label">ENGINE_STATUS</div>
+                <div class="stat-value" style="font-size: 18px; color: var(--engine-blue);">MULTI_STREAM_ACTIVE</div>
             </div>
-            <a href="index.html" class="btn-action" style="border-color: #444;">Return to Sanctuary</a>
-            <div style="margin-top: 50px; font-size: 9px; color: #333; line-height: 2; text-transform: uppercase; letter-spacing: 3px;">
-                [ DIRECTIVE ]: Archive enrollment is open. High-fidelity renders are now being prioritized for the Chicago Breach and the WWII Cinematic Suite.
+            <a href="index.html" class="btn-action" style="border-color: #222; color: #444;">Return to Sanctuary</a>
+            <div style="margin-top: 50px; font-size: 8px; color: #222; line-height: 2.2; text-transform: uppercase; letter-spacing: 3px;">
+                [ DIRECTIVE ]: The ImaginX Engine is currently processing multiple genre-streams. Partners are encouraged to enroll regardless of cinematic era.
             </div>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX | 1942 INDUSTRIAL GRADE
+        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX | CINEMATIC MULTIVERSE
     </footer>
 
 </body>
