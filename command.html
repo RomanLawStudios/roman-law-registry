@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- CRITICAL: LOCKING SCALE FOR DESKTOP FIDELITY ON MOBILE -->
     <meta name="viewport" content="width=1200, initial-scale=1">
     <title>IMAGINX | THE WRITER'S SANCTUARY // HOME AWAY FROM HOME</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Crimson+Pro:italic,wght@400;600&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
             --engine-blue: #00d2ff; 
             --warm-amber: rgba(255, 191, 0, 0.8); 
             --noir-gray: rgba(10, 10, 10, 0.9); 
-            --text-glow: 0 0 15px rgba(0, 210, 255, 0.4); 
             --amber-glow: 0 0 25px rgba(255, 191, 0, 0.2);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); 
         }
@@ -28,9 +26,8 @@
         }
         
         body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
-        @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
-        
-        /* THE LIVING VISUALIZATION BACKDROP */
+
+        /* THE LOCAL ASSET BACKDROP */
         #bg-visual { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: sepia(0.2) contrast(1.2) brightness(0.15) grayscale(0.5); }
         .vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.95) 100%); z-index: 1; pointer-events: none; }
 
@@ -59,16 +56,13 @@
         .return-link { display: block; margin-top: 60px; color: #333; font-size: 8px; text-decoration: none; letter-spacing: 6px; text-align: center; text-transform: uppercase; transition: 0.4s; font-family: 'Syncopate'; }
         .return-link:hover { color: var(--warm-amber); letter-spacing: 9px; }
 
-        #log-feed { max-height: 300px; overflow-y: auto; font-family: 'Space Grotesk'; font-size: 11px; color: #444; line-height: 1.8; }
-        .log-entry { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.02); }
-
         #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
     </style>
 </head>
 <body>
-    <!-- THE NEW LIVING VISUALIZATION BACKDROP -->
+    <!-- LOCAL ASSET INTEGRATION -->
     <video autoplay muted loop playsinline id="bg-visual">
-        <source src="![](CRAZY2.mp4)" type="video/mp4">
+        <source src="CRAZY2.mp4" type="video/mp4">
     </video>
     <div class="vignette"></div>
 
@@ -93,10 +87,10 @@
 
             <div class="module-box">
                 <h2>RECENT_LOGS</h2>
-                <div id="log-feed">
-                    <div class="log-entry">[ SIGNAL_STABLE ]: Entry archived to 1952 Archive.</div>
-                    <div class="log-entry">[ SIGNAL_STABLE ]: Entry archived to 1944 Archive.</div>
-                    <div class="log-entry">[ SIGNAL_STABLE ]: Entry archived to 2026 Archive.</div>
+                <div id="log-feed" style="font-size: 11px; color: #444;">
+                    <div>[ SIGNAL_STABLE ]: Entry archived to 1952 Archive.</div>
+                    <div>[ SIGNAL_STABLE ]: Entry archived to 1944 Archive.</div>
+                    <div>[ SIGNAL_STABLE ]: Entry archived to 2026 Archive.</div>
                 </div>
             </div>
             
