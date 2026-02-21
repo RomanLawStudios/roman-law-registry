@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | CREATORS_HUB // TERMINAL_RESTORATION</title>
+    <title>IMAGINX | CREATORS_HUB // CINEMATIC_SYNC_V.04</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --noir-black: #050505;
             --engine-blue: #00d2ff;
             --steel-gray: #333;
-            --noir-gray: rgba(10, 10, 10, 0.95);
+            --noir-gray: rgba(10, 10, 10, 0.9);
             --text-glow: 0 0 15px rgba(0, 210, 255, 0.4);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-        /* --- THE WWII CINEMATIC GRAIN OVERLAY --- */
+        /* --- THE WWII CINEMATIC GRAIN OVERLAY (SYNCED WITH INDEX) --- */
         body::after {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--vintage-grain);
-            opacity: 0.06; pointer-events: none; z-index: 5000;
+            opacity: 0.05; pointer-events: none; z-index: 5000;
             animation: grain-flicker 0.2s steps(2) infinite;
         }
 
@@ -32,17 +32,18 @@
 
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- GLOBAL AMBIENT ENGINE BG (CHICAGO STORM) --- */
+        /* --- THE VITAL BACKGROUND ENGINE (ZOMBIES / CHICAGO NIGHT) --- */
         #bg-video { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: -1; object-fit: cover; 
+            /* THE EXACT GRADE FROM THE SANCTUARY */
             filter: sepia(0.2) contrast(1.3) brightness(0.12) grayscale(0.6); 
         }
 
-        /* --- THE INDUSTRIAL "IRON-SIGHT" HUD --- */
+        /* --- INDUSTRIAL HUD --- */
         .hud-header { 
             position: fixed; top: 0; left: 0; width: 100%; 
-            background: rgba(5, 5, 5, 0.95); border-bottom: 2px solid var(--steel-gray); 
+            background: rgba(5, 5, 5, 0.9); border-bottom: 1px solid var(--steel-gray); 
             padding: 15px 0; z-index: 1000; text-align: center; backdrop-filter: blur(20px); 
         }
         .grad-bar { width: 300px; height: 3px; background: #111; margin: 8px auto 0; overflow: hidden; border: 1px solid #222; }
@@ -62,7 +63,7 @@
         }
         .pane::-webkit-scrollbar { display: none; }
 
-        /* --- MULTI-GENRE COMPONENTS --- */
+        /* --- COMPONENTS --- */
         .card { 
             background: rgba(255,255,255,0.02); border: 1px solid #222; 
             padding: 25px; margin-bottom: 30px; transition: 0.5s; 
@@ -98,42 +99,42 @@
 </head>
 <body>
 
-    <!-- THE GLOBAL AMBIENT ENGINE (SYNCED WITH SANCTUARY) -->
+    <!-- THE GLOBAL AMBIENT ENGINE BACKGROUND (CHICAGO RAIN / ZOMBIES) -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
     </video>
 
-    <!-- THE WWII IRON-SIGHT HUD -->
+    <!-- THE INDUSTRIAL HUD -->
     <div class="hud-header">
-        <div style="font-size: 10px; letter-spacing: 5px; color: #666;">IMAGINX_ENGINE // MULTI_GENRE_ACCESS: 58.2%</div>
+        <div style="font-size: 10px; letter-spacing: 5px; color: #666;">IMAGINX_ENGINE // GRADUATION_PROTOCOL: 58.2%</div>
         <div class="grad-bar"><div class="grad-fill"></div></div>
     </div>
 
     <div class="terminal-layout">
         
-        <!-- LEFT: SCRIPT_FORGE -->
+        <!-- LEFT PANE: SCRIPT_FORGE -->
         <div class="pane">
             <h2>SCRIPT_FORGE</h2>
             <div class="card">
                 <span class="tag"><span class="genre-badge">NOIR</span>@DIRECTOR // 04:02</span>
-                <p style="font-size: 13px; color: #888; line-height: 1.8;">"Chicago Breach sequence finalized. Moving engine focus to Industrial Futurism renders."</p>
+                <p style="font-size: 14px; color: #888; line-height: 1.8;">"The Chicago Breach is now active. Processing industrial-grade metadata for high-fidelity rendering."</p>
             </div>
             <div class="card" style="opacity: 0.4;">
-                <span class="tag"><span class="genre-badge">WWII</span>@ANON_SPY // 03:45</span>
-                <p style="font-size: 13px; color: #666;">"Archive 1942 encryption confirmed. Studio partners authorized for enrollment."</p>
+                <span class="tag"><span class="genre-badge">MULTI</span>@SYSTEM // 03:45</span>
+                <p style="font-size: 14px; color: #666;">"The engine is currently open for enrollment. All genres authorized."</p>
             </div>
-            <button class="btn-action">Submit New Script</button>
+            <button class="btn-action">Initiate Script Scrap</button>
         </div>
 
-        <!-- CENTER: PRODUCTION_ARCHIVE -->
+        <!-- CENTER PANE: PRODUCTION_ARCHIVE -->
         <div class="pane">
             <h2>PRODUCTION_ARCHIVE</h2>
             <div class="card" style="padding: 0; overflow: hidden; border-color: #333;">
                 <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; display:block; filter: sepia(0.2) grayscale(0.5) contrast(1.2);">
-                <div style="padding: 30px;">
-                    <span class="tag">ACTIVE_PRODUCTION // MASTER_ARCHIVE</span>
+                <div style="padding: 35px;">
+                    <span class="tag">MASTER_ARCHIVE // ACTIVE_RENDER</span>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 10px; color: #444; letter-spacing: 3px;">MULTI_GENRE_READY</span>
+                        <span style="font-size: 11px; color: #444; letter-spacing: 3px;">MULTI_GENRE_ACCESS</span>
                         <span style="font-family: 'Syncopate'; color: var(--engine-blue); font-size: 20px;">9.9</span>
                     </div>
                 </div>
@@ -143,15 +144,15 @@
                     <div class="stat-value">54</div>
                     <div class="stat-label">PARTNERS</div>
                 </div>
-                <div class="card" style="text-align: center;">
+                <div class="stat-label" style="text-align: center; align-self: center;">
                     <div class="stat-value" style="color: var(--engine-blue);">3.66M</div>
-                    <div class="stat-label">$IMAGIN</div>
+                    STAKE_POWER
                 </div>
             </div>
-            <button class="btn-action">Upload Rendering Scrap</button>
+            <button class="btn-action">Upload Render</button>
         </div>
 
-        <!-- RIGHT: EXECUTIVE_HUD -->
+        <!-- RIGHT PANE: EXECUTIVE_HUD -->
         <div class="pane">
             <h2>EXECUTIVE_HUD</h2>
             <div class="card" style="text-align: center;">
@@ -162,9 +163,9 @@
                 <div class="stat-label">ENGINE_STATUS</div>
                 <div class="stat-value" style="font-size: 18px; color: var(--engine-blue);">MULTI_STREAM_ACTIVE</div>
             </div>
-            <a href="index.html" class="btn-action" style="border-color: #333;">Return to Sanctuary</a>
-            <div style="margin-top: 50px; font-size: 8px; color: #333; line-height: 2.2; text-transform: uppercase; letter-spacing: 3px;">
-                [ DIRECTIVE ]: The ImaginX Engine is processing multiple genre-streams. Partners are encouraged to enroll across any cinematic era.
+            <a href="index.html" class="btn-action" style="border-color: #444;">Return to Sanctuary</a>
+            <div style="margin-top: 50px; font-size: 9px; color: #333; line-height: 2.2; text-transform: uppercase; letter-spacing: 3px;">
+                [ DIRECTIVE ]: The Terminal is now synced with the Sanctuary atmosphere. The High-Fidelity Signal is across all pages.
             </div>
         </div>
 
