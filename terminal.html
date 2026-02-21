@@ -10,7 +10,7 @@
             --noir-black: #050505;
             --engine-blue: #00d2ff;
             --steel-gray: #222;
-            --noir-gray: rgba(8, 8, 8, 0.94);
+            --noir-gray: rgba(8, 8, 8, 0.96);
             --text-glow: 0 0 15px rgba(0, 210, 255, 0.4);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
@@ -20,7 +20,7 @@
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: var(--vintage-grain);
-            opacity: 0.05; pointer-events: none; z-index: 5000;
+            opacity: 0.06; pointer-events: none; z-index: 5000;
             animation: grain-flicker 0.2s steps(2) infinite;
         }
 
@@ -32,24 +32,24 @@
 
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- THE HARDENED CINEMATIC ENGINE --- */
-        #bg-video { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            z-index: -1; object-fit: cover; 
-            filter: sepia(0.2) contrast(1.4) brightness(0.12) grayscale(0.8); 
-            background: #000;
+        /* --- THE HIGH-FIDELITY STILL ENGINE (REPLACES BROKEN VIDEO) --- */
+        .bg-engine {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.useotto.xyz/images/1771475958807.png');
+            background-size: cover; background-position: center;
+            z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.12) grayscale(0.8);
         }
 
         /* --- THE INDUSTRIAL HUD --- */
         .hud-header { 
             position: fixed; top: 0; left: 0; width: 100%; 
-            background: rgba(2, 2, 2, 0.95); border-bottom: 2px solid var(--steel-gray); 
+            background: rgba(2, 2, 2, 0.98); border-bottom: 2px solid var(--steel-gray); 
             padding: 15px 0; z-index: 1000; text-align: center; backdrop-filter: blur(25px); 
         }
         .grad-bar { width: 300px; height: 3px; background: #111; margin: 8px auto 0; overflow: hidden; border: 1px solid #1a1a1a; }
         .grad-fill { width: 58.2%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); }
 
-        /* --- TERMINAL GRID LAYOUT --- */
+        /* --- TERMINAL GRID --- */
         .terminal-layout { 
             max-width: 1400px; margin: 0 auto; padding: 120px 25px 80px; 
             display: grid; grid-template-columns: 350px 1fr 300px; gap: 40px; 
@@ -63,12 +63,11 @@
         }
         .pane::-webkit-scrollbar { display: none; }
 
-        /* --- ASSET CARDS --- */
         .card { 
             background: rgba(255,255,255,0.01); border: 1px solid #1a1a1a; 
             padding: 25px; margin-bottom: 30px; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
-        .card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
+        .card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-2px); }
         
         .tag { font-size: 9px; color: #444; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 700; }
         .genre-badge { font-size: 8px; border: 1px solid #222; padding: 2px 8px; color: var(--engine-blue); margin-right: 10px; }
@@ -92,34 +91,24 @@
 </head>
 <body>
 
-    <!-- HARDENED CINEMATIC ENGINE (CHICAGO RAIN / ZOMBIES) -->
-    <video autoplay muted loop playsinline id="bg-video" poster="![](https://images.useotto.xyz/images/1771475958807.png)">
-        <source src="![](hair.mp4)" type="video/mp4">
-    </video>
+    <!-- ZERO-FAIL BACKGROUND ENGINE (HI-RES RENDER) -->
+    <div class="bg-engine"></div>
 
-    <!-- INDUSTRIAL HUD HEADER -->
     <div class="hud-header">
         <div style="font-size: 10px; letter-spacing: 5px; color: #444;">IMAGINX_ENGINE // COLLECTIVE_TREASURY_V.01</div>
         <div class="grad-bar"><div class="grad-fill"></div></div>
     </div>
 
     <div class="terminal-layout">
-        
-        <!-- LEFT: LORE_FORGE -->
         <div class="pane">
             <h2>LORE_FORGE</h2>
             <div class="card">
                 <span class="tag"><span class="genre-badge">STARTUP</span>@DIRECTOR // 04:22</span>
                 <p style="font-size: 13px; color: #666; line-height: 1.8;">"Treasury verification complete. 54+ Partner Assets are now backing the engine."</p>
             </div>
-            <div class="card" style="opacity: 0.4;">
-                <span class="tag"><span class="genre-badge">MULTI</span>@SYSTEM // 03:45</span>
-                <p style="font-size: 13px; color: #444;">"Processing high-fidelity renders for $IMAGIN partners."</p>
-            </div>
             <button class="btn-action">Initiate Script Scrap</button>
         </div>
 
-        <!-- CENTER: COLLECTIVE VAULT & AIRDROPS -->
         <div class="pane">
             <h2>COLLECTIVE_VAULT</h2>
             <div class="card" style="padding: 0; overflow: hidden; border-color: #1a1a1a;">
@@ -135,20 +124,18 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                 <div class="card" style="text-align: center;">
                     <div class="stat-value">54+</div>
-                    <div class="stat-label">STUDIO_PARTNERS</div>
+                    <div class="stat-label">PARTNERS</div>
                 </div>
                 <div class="card" style="text-align: center;">
                     <div class="stat-value" style="color: var(--engine-blue);">3.66M</div>
                     <div class="stat-label">$IMAGIN_STAKE</div>
                 </div>
             </div>
-            <!-- THE AIRDROP / PARTNER TICKER -->
             <div style="font-size: 10px; color: #333; letter-spacing: 4px; border-top: 1px solid #1a1a1a; padding-top: 20px; text-transform: uppercase;">
                 LATEST_AIRDROPS: $APACHEBOT / $XIO / $GYMBOT / $SENTA / $CATALIEN / $DROID
             </div>
         </div>
 
-        <!-- RIGHT: EXECUTIVE_HUD & STATUS -->
         <div class="pane">
             <h2>EXECUTIVE_HUD</h2>
             <div class="card" style="text-align: center;">
@@ -156,21 +143,13 @@
                 <div class="stat-value" style="font-size: 22px;">COLLECTIVE_ACTIVE</div>
                 <div style="font-size: 8px; color: #222; letter-spacing: 2px;">STARTUP_FOLLOWERS_TREASURY</div>
             </div>
-            <div class="card" style="text-align: center;">
-                <div class="stat-label">ENGINE_POWER</div>
-                <div class="stat-value" style="font-size: 18px; color: var(--engine-blue);">HIGH_FIDELITY</div>
-            </div>
             <a href="index.html" class="btn-action" style="border-color: #1a1a1a;">Return to Sanctuary</a>
             <div style="margin-top: 50px; font-size: 8px; color: #222; line-height: 2.2; text-transform: uppercase; letter-spacing: 3px;">
-                [ DIRECTIVE ]: Treasury liquidity is discrete. The Collective Vault showcases the industrial weight of our partners and startup supporters.
+                [ DIRECTIVE ]: Visuals stabilized. 100% signal strength achieved across the Roman Law Studio network.
             </div>
         </div>
-
     </div>
 
-    <footer>
-        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX | BASE NETWORK
-    </footer>
-
+    <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX</footer>
 </body>
 </html>
