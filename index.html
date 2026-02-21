@@ -40,6 +40,9 @@
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
         .mission-section { display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(100px, 15vh, 150px) 20px; position: relative; }
 
+        h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 10px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
+        .mission-text { max-width: 900px; margin: 40px auto 0; font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
+
         /* --- THE NARRATIVE SHOWCASE --- */
         .showcase-section { text-align: center; padding: 120px 20px; background: transparent; border-top: 1px solid rgba(255,255,255,0.05); }
         .video-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 40px; padding: 0 40px; }
@@ -48,13 +51,12 @@
         .video-card video { width: 100%; height: 500px; object-fit: cover; filter: contrast(1.1) grayscale(0.2); opacity: 0.7; transition: 0.5s; }
         .video-card:hover video { opacity: 1; filter: contrast(1.2) grayscale(0); }
 
-        /* NARRATIVE CONTEXT OVERLAY */
         .narrative-info { padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); }
         .time-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); text-shadow: var(--text-glow); letter-spacing: 2px; display: block; margin-bottom: 10px; }
         .context-title { font-family: 'Syncopate'; font-size: 0.8rem; color: var(--engine-blue); text-shadow: var(--master-glow); letter-spacing: 2px; margin-bottom: 15px; }
         .context-text { font-size: 13px; color: #aaa; line-height: 1.8; font-weight: 300; }
 
-        /* --- IMAX OVERLAY (ENLARGEMENT) --- */
+        /* --- IMAX OVERLAY --- */
         #imax-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; }
         #imax-video { width: 100%; height: 100%; object-fit: contain; }
         .close-imax { position: absolute; top: 40px; right: 40px; color: #fff; font-family: 'Syncopate'; font-size: 10px; letter-spacing: 5px; cursor: pointer; border: 1px solid #fff; padding: 10px 20px; z-index: 10001; }
@@ -83,23 +85,24 @@
     <header class="glass-header">
         <div class="header-content">
             <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div style="font-size: 9px; letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase;">IMAGINX ENGINE: ONLINE // IMMERSIVE AUDIO</div>
+            <div style="font-size: 9px; letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase;">IMAGINX ENGINE: ONLINE // MISSION_STABLE</div>
         </div>
     </header>
 
     <div class="page-wrapper">
         <div class="mission-section">
             <h1>IMAGIN<span class="engine-text">X</span></h1>
-            <p class="mission-text">The world's first on-chain Noir studio. Powering the next generation of generative cinema.</p>
+            <p class="mission-text">
+                One of the world's first studios to give writers the ability to <span class="engine-text" style="font-weight:500;">integrate artificial intelligence</span> into their writing to truly bring stories to life just as they're being written. <br><br>
+                Powering the next generation of generative cinema.
+            </p>
         </div>
 
-        <!-- THE NARRATIVE SHOWCASE -->
+        <!-- SHOWCASE -->
         <div class="showcase-section">
             <h2 class="engine-text" style="margin-bottom: 80px; font-family: 'Syncopate'; letter-spacing: 20px; font-size: 0.8rem; text-align: center;">INDUSTRIAL_RENDERS // CLICK TO IMMERSE</h2>
             
             <div class="video-grid">
-                
-                <!-- PROD 01: CHICAGO -->
                 <div class="video-card" onclick="openIMAX('chicago-breach.mp4')">
                     <video muted loop playsinline><source src="chicago-breach.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
@@ -109,7 +112,6 @@
                     </div>
                 </div>
 
-                <!-- PROD 02: WWII -->
                 <div class="video-card" onclick="openIMAX('britishroman.mp4')">
                     <video muted loop playsinline><source src="britishroman.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
@@ -119,7 +121,6 @@
                     </div>
                 </div>
 
-                <!-- PROD 03: ATTORNEY -->
                 <div class="video-card" onclick="openIMAX('attorney.mp4')">
                     <video muted loop playsinline><source src="attorney.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
@@ -128,7 +129,6 @@
                         <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present.</p>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -144,7 +144,7 @@
             const overlay = document.getElementById('imax-overlay');
             const video = document.getElementById('imax-video');
             video.src = source;
-            video.muted = false; // UNMUTE FOR IMMERSION
+            video.muted = false;
             overlay.style.display = 'flex';
             video.play();
         }
@@ -156,14 +156,6 @@
             video.muted = true;
             overlay.style.display = 'none';
         }
-
-        function updateTreasury() {
-            const auditedWeight = 1142.60; 
-            const flux = (Math.random() * 0.4) - 0.2;
-            const element = document.getElementById('live-treasury');
-            if(element) element.innerText = '$' + (auditedWeight + flux).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        }
-        setInterval(updateTreasury, 15000);
     </script>
 </body>
 </html>
