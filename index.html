@@ -9,7 +9,7 @@
     <style>
         :root {
             --noir-black: #050505;
-            --noir-gray: rgba(15, 15, 15, 0.9);
+            --noir-gray: rgba(15, 15, 15, 0.4);
             --engine-blue: #00d2ff;
             --text-glow: 0 0 20px rgba(0, 210, 255, 0.7);
             --master-glow: 0 0 25px rgba(0, 210, 255, 0.8);
@@ -32,7 +32,7 @@
         #ambient-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: brightness(0.25) contrast(1.1) sepia(0.1); object-fit: cover; }
         body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
+        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(5, 5, 5, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
         .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .studio-logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 4px; font-size: clamp(0.7rem, 3vw, 1rem); color: #fff; text-decoration: none; }
         .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
@@ -50,27 +50,26 @@
         h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
         .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
 
-        /* --- THE VIDEO SHOWCASE --- */
-        .showcase-section { text-align: center; padding: 120px 20px; background: #000; border-top: 1px solid #111; }
-        .video-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; padding: 0 40px; }
-        .video-card { padding: 0; overflow: hidden; border: 2px solid #111; transition: 0.6s; background: #000; position: relative; }
+        /* --- THE NARRATIVE SHOWCASE --- */
+        .showcase-section { text-align: center; padding: 120px 20px; background: transparent; border-top: 1px solid rgba(255,255,255,0.05); }
+        .video-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 40px; padding: 0 40px; }
+        .video-card { padding: 0; overflow: hidden; border: 1px solid #222; transition: 0.6s; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); position: relative; text-align: left; }
         .video-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-10px); }
         .video-card video { width: 100%; height: 500px; object-fit: cover; filter: contrast(1.1) grayscale(0.2); opacity: 0.7; transition: 0.5s; }
         .video-card:hover video { opacity: 1; filter: contrast(1.2) grayscale(0); }
 
-        /* --- LUMINESCENT ANTHOLOGY CONTEXT --- */
-        .anthology-context { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; border-top: 1px solid #111; padding-top: 60px; }
-        .context-item { border-left: 1px solid #111; padding-left: 30px; text-align: left; }
+        /* NARRATIVE CONTEXT OVERLAY */
+        .narrative-info { padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); }
         .time-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); text-shadow: var(--text-glow); letter-spacing: 2px; display: block; margin-bottom: 10px; }
-        .context-title { font-family: 'Syncopate'; font-size: 0.7rem; color: var(--engine-blue); text-shadow: var(--master-glow); letter-spacing: 2px; margin-bottom: 15px; }
-        .context-text { font-size: 13px; color: #666; line-height: 2; font-weight: 300; }
+        .context-title { font-family: 'Syncopate'; font-size: 0.8rem; color: var(--engine-blue); text-shadow: var(--master-glow); letter-spacing: 2px; margin-bottom: 15px; }
+        .context-text { font-size: 13px; color: #aaa; line-height: 1.8; font-weight: 300; }
 
         /* --- THE GATEWAY --- */
-        .command-gate { text-align: center; padding: 100px 20px; border-top: 1px solid #111; }
-        .gate-link { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 30px 80px; box-shadow: var(--text-glow); transition: 0.4s; display: inline-block; }
+        .command-gate { text-align: center; padding: 100px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .gate-link { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 30px 80px; box-shadow: var(--text-glow); transition: 0.4s; display: inline-block; background: rgba(0,210,255,0.05); backdrop-filter: blur(5px); }
         .gate-link:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 50px var(--engine-blue); }
 
-        footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
+        footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #444; letter-spacing: 3px; background: transparent; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
@@ -106,52 +105,49 @@
             </p>
         </div>
 
-        <!-- SHOWCASE (RESTORED LOCAL SIGNALS) -->
+        <!-- THE NARRATIVE SHOWCASE -->
         <div class="showcase-section">
-            <h2 class="engine-text" style="margin-bottom: 80px; font-family: 'Syncopate'; letter-spacing: 20px; font-size: 0.8rem; text-align: center;">INDUSTRIAL_RENDERS</h2>
+            <h2 class="engine-text" style="margin-bottom: 80px; font-family: 'Syncopate'; letter-spacing: 20px; font-size: 0.8rem; text-align: center;">INDUSTRIAL_RENDERS // THE ANTHOLOGY</h2>
             
             <div class="video-grid">
+                
                 <!-- PROD 01: CHICAGO -->
                 <div class="video-card">
                     <video autoplay muted loop playsinline><source src="chicago-breach.mp4" type="video/mp4"></video>
-                    <div style="padding: 20px; background: #050505; border-top: 1px solid #111; font-size: 9px; color: #444; letter-spacing: 4px; text-align: left;">[ PROD_01: CHICAGO_BREACH ]</div>
+                    <div class="narrative-info">
+                        <span class="time-badge">CIRCA 1952</span>
+                        <h4 class="context-title">CHICAGO BREACH</h4>
+                        <p class="context-text">A leather-clad survivor in the rain-slicked streets of Chicago. The war is over, but the breach has opened. A zombie apocalypse begins in the industrial heart of the North.</p>
+                    </div>
                 </div>
+
                 <!-- PROD 02: WWII -->
                 <div class="video-card">
                     <video autoplay muted loop playsinline><source src="britishroman.mp4" type="video/mp4"></video>
-                    <div style="padding: 20px; background: #050505; border-top: 1px solid #111; font-size: 9px; color: #444; letter-spacing: 4px; text-align: left;">[ PROD_02: WWII_SPY_PROTOCOL ]</div>
+                    <div class="narrative-info">
+                        <span class="time-badge">CIRCA 1944</span>
+                        <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
+                        <p class="context-text">Roman operating as a British Spy disguised as a German Officer. In the dying embers of the war, he must navigate the shadows of the regime to save a nurse named Elaine.</p>
+                    </div>
                 </div>
+
                 <!-- PROD 03: ATTORNEY -->
                 <div class="video-card">
                     <video autoplay muted loop playsinline><source src="attorney.mp4" type="video/mp4"></video>
-                    <div style="padding: 20px; background: #050505; border-top: 1px solid #111; font-size: 9px; color: #444; letter-spacing: 4px; text-align: left;">[ PROD_03: THE_ATTORNEY ]</div>
+                    <div class="narrative-info">
+                        <span class="time-badge">PRESENT DAY: 2026</span>
+                        <h4 class="context-title">THE ATTORNEY</h4>
+                        <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present day. Every script scrap is a piece of evidence.</p>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- LUMINESCENT ANTHOLOGY CONTEXT -->
-        <div class="anthology-context">
-            <div class="context-item">
-                <span class="time-badge">CIRCA 1944</span>
-                <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
-                <p class="context-text">Roman operating as a British Spy disguised as a German Officer. Navigating the shadows to save a nurse named Elaine.</p>
-            </div>
-            <div class="context-item">
-                <span class="time-badge">CIRCA 1952</span>
-                <h4 class="context-title">CHICAGO BREACH</h4>
-                <p class="context-text">A leather-clad survivor in the rain-slicked streets of Chicago. The war is over, but the breach has opened.</p>
-            </div>
-            <div class="context-item">
-                <span class="time-badge">PRESENT DAY: 2026</span>
-                <h4 class="context-title">THE ATTORNEY</h4>
-                <p class="context-text">A calm world. Roman navigates the legal complexities of a high-fidelity present day.</p>
             </div>
         </div>
 
         <!-- THE WRITER'S GATEWAY -->
         <div class="command-gate">
             <a href="command.html" class="gate-link">ENTER THE WRITER'S SANCTUARY</a>
-            <p style="margin-top: 40px; font-size: 8px; color: #222; letter-spacing: 10px; font-family:'Syncopate';">[ FORGE THE NARRATIVE // MASTER CUT ]</p>
+            <p style="margin-top: 40px; font-size: 8px; color: #444; letter-spacing: 10px; font-family:'Syncopate';">[ IMAGINX ENGINE // MASTER CUT ]</p>
         </div>
 
         <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE</footer>
