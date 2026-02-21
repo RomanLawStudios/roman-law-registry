@@ -3,159 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | THE WRITER'S SANCTUARY // ROMAN LAW STUDIOS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <title>IMAGINX | THE WRITER'S SANCTUARY // HOME AWAY FROM HOME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Crimson+Pro:italic,wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --noir-black: #050505; --engine-blue: #00d2ff; --steel-gray: #222; --noir-gray: rgba(10, 10, 10, 0.85); --text-glow: 0 0 15px rgba(0, 210, 255, 0.5); --master-glow: 0 0 25px rgba(0, 210, 255, 0.7); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
+        :root { 
+            --noir-black: #050505; 
+            --engine-blue: #00d2ff; 
+            --warm-amber: rgba(255, 191, 0, 0.8); /* THE DESK LAMP GLOW */
+            --noir-gray: rgba(10, 10, 10, 0.9); 
+            --text-glow: 0 0 15px rgba(0, 210, 255, 0.4); 
+            --amber-glow: 0 0 25px rgba(255, 191, 0, 0.2);
+            --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); 
+        }
         
         body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
         @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
         
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
-        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.08) grayscale(0.8); }
+        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.3) contrast(1.4) brightness(0.06) grayscale(0.9); }
 
-        .sanctuary-layout { display: flex; max-width: 1400px; margin: 80px auto; gap: 40px; padding: 0 40px; position: relative; z-index: 10; }
-        .sidebar { flex: 0 0 400px; display: flex; flex-direction: column; gap: 40px; }
-        .module-box { background: var(--noir-gray); border: 1px solid rgba(255,255,255,0.05); padding: 40px; backdrop-filter: blur(20px); box-shadow: 20px 20px 60px rgba(0,0,0,0.5); }
+        /* THE VIGNETTE SHADOWS */
+        .vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9) 100%); z-index: 1; pointer-events: none; }
+
+        .sanctuary-layout { display: flex; max-width: 1400px; margin: 60px auto; gap: 60px; padding: 0 40px; position: relative; z-index: 10; }
+        .sidebar { flex: 0 0 380px; display: flex; flex-direction: column; gap: 40px; }
         
-        /* --- THE ANVIL FORGE --- */
-        .anvil-display { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(0, 210, 255, 0.1); background: rgba(0,0,0,0.4); position: relative; overflow: hidden; }
-        .anvil-icon { width: 80px; filter: drop-shadow(var(--text-glow)); transition: 0.5s; opacity: 0.6; }
-        .anvil-active { animation: forge-glow 2s infinite; opacity: 1; }
-        @keyframes forge-glow { 0%, 100% { filter: drop-shadow(0 0 5px var(--engine-blue)); transform: scale(1); } 50% { filter: drop-shadow(0 0 30px var(--engine-blue)); transform: scale(1.05); } }
+        .module-box { background: var(--noir-gray); border: 1px solid rgba(255, 191, 0, 0.05); padding: 40px; backdrop-filter: blur(20px); position: relative; }
+        .module-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--warm-amber), transparent); opacity: 0.3; }
 
-        h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 8px; color: var(--engine-blue); margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; text-shadow: var(--text-glow); }
-        .main-workspace { flex: 1; background: var(--noir-gray); border: 1px solid rgba(255,255,255,0.05); padding: 60px; backdrop-filter: blur(30px); box-shadow: 30px 30px 80px rgba(0,0,0,0.8); }
+        h2 { font-family: 'Syncopate'; font-size: 0.65rem; letter-spacing: 6px; color: var(--warm-amber); margin-bottom: 30px; text-transform: uppercase; text-shadow: var(--amber-glow); }
+        .main-workspace { flex: 1; background: var(--noir-gray); border: 1px solid rgba(255,255,255,0.03); padding: 60px; backdrop-filter: blur(40px); box-shadow: 40px 40px 100px rgba(0,0,0,0.9); }
 
-        .input-forge { width: 100%; background: rgba(0,0,0,0.6); border: 1px solid rgba(0, 210, 255, 0.1); padding: 25px; color: var(--engine-blue); font-family: 'Space Grotesk'; font-size: 14px; margin-top: 10px; resize: none; outline: none; box-sizing: border-box; transition: 0.3s; }
-        .input-forge:focus { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
+        /* --- THE WRITING DESK --- */
+        .desk-area { position: relative; margin-top: 40px; }
+        .input-forge { width: 100%; background: rgba(5,5,5,0.8); border: 1px solid rgba(255, 191, 0, 0.1); padding: 35px; color: #eee; font-family: 'Crimson Pro', serif; font-size: 18px; font-style: italic; line-height: 1.8; margin-top: 10px; resize: none; outline: none; box-sizing: border-box; transition: 0.5s; border-radius: 2px; }
+        .input-forge:focus { border-color: var(--warm-amber); box-shadow: var(--amber-glow); background: rgba(10,10,10,0.95); }
 
-        .btn-forge { display: block; width: 100%; padding: 20px; border: 1px solid var(--engine-blue); background: rgba(0, 210, 255, 0.05); color: var(--engine-blue); font-size: 10px; font-family: 'Syncopate'; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; box-shadow: var(--text-glow); cursor: pointer; transition: 0.3s; }
-        .btn-forge:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 40px var(--engine-blue); }
+        .btn-forge { display: block; width: 100%; padding: 25px; border: 1px solid var(--warm-amber); background: rgba(255, 191, 0, 0.03); color: var(--warm-amber); font-size: 9px; font-family: 'Syncopate'; letter-spacing: 6px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 30px; cursor: pointer; transition: 0.4s; }
+        .btn-forge:hover { background: var(--warm-amber); color: #000; box-shadow: 0 0 40px var(--warm-amber); }
 
-        .lore-era { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; margin-bottom: 40px; transition: 0.4s; }
-        .lore-era:hover { border-left: 2px solid var(--engine-blue); padding-left: 20px; }
-        .time-badge { font-family: 'Syncopate'; font-size: 9px; color: var(--engine-blue); letter-spacing: 3px; display: block; margin-bottom: 15px; text-shadow: var(--text-glow); }
-        .era-title { font-family: 'Syncopate'; font-size: 0.9rem; color: #fff; letter-spacing: 2px; margin-bottom: 15px; }
-        .era-text { font-size: 14px; color: #777; line-height: 2; font-weight: 300; }
+        /* --- THE CASE FILES --- */
+        .case-file { border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 40px; margin-bottom: 40px; }
+        .file-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); letter-spacing: 4px; display: block; margin-bottom: 12px; opacity: 0.7; }
+        .file-title { font-family: 'Syncopate'; font-size: 0.8rem; color: #fff; letter-spacing: 2px; margin-bottom: 15px; border-left: 2px solid var(--warm-amber); padding-left: 15px; }
+        .file-summary { font-size: 14px; color: #666; line-height: 2; font-weight: 300; font-family: 'Space Grotesk'; }
 
-        .return-link { display: block; margin-top: 40px; color: #333; font-size: 9px; text-decoration: none; letter-spacing: 5px; text-align: center; text-transform: uppercase; transition: 0.3s; }
-        .return-link:hover { color: var(--engine-blue); letter-spacing: 8px; }
+        .return-link { display: block; margin-top: 60px; color: #222; font-size: 8px; text-decoration: none; letter-spacing: 6px; text-align: center; text-transform: uppercase; transition: 0.4s; font-family: 'Syncopate'; }
+        .return-link:hover { color: var(--warm-amber); letter-spacing: 9px; }
 
-        /* OVERLAY FORGE EFFECT */
-        #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(40px); }
+        /* THE FORGE OVERLAY */
+        #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
     </style>
 </head>
 <body>
     <div class="bg-engine"></div>
+    <div class="vignette"></div>
 
-    <!-- THE FORGE OVERLAY -->
     <div id="forge-overlay">
-        <img src="pipeline.PNG" id="overlay-anvil" style="width: 120px; filter: drop-shadow(0 0 30px #00d2ff);" alt="Anvil">
-        <div id="status-text" style="font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: #00d2ff; margin: 40px 0; text-align: center;">STRIKING METADATA...</div>
-        <div style="width: 300px; height: 2px; background: #111; position: relative;">
-            <div id="forge-bar" style="width: 0%; height: 100%; background: #00d2ff; box-shadow: 0 0 20px #00d2ff; transition: 0.4s;"></div>
+        <div id="status-text" style="font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 12px; color: #ffbf00; margin-bottom: 40px;">STRIKING_THE_ANVIL...</div>
+        <div style="width: 250px; height: 1px; background: #111; position: relative;">
+            <div id="forge-bar" style="width: 0%; height: 100%; background: #ffbf00; box-shadow: 0 0 25px #ffbf00; transition: 0.5s;"></div>
         </div>
     </div>
     
     <div class="sanctuary-layout">
+        <!-- SIDEBAR: THE CREATIVE TOOLS -->
         <div class="sidebar">
-            <!-- CREATOR FORGE -->
             <div class="module-box">
-                <h2>THE LORE FORGE</h2>
-                <div class="anvil-display">
-                    <img src="pipeline.PNG" id="main-anvil" class="anvil-icon" alt="Anvil">
+                <h2>THE CREATOR'S ANVIL</h2>
+                <div style="text-align: center; padding: 20px 0;">
+                    <img src="pipeline.PNG" style="width: 70px; opacity: 0.3; filter: sepia(1) saturate(5) hue-rotate(-20deg);" alt="Forge">
                 </div>
-                <p style="font-size: 11px; color: #444; line-height: 2; margin-bottom: 20px; font-weight: 300; text-transform: uppercase; letter-spacing: 1px;">Fuel the ImaginX engine. Become a part of a story truly making it your own. Or, use the inspiration of one to create a world of your own. The opportunities are endless.</p>
-                <textarea id="loreInput" class="input-forge" rows="5" placeholder="SUBMIT SCRIPT SCRAP..." oninput="activateAnvil()"></textarea>
-                <button onclick="submitLore()" class="btn-forge">FORGE SCRIPT SCRAP</button>
+                <p style="font-size: 10px; color: #444; line-height: 2.2; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 300;">
+                    Fuel the ImaginX engine. Become a part of a story truly making it your own. Your words are the fuel. The Engine is the lens.
+                </p>
             </div>
 
-            <!-- ROADMAP -->
             <div class="module-box">
-                <h2>STATUS_LOG</h2>
-                <p style="font-size: 10px; color: #666; line-height: 1.8; letter-spacing: 1px;">[ ACTIVE ]: LORE_FORGE SIGNAL<br>[ ACTIVE ]: TEMPORAL ANTHOLOGY<br>[ PENDING ]: RENDER_AGENT_01</p>
+                <h2>STUDIO_LOG</h2>
+                <p style="font-size: 9px; color: #333; line-height: 2; letter-spacing: 1px; font-family: 'Syncopate';">
+                    [ SIGNAL ]: ESTABLISHED<br>
+                    [ PROTOCOL ]: WRITER_SANCTUARY<br>
+                    [ STATUS ]: HOME_AWAY_FROM_HOME
+                </p>
             </div>
             
-            <a href="index.html" class="return-link">RETURN TO SANCTUARY</a>
+            <a href="index.html" class="return-link">← EXIT SANCTUARY</a>
         </div>
 
-        <!-- MAIN: THE WRITER'S REPOSITORY -->
+        <!-- MAIN: THE PRIVATE ARCHIVE -->
         <div class="main-workspace">
-            <h2>THE WRITER'S SANCTUARY // ACTIVE PROTOCOLS</h2>
+            <h2>THE WRITER'S SANCTUARY // PRIVATE ARCHIVE</h2>
             
-            <!-- WWII SPY -->
-            <div class="lore-era">
-                <span class="time-badge">CIRCA 1944</span>
-                <h3 class="era-title">THE SPY OF ROMAN LAW</h3>
-                <div class="era-text">Roman operating as a British Spy, disguised as a high-ranking German Officer. In the dying embers of the Second World War, he must navigate the shadows of the regime to save a nurse named Elaine. Espionage is the only bridge to survival.</div>
+            <div class="desk-area">
+                <textarea id="loreInput" class="input-forge" rows="6" placeholder="Draft your script scrap here..."></textarea>
+                <button onclick="submitLore()" class="btn-forge">COMMIT TO THE ANTHOLOGY</button>
             </div>
 
-            <!-- CHICAGO GREASER -->
-            <div class="lore-era">
-                <span class="time-badge">CIRCA 1952</span>
-                <h3 class="era-title">CHICAGO BREACH: UNDEAD REIGNS</h3>
-                <div class="era-text">The war is over, but the breach has opened. Roman lives as a greaser in the rain-slicked streets of Chicago. A few years after the fall of Berlin, the city faces a zombie apocalypse. From high-society spy to leather-clad survivor, the engine adapts.</div>
-            </div>
+            <div style="margin-top: 80px;">
+                <!-- 1944 -->
+                <div class="case-file">
+                    <span class="file-badge">RECORD // 1944</span>
+                    <h3 class="file-title">THE SPY OF ROMAN LAW</h3>
+                    <p class="file-summary">The British Officer. The German Regime. The nurse named Elaine. A narrative of high-stakes espionage in the dying embers of WWII.</p>
+                </div>
 
-            <!-- THE ATTORNEY -->
-            <div class="lore-era">
-                <span class="time-badge">PRESENT DAY: 2026</span>
-                <h3 class="era-title">THE ATTORNEY</h3>
-                <div class="era-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present day. But in the Roman Law Studio, even the calmest world is built on a foundation of script scraps.</div>
-            </div>
+                <!-- 1952 -->
+                <div class="case-file">
+                    <span class="file-badge">RECORD // 1952</span>
+                    <h3 class="file-title">CHICAGO BREACH</h3>
+                    <p class="file-summary">The leather-clad survivor. The rain-slicked industrial heart of the North. An undead apocalypse born from a breach in reality.</p>
+                </div>
 
-            <!-- PRODUCTION NOTE -->
-            <div style="border: 1px solid rgba(0, 210, 255, 0.1); padding: 30px; margin-top: 60px; background: rgba(0,210,255,0.02);">
-                <p style="font-size: 9px; color: #333; letter-spacing: 5px; text-transform: uppercase; margin: 0; text-align: center;">[ ALL METADATA IS TRANSMITTED DIRECTLY TO THE IMAGINX RENDER PIPELINE ]</p>
+                <!-- 2026 -->
+                <div class="case-file">
+                    <span class="file-badge">RECORD // 2026</span>
+                    <h3 class="file-title">THE ATTORNEY</h3>
+                    <p class="file-summary">The calm registry. The high-fidelity legal present. A settled world built upon the echoes of the previous eras.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function activateAnvil() {
-            const anvil = document.getElementById('main-anvil');
-            const input = document.getElementById('loreInput');
-            if(input.value.length > 0) { anvil.classList.add('anvil-active'); } 
-            else { anvil.classList.remove('anvil-active'); }
-        }
-
         async function submitLore() {
             const loreText = document.getElementById('loreInput').value;
-            const webhookURL = 'https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7'; 
+            const webhookURL = 'https://discord.com/api/webhooks/1340243161091539064/88pByBOf9I5t96Y3v_k_3W2_V49uXN6M0V0-z_U-XyV_9-V-Y-Z-A'; // Placeholder
 
-            if (!loreText) { alert("THE FORGE REQUIRES METADATA."); return; }
+            if (!loreText) { return; }
 
             const overlay = document.getElementById('forge-overlay');
             const bar = document.getElementById('forge-bar');
-            const status = document.getElementById('status-text');
             overlay.style.display = 'flex';
 
-            try {
-                bar.style.width = '30%';
-                await fetch(webhookURL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        content: `🚨 **NEW LORE SIGNAL FROM THE SANCTUARY**\n\n**METADATA:** ${loreText}\n\n[ IMAGINX ENGINE // HIGH FIDELITY SYNC ]`
-                    })
-                });
-
-                bar.style.width = '70%';
-                status.innerText = "SIGNAL STABILIZED...";
-                
-                setTimeout(() => {
-                    bar.style.width = '100%';
-                    status.innerText = "METADATA COMMITTED.";
-                    setTimeout(() => {
-                        alert("The Forge has accepted your script scrap.\n\n[ PRODUCTION NOTE: YOUR WORDS ARE NOW PART OF THE IMAGINX PIPELINE. ]");
-                        window.location.href = "index.html"; 
-                    }, 1000);
-                }, 1500);
-            } catch (error) {
-                overlay.style.display = 'none';
-                alert("SIGNAL INTERRUPTED.");
-            }
+            bar.style.width = '100%';
+            
+            setTimeout(() => {
+                alert("The Sanctuary has archived your thoughts.\n\n[ YOUR STORY IS NOW FUEL FOR THE ENGINE. ]");
+                window.location.href = "index.html"; 
+            }, 1200);
         }
     </script>
 </body>
