@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200, initial-scale=1">
-    <title>IMAGINX | THE WRITER'S SANCTUARY // HOME AWAY FROM HOME</title>
+    <title>IMAGINX | THE WRITER'S SANCTUARY // GHOST HUD</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Crimson+Pro:italic,wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { 
             --noir-black: #050505; 
             --engine-blue: #00d2ff; 
-            --warm-amber: rgba(255, 191, 0, 0.8); 
-            --noir-gray: rgba(10, 10, 10, 0.9); 
-            --amber-glow: 0 0 25px rgba(255, 191, 0, 0.2);
+            --warm-amber: rgba(255, 191, 0, 0.9); 
+            --ghost-glass: rgba(5, 5, 5, 0.4); /* HIGH TRANSPARENCY */
+            --amber-glow: 0 0 25px rgba(255, 191, 0, 0.3);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); 
         }
 
@@ -27,40 +27,85 @@
         
         body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
 
-        /* THE LOCAL ASSET BACKDROP */
-        #bg-visual { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: sepia(0.2) contrast(1.2) brightness(0.15) grayscale(0.5); }
-        .vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.95) 100%); z-index: 1; pointer-events: none; }
+        #bg-visual { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: sepia(0.1) contrast(1.1) brightness(0.25) grayscale(0.3); }
+        .vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.9) 100%); z-index: 1; pointer-events: none; }
 
         .sanctuary-layout { display: flex; max-width: 1400px; margin: 60px auto; gap: 60px; padding: 0 40px; position: relative; z-index: 10; }
+        
+        /* --- GHOST HUD SIDEBAR --- */
         .sidebar { flex: 0 0 380px; display: flex; flex-direction: column; gap: 40px; }
-        .module-box { background: var(--noir-gray); border: 1px solid rgba(255, 191, 0, 0.05); padding: 40px; backdrop-filter: blur(20px); position: relative; }
-        .module-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--warm-amber), transparent); opacity: 0.3; }
+        .module-box { 
+            background: var(--ghost-glass); 
+            border: 1px solid rgba(255, 191, 0, 0.1); 
+            padding: 40px; 
+            backdrop-filter: blur(15px); /* BLURS THE BACKGROUND WITHOUT BLOCKING IT */
+            position: relative; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .module-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--warm-amber), transparent); opacity: 0.5; }
 
         h2 { font-family: 'Syncopate'; font-size: 0.65rem; letter-spacing: 6px; color: var(--warm-amber); margin-bottom: 30px; text-transform: uppercase; text-shadow: var(--amber-glow); }
-        .main-workspace { flex: 1; background: var(--noir-gray); border: 1px solid rgba(255,255,255,0.03); padding: 60px; backdrop-filter: blur(40px); box-shadow: 40px 40px 100px rgba(0,0,0,0.9); }
+
+        /* --- GHOST MAIN WORKSPACE --- */
+        .main-workspace { 
+            flex: 1; 
+            background: var(--ghost-glass); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            padding: 60px; 
+            backdrop-filter: blur(25px); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); 
+        }
 
         .desk-area { position: relative; margin-top: 40px; }
-        .input-forge { width: 100%; background: rgba(5,5,5,0.8); border: 1px solid rgba(255, 191, 0, 0.1); padding: 35px; color: #eee; font-family: 'Crimson Pro', serif; font-size: 20px; font-style: italic; line-height: 1.8; margin-top: 10px; resize: none; outline: none; box-sizing: border-box; transition: 0.5s; border-radius: 2px; }
-        .input-forge:focus { border-color: var(--warm-amber); box-shadow: var(--amber-glow); background: rgba(10,10,10,0.95); animation: type-pulse 2s infinite; }
+        .input-forge { 
+            width: 100%; 
+            background: rgba(0,0,0,0.3); 
+            border: 1px solid rgba(255, 191, 0, 0.2); 
+            padding: 35px; 
+            color: #fff; 
+            font-family: 'Crimson Pro', serif; 
+            font-size: 22px; 
+            font-style: italic; 
+            line-height: 1.8; 
+            margin-top: 10px; 
+            resize: none; 
+            outline: none; 
+            box-sizing: border-box; 
+            transition: 0.5s; 
+            border-radius: 2px; 
+        }
+        .input-forge:focus { border-color: var(--warm-amber); box-shadow: var(--amber-glow); background: rgba(0,0,0,0.5); }
         
-        @keyframes type-pulse { 0%, 100% { border-color: rgba(255, 191, 0, 0.1); } 50% { border-color: var(--warm-amber); } }
-
-        .btn-forge { display: block; width: 100%; padding: 25px; border: 1px solid var(--warm-amber); background: rgba(255, 191, 0, 0.03); color: var(--warm-amber); font-size: 9px; font-family: 'Syncopate'; letter-spacing: 6px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 30px; cursor: pointer; transition: 0.4s; }
+        .btn-forge { 
+            display: block; width: 100%; padding: 25px; 
+            border: 1px solid var(--warm-amber); 
+            background: rgba(255, 191, 0, 0.05); 
+            color: var(--warm-amber); 
+            font-size: 9px; 
+            font-family: 'Syncopate'; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            text-align: center; 
+            margin-top: 30px; 
+            cursor: pointer; 
+            transition: 0.4s; 
+            backdrop-filter: blur(5px);
+        }
         .btn-forge:hover { background: var(--warm-amber); color: #000; box-shadow: 0 0 40px var(--warm-amber); }
 
-        .case-file { border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 40px; margin-bottom: 40px; }
-        .file-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); letter-spacing: 4px; display: block; margin-bottom: 12px; opacity: 0.7; }
+        .case-file { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; margin-bottom: 40px; }
+        .file-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); letter-spacing: 4px; display: block; margin-bottom: 12px; opacity: 0.8; }
         .file-title { font-family: 'Syncopate'; font-size: 0.8rem; color: #fff; letter-spacing: 2px; margin-bottom: 15px; border-left: 2px solid var(--warm-amber); padding-left: 15px; }
-        .file-summary { font-size: 14px; color: #666; line-height: 2; font-weight: 300; font-family: 'Space Grotesk'; }
+        .file-summary { font-size: 14px; color: #ccc; line-height: 2; font-weight: 300; font-family: 'Space Grotesk'; }
 
-        .return-link { display: block; margin-top: 60px; color: #333; font-size: 8px; text-decoration: none; letter-spacing: 6px; text-align: center; text-transform: uppercase; transition: 0.4s; font-family: 'Syncopate'; }
+        .return-link { display: block; margin-top: 60px; color: #555; font-size: 8px; text-decoration: none; letter-spacing: 6px; text-align: center; text-transform: uppercase; transition: 0.4s; font-family: 'Syncopate'; }
         .return-link:hover { color: var(--warm-amber); letter-spacing: 9px; }
 
         #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
     </style>
 </head>
 <body>
-    <!-- LOCAL ASSET INTEGRATION -->
     <video autoplay muted loop playsinline id="bg-visual">
         <source src="CRAZY2.mp4" type="video/mp4">
     </video>
@@ -78,16 +123,16 @@
             <div class="module-box">
                 <h2>THE CREATOR'S ANVIL</h2>
                 <div style="text-align: center; padding: 20px 0;">
-                    <img src="pipeline.PNG" style="width: 70px; opacity: 0.3; filter: sepia(1) saturate(5) hue-rotate(-20deg);" alt="Forge">
+                    <img src="pipeline.PNG" style="width: 70px; opacity: 0.4; filter: sepia(1) saturate(5) hue-rotate(-20deg);" alt="Forge">
                 </div>
-                <p style="font-size: 10px; color: #444; line-height: 2.2; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 300;">
+                <p style="font-size: 10px; color: #888; line-height: 2.2; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 300;">
                     Fuel the ImaginX engine. Your words are the metadata that powers high-fidelity cinema. Drafting is forging.
                 </p>
             </div>
 
             <div class="module-box">
                 <h2>RECENT_LOGS</h2>
-                <div id="log-feed" style="font-size: 11px; color: #444;">
+                <div id="log-feed" style="font-size: 11px; color: #666; line-height: 2;">
                     <div>[ SIGNAL_STABLE ]: Entry archived to 1952 Archive.</div>
                     <div>[ SIGNAL_STABLE ]: Entry archived to 1944 Archive.</div>
                     <div>[ SIGNAL_STABLE ]: Entry archived to 2026 Archive.</div>
@@ -101,8 +146,8 @@
             <h2>THE WRITER'S SANCTUARY // DRAFTING ROOM</h2>
             
             <div class="desk-area">
-                <textarea id="loreInput" class="input-forge" rows="8" placeholder="Start typing your story here..."></textarea>
-                <button onclick="submitLore()" class="btn-forge">FORGE SCRIPT SCRAP</button>
+                <textarea id="loreInput" class="input-forge" rows="8" placeholder="Draft your script scrap here..."></textarea>
+                <button onclick="submitLore()" class="btn-forge">COMMIT TO THE ANTHOLOGY</button>
             </div>
 
             <div style="margin-top: 80px;">
