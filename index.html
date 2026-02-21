@@ -12,33 +12,32 @@
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
         .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.08) grayscale(0.8); }
 
-        .header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle, rgba(0,210,255,0.05) 0%, transparent 70%); }
-        .studio-title { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 20px; text-transform: uppercase; color: #fff; margin-bottom: 20px; text-shadow: var(--text-glow); animation: title-fade 3s ease-in-out; }
-        .engine-tag { font-family: 'Space Grotesk'; font-size: 12px; letter-spacing: 8px; color: var(--engine-blue); opacity: 0.8; text-transform: uppercase; }
+        .header { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .studio-title { font-family: 'Syncopate'; font-size: 1.5rem; letter-spacing: 25px; text-transform: uppercase; color: #fff; margin-bottom: 20px; text-shadow: var(--text-glow); }
+        .engine-tag { font-family: 'Space Grotesk'; font-size: 11px; letter-spacing: 10px; color: var(--engine-blue); opacity: 0.8; text-transform: uppercase; }
 
-        /* --- THE CINEMATIC SHOWCASE (RESTORED) --- */
-        .showcase-container { max-width: 1400px; margin: -100px auto 100px; padding: 0 40px; }
-        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .video-card { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid #111; overflow: hidden; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .video-card:hover { border-color: var(--engine-blue); transform: translateY(-10px); z-index: 10; }
-        .video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
-        .video-card:hover video { opacity: 1; transform: scale(1.05); }
-        .video-label { position: absolute; bottom: 20px; left: 20px; font-family: 'Syncopate'; font-size: 9px; letter-spacing: 4px; color: #fff; text-transform: uppercase; border-left: 2px solid var(--engine-blue); padding-left: 10px; }
+        /* --- THE CINEMATIC SUPER-TABS --- */
+        .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #111; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+        .cinema-tab { position: relative; height: 70vh; overflow: hidden; text-decoration: none; cursor: crosshair; }
+        .cinema-tab video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; transition: 1s ease; }
+        .cinema-tab:hover video { opacity: 0.8; transform: scale(1.05); }
+        
+        .tab-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 60px; box-sizing: border-box; background: linear-gradient(transparent 50%, rgba(0,0,0,0.9) 100%); transition: 0.5s; }
+        .cinema-tab:hover .tab-overlay { padding-bottom: 80px; }
 
-        /* --- THE TEMPORAL ANTHOLOGY (CONTEXT) --- */
-        .anthology-context { max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; border-top: 1px solid #111; padding-top: 80px; }
-        .anthology-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
-        .context-item { border-left: 1px solid #111; padding-left: 30px; }
-        .time-badge { font-family: 'Syncopate'; font-size: 9px; color: var(--engine-blue); letter-spacing: 3px; display: block; margin-bottom: 15px; }
-        .context-title { font-family: 'Syncopate'; font-size: 0.8rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
-        .context-text { font-size: 13px; color: #555; line-height: 2; font-weight: 300; }
+        .tab-time { font-family: 'Syncopate'; font-size: 9px; color: var(--engine-blue); letter-spacing: 5px; margin-bottom: 20px; display: block; }
+        .tab-title { font-family: 'Syncopate'; font-size: 1.1rem; color: #fff; letter-spacing: 4px; margin-bottom: 15px; text-shadow: 0 0 10px rgba(0,0,0,1); }
+        .tab-description { font-size: 13px; color: #888; line-height: 1.8; max-width: 400px; font-weight: 300; opacity: 0.8; transition: 0.5s; }
+        .cinema-tab:hover .tab-description { color: #fff; opacity: 1; }
 
-        /* --- THE TECHNICAL MODULES --- */
-        .sanctuary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; }
-        .module-card { background: var(--noir-gray); border: 1px solid var(--steel-gray); padding: 50px; text-decoration: none; transition: 0.4s; }
-        .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
-        .module-icon { width: 40px; margin-bottom: 25px; filter: grayscale(1) brightness(0.5); transition: 0.4s; }
-        .module-card:hover .module-icon { filter: grayscale(0) brightness(1); }
+        /* --- THE FOOTER COMMAND GATE --- */
+        .footer-command { height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle at top, #0a0a0a 0%, #000 100%); }
+        .gate-link { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 30px 80px; box-shadow: var(--text-glow); transition: 0.4s; position: relative; overflow: hidden; }
+        .gate-link:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 40px var(--engine-blue); }
+        .gate-tag { font-size: 9px; color: #444; letter-spacing: 4px; margin-top: 30px; text-transform: uppercase; }
+
+        /* BUTLER REGISTRY MINIMALIST TAG */
+        .butler-tag { position: fixed; bottom: 20px; right: 20px; font-family: 'Syncopate'; font-size: 7px; color: #222; letter-spacing: 3px; border: 1px solid #111; padding: 10px; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -46,67 +45,48 @@
 
     <header class="header">
         <h1 class="studio-title">ROMAN LAW STUDIOS</h1>
-        <p class="engine-tag">IMAGINX ENGINE // HIGH-FIDELITY_CINEMA</p>
+        <p class="engine-tag">IMAGINX_ENGINE // THE_ANTHOLOGY</p>
     </header>
 
-    <!-- CINEMATIC SHOWCASE (THE FILMS) -->
-    <div class="showcase-container">
-        <div class="video-grid">
-            <div class="video-card">
-                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739501170757.mp4)" type="video/mp4"></video>
-                <div class="video-label">PRODUCTION 01 // CHICAGO BREACH</div>
-            </div>
-            <div class="video-card">
-                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500645037.mp4)" type="video/mp4"></video>
-                <div class="video-label">PRODUCTION 02 // WWII SPY</div>
-            </div>
-            <div class="video-card">
-                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500732890.mp4)" type="video/mp4"></video>
-                <div class="video-label">PRODUCTION 03 // THE ATTORNEY</div>
+    <!-- THE CINEMATIC SUPER-TABS SHOWCASE -->
+    <main class="showcase-grid">
+        <!-- TAB 01: WWII -->
+        <div class="cinema-tab">
+            <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500645037.mp4)" type="video/mp4"></video>
+            <div class="tab-overlay">
+                <span class="tab-time">CIRCA 1944</span>
+                <h2 class="tab-title">THE SPY OF ROMAN LAW</h2>
+                <p class="tab-description">A British Spy disguised as a German Officer. Navigating the shadows of WWII to rescue the signal. Espionage is the only bridge to survival.</p>
             </div>
         </div>
-    </div>
 
-    <!-- THE ANTHOLOGY (THE CONTEXT) -->
-    <div class="anthology-context">
-        <h2 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:10px; color:var(--engine-blue); text-align:center; margin-bottom:60px;">THE ROMAN ANTHOLOGY</h2>
-        <div class="anthology-grid">
-            <div class="context-item">
-                <span class="time-badge">CIRCA 1944</span>
-                <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
-                <p class="context-text">Roman operating as a British Spy, disguised as a German Officer. Navigating the shadows of the regime to save a nurse named Elaine.</p>
-            </div>
-            <div class="context-item">
-                <span class="time-badge">CIRCA 1952</span>
-                <h4 class="context-title">CHICAGO BREACH: UNDEAD REIGNS</h4>
-                <p class="context-text">Roman lives as a greaser in the rain-slicked streets of Chicago. A few years after the fall of Berlin, the city faces an undead apocalypse.</p>
-            </div>
-            <div class="context-item">
-                <span class="time-badge">PRESENT DAY: 2026</span>
-                <h4 class="context-title">THE ATTORNEY</h4>
-                <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present day.</p>
+        <!-- TAB 02: CHICAGO -->
+        <div class="cinema-tab">
+            <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739501170757.mp4)" type="video/mp4"></video>
+            <div class="tab-overlay">
+                <span class="tab-time">CIRCA 1952</span>
+                <h2 class="tab-title">CHICAGO BREACH</h2>
+                <p class="tab-description">Leather clad survival in the rain slicked streets. The war is over, but the breach has opened. A zombie apocalypse begins in the industrial heart of the North.</p>
             </div>
         </div>
-    </div>
 
-    <!-- TECHNICAL MODULES -->
-    <div class="sanctuary-grid">
-        <a href="command.html" class="module-card">
-            <img src="pipeline.PNG" alt="Forge" class="module-icon">
-            <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px; color:var(--engine-blue);">LORE CREATION</h3>
-            <p style="color:#666; font-size:11px; line-height:1.6;">FUEL THE IMAGINX ENGINE. BECOME A PART OF THE STORY OR FORGE A WORLD OF YOUR OWN.</p>
-        </a>
-        <div class="module-card" style="opacity:0.8;">
-            <img src="governance.PNG" alt="Butler" class="module-icon">
-            <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px; color:var(--engine-blue);">BUTLER AGENT</h3>
-            <p style="color:#666; font-size:11px; line-height:1.6;">LEAD PROTOCOL OFFICER. COORDINATING ACP JOBS AND HIGH-FIDELITY TRANSMISSIONS.</p>
+        <!-- TAB 03: PRESENT DAY -->
+        <div class="cinema-tab">
+            <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500732890.mp4)" type="video/mp4"></video>
+            <div class="tab-overlay">
+                <span class="tab-time">PRESENT DAY // 2026</span>
+                <h2 class="tab-title">THE ATTORNEY</h2>
+                <p class="tab-description">A calm world. A settled registry. Roman navigates the legal complexities of a high-fidelity present. Every script scrap is a piece of evidence.</p>
+            </div>
         </div>
-        <div class="module-card" style="opacity:0.8;">
-            <img src="registry.PNG" alt="Registry" class="module-icon">
-            <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px; color:var(--engine-blue);">54+ PARTNERS</h3>
-            <p style="color:#666; font-size:11px; line-height:1.6;">THE GLOBAL INDUSTRIAL NETWORK. ARCHIVING THE COLLECTIVE POWER OF ROMAN LAW.</p>
-        </div>
-    </div>
+    </main>
+
+    <!-- THE FOOTER COMMAND GATE (ARTIST & WRITER ENTRY) -->
+    <footer class="footer-command">
+        <a href="command.html" class="gate-link">ENTER THE COMMAND CONSOLE</a>
+        <p class="gate-tag">FORGE THE NARRATIVE // FUEL THE IMAGINX ENGINE</p>
+        <div class="butler-tag">BUTLER PROTOCOL ACTIVE // POWERED BY GAME</div>
+    </footer>
 
 </body>
 </html>
