@@ -11,7 +11,9 @@
         body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.04; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
         @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
         body, html { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: brightness(0.15) contrast(1.2); }
+        
+        /* --- THE AMBIENT BACKGROUND (RESTORED) --- */
+        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: brightness(0.18) contrast(1.3) sepia(0.1); }
 
         .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
         .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
@@ -46,10 +48,12 @@
         .context-title { font-family: 'Syncopate'; font-size: 0.7rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
         .context-text { font-size: 13px; color: #444; line-height: 2; font-weight: 300; }
 
-        /* --- THE MODULES --- */
+        /* --- THE MODULES (VISUALS RESTORED) --- */
         .sanctuary-grid { max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .module-card { background: var(--noir-gray); border: 1px solid #111; padding: 50px; text-decoration: none; transition: 0.4s; }
+        .module-card { background: var(--noir-gray); border: 1px solid #111; padding: 50px; text-decoration: none; transition: 0.4s; text-align: center; }
         .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
+        .module-icon { width: 50px; height: 50px; margin-bottom: 25px; opacity: 0.7; filter: grayscale(1) brightness(0.8); transition: 0.3s; }
+        .module-card:hover .module-icon { opacity: 1; filter: grayscale(0) brightness(1); }
 
         footer { text-align: center; padding: 60px; font-size: 9px; color: #222; letter-spacing: 5px; background: #000; border-top: 1px solid #111; }
     </style>
@@ -119,17 +123,23 @@
             </div>
         </div>
 
-        <!-- THE INNER CIRCLE REGISTRY -->
+        <!-- THE INNER CIRCLE REGISTRY (VISUALS RESTORED) -->
         <div class="sanctuary-grid">
+            <!-- LORE CREATION -->
             <a href="command.html" class="module-card">
+                <img src="pipeline.PNG" alt="Forge" class="module-icon">
                 <h3 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:4px; color:var(--engine-blue);">LORE CREATION</h3>
                 <p style="color:#444; font-size:11px; line-height:1.6;">FUEL THE IMAGINX ENGINE. BECOME A PART OF THE STORY OR FORGE A WORLD OF YOUR OWN.</p>
             </a>
+            <!-- BUTLER AGENT -->
             <div class="module-card" style="border-color: var(--engine-blue); box-shadow: var(--text-glow);">
+                <img src="governance.PNG" alt="Butler" class="module-icon" style="filter: grayscale(0) brightness(1);">
                 <h3 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:4px; color:var(--engine-blue);">BUTLER AGENT</h3>
                 <p style="color:#fff; font-size:11px; line-height:1.6;">LEAD PROTOCOL OFFICER. COORDINATING ACP JOBS AND HIGH-FIDELITY STUDIO TRANSMISSIONS.</p>
             </div>
+            <!-- PARTNER REGISTRY -->
             <div class="module-card">
+                <img src="registry.PNG" alt="Registry" class="module-icon">
                 <h3 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:4px; color:var(--engine-blue);">54+ PARTNERS</h3>
                 <p style="color:#444; font-size:11px; line-height:1.6;">THE GLOBAL INDUSTRIAL NETWORK. ARCHIVING THE COLLECTIVE POWER OF ROMAN LAW STUDIOS.</p>
             </div>
