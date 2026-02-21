@@ -108,8 +108,8 @@
     <script>
         async function submitLore() {
             const loreText = document.getElementById('loreInput').value;
-            // ARCHITECT: INSERT YOUR DISCORD FORUM WEBHOOK URL BELOW
-            const webhookURL = https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7; 
+            // FIXED: Added quotes around the URL for valid transmission
+            const webhookURL = 'https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7'; 
 
             if (!loreText) {
                 alert("THE FORGE REQUIRES METADATA. INPUT SCRIPT SCRAP.");
@@ -130,7 +130,7 @@
                     alert("METADATA_RECEIVED. SIGNAL_STABILIZING. ENQUEUED IN RENDER BUFFER.");
                     window.location.href = "index.html";
                 } else {
-                    alert("SIGNAL_PENDING. (VERIFY WEBHOOK URL)");
+                    alert("SIGNAL_PENDING. (VERIFY WEBHOOK URL CONFIGURATION)");
                 }
             } catch (error) {
                 alert("SIGNAL_INTERRUPTED. (LOCAL_CACHE_SYNCED)");
