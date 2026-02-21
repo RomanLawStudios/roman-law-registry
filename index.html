@@ -37,7 +37,7 @@
 
         body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
-        /* --- MOBILE-OPTIMIZED GLASS HEADER --- */
+        /* --- GLASS HEADER --- */
         .glass-header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
             background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px);
@@ -50,29 +50,30 @@
 
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
 
-        /* --- HERO & MISSION (WITH REGISTRY HUD) --- */
+        /* --- MISSION SECTION & UPSCALED HUD --- */
         .mission-section { 
             display: flex; flex-direction: column; align-items: center; 
-            text-align: center; padding: clamp(80px, 15vh, 150px) 20px; position: relative;
+            text-align: center; padding: clamp(100px, 18vh, 180px) 20px; position: relative;
         }
 
-        /* THE FRONT-AND-CENTER REGISTRY HUD */
+        /* THE UPSCALED FRONT-AND-CENTER REGISTRY HUD */
         .registry-hud {
-            position: absolute; right: 20px; top: 100px; text-align: right;
-            border-right: 2px solid var(--engine-blue); padding-right: 15px;
-            display: none; /* Hide on small screens, show on desktop */
+            position: absolute; right: 5%; top: 120px; text-align: right;
+            border-right: 3px solid var(--engine-blue); padding-right: 25px;
+            display: none; /* Desktop Only */
         }
-        @media (min-width: 1100px) { .registry-hud { display: block; } }
+        @media (min-width: 1200px) { .registry-hud { display: block; } }
 
-        .hud-label { font-size: 8px; color: #444; letter-spacing: 3px; text-transform: uppercase; }
-        .hud-value { font-size: 18px; color: #fff; font-family: 'Syncopate'; margin-bottom: 10px; }
+        .hud-label { font-size: 10px; color: #555; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; }
+        .hud-value { font-size: 28px; color: #fff; font-family: 'Syncopate'; margin-bottom: 5px; font-weight: 700; }
+        .ticker-text { font-size: 11px; color: var(--engine-blue); letter-spacing: 3px; font-weight: 500; background: rgba(0,0,0,0.4); padding: 5px 10px; display: inline-block; margin-top: 10px; text-transform: uppercase; border: 1px solid #111; }
 
         h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
         .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
         .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
 
-        /* --- TECHNICAL MODULES --- */
+        /* --- GRID --- */
         .sanctuary-grid { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; }
         @media (min-width: 768px) { .sanctuary-grid { grid-template-columns: repeat(3, 1fr); } }
 
@@ -80,7 +81,6 @@
         .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
         .module-icon { width: 70px; height: 70px; margin-bottom: 25px; opacity: 0.6; filter: grayscale(1) invert(1); }
 
-        /* --- SHOWCASE --- */
         .showcase-section { text-align: center; padding: 120px 20px; background: rgba(5, 5, 5, 0.9); border-top: 1px solid #111; }
 
         footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
@@ -101,20 +101,22 @@
 
     <div class="page-wrapper">
         <div class="mission-section">
-            <!-- FRONT AND CENTER REGISTRY DATA -->
+            <!-- UPSCALED FRONT AND CENTER HUD -->
             <div class="registry-hud">
                 <div class="hud-label">STUDIO_PARTNERS</div>
                 <div class="hud-value">54+</div>
+                
                 <div class="hud-label">REGISTRY_STAKE</div>
                 <div class="hud-value" style="color:var(--engine-blue)">3.66M</div>
-                <div class="hud-label">RESERVES</div>
-                <div style="font-size:7px; color:#222; letter-spacing:1px; margin-top:5px;">$CATALIEN / $SENTA / $DROID / $GYMBOT</div>
+                
+                <div class="hud-label">RESERVE_PORTFOLIO</div>
+                <div class="ticker-text">$CATALIEN / $SENTA / $DROID / $GYMBOT / $XIO</div>
             </div>
 
             <h1>IMAGIN<span class="engine-text">X</span></h1>
             <h2 class="studio-tagline">THE CINEMATIC ENGINE <span class="engine-text">POWERED BY</span> ROMAN LAW STUDIOS</h2>
             
-            <div style="width: 80px; height: 1px; background: var(--engine-blue); margin: 40px auto; box-shadow: var(--text-glow);"></div>
+            <div style="width: 100px; height: 2px; background: var(--engine-blue); margin: 40px auto; box-shadow: var(--text-glow);"></div>
 
             <p class="mission-text">
                 The first on-chain Noir studio for AI agents. 
@@ -123,19 +125,16 @@
         </div>
 
         <div class="sanctuary-grid">
-            <!-- MODULE 01 -->
             <a href="wip.html" class="module-card">
                 <img src="pipeline.PNG" alt="Cinematic Pipeline" class="module-icon">
                 <h3>Lore Pipeline</h3>
                 <p style="color: #666; font-size: 13px;">Procedural Noir-lighting and a <span class="engine-text">Social Lore Forge</span> for high-fidelity conversion.</p>
             </a>
-            <!-- MODULE 02 (VAULT) -->
             <a href="wip.html" class="module-card" style="border-color: #444;">
                 <img src="registry.PNG" alt="The Registry" class="module-icon">
                 <h3 class="engine-text">The Vault</h3>
                 <p style="color: #888; font-size: 13px;">Holding <span class="engine-text">54+</span> Partners & <span class="engine-text">3.66M</span> $IMAGIN registry stake.</p>
             </a>
-            <!-- MODULE 03 -->
             <a href="wip.html" class="module-card">
                 <img src="governance.PNG" alt="Executive Governance" class="module-icon">
                 <h3>Production Status</h3>
