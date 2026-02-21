@@ -37,14 +37,15 @@
 <body>
     <div class="bg-engine"></div>
 
-    <!-- THE FORGE ANIMATION OVERLAY -->
-    <div id="forge-overlay">
-        <img src="pipeline.PNG" class="forge-anvil" alt="Anvil">
-        <div id="status-text" class="forge-status">STRIKING METADATA...</div>
-        <div class="forge-progress-container">
-            <div id="forge-bar"></div>
+    <!-- THE FORGE ANIMATION OVERLAY (EXPLICIT ROUTING) -->
+    <div id="forge-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(20px);">
+        <img src="pipeline.PNG" class="forge-anvil" alt="Anvil" style="width: 120px; height: auto; margin-bottom: 30px; filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5)); animation: forge-thump 1s infinite;">
+        <div id="status-text" class="forge-status" style="font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 6px; color: #00d2ff; margin-bottom: 20px; text-align: center;">STRIKING METADATA...</div>
+        <div class="forge-progress-container" style="width: 300px; height: 4px; background: #111; border: 1px solid #222; position: relative;">
+            <div id="forge-bar" style="width: 0%; height: 100%; background: #00d2ff; box-shadow: 0 0 15px rgba(0, 210, 255, 0.7); transition: 0.2s;"></div>
         </div>
-        <p style="font-size: 9px; color: #444; margin-top: 20px; letter-spacing: 4px;">[ SENDING SIGNAL TO DISCORD FORGE ]</p>
+        <!-- EXPLICIT DESTINATION TEXT -->
+        <p style="font-size: 9px; color: #444; margin-top: 20px; letter-spacing: 4px; text-transform: uppercase;">[ TRANSMITTING TO THE ROMAN LAW STUDIO DISCORD ]</p>
     </div>
     
     <div class="command-layout">
@@ -108,26 +109,31 @@
             overlay.style.display = 'flex';
 
             try {
+                // STRIKE 01: INITIALIZE
                 bar.style.width = '30%';
+                
                 const response = await fetch(webhookURL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        thread_name: `SCRIPT_SCRAP_${new Date().getTime()}`, 
+                        thread_name: `SCRIPT SCRAP ${new Date().getTime()}`, 
                         content: `🚨 **NEW LORE SIGNAL ENQUEUED**\n\n**METADATA:** ${loreText}\n\n[ IMAGINX ENGINE // HIGH FIDELITY SYNC ]`
                     })
                 });
 
                 if (response.ok) {
+                    // STRIKE 02: SIGNAL RECEIVED
                     bar.style.width = '70%';
                     status.innerText = "SIGNAL STABILIZED...";
                     
                     setTimeout(() => {
+                        // STRIKE 03: THE DIRECTOR'S WINK
                         bar.style.width = '100%';
                         status.innerText = "Classified Detail Received. Just kidding.";
+                        
                         setTimeout(() => {
                             window.location.href = "index.html"; 
-                        }, 1500);
+                        }, 1800);
                     }, 1000);
                 }
             } catch (error) {
