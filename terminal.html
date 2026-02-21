@@ -3,35 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | CREATORS HUB</title>
+    <title>IMAGINX | CREATORS_HUB // TERMINAL_V.02</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body, html { margin: 0; padding: 0; background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; height: 100vh; overflow: hidden; }
-        .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #111 0%, #000 100%); z-index: -1; }
-        .hud { position: fixed; top: 0; left: 0; width: 100%; border-bottom: 1px solid #222; padding: 20px; text-align: center; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); }
-        .container { max-width: 1000px; margin: 120px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 20px; }
-        .pane { border: 1px solid #222; padding: 40px; background: rgba(10, 10, 10, 0.8); }
-        h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 5px; color: #444; margin-bottom: 30px; }
-        .btn { display: block; width: 100%; padding: 15px; border: 1px solid #00d2ff; color: #00d2ff; text-align: center; text-decoration: none; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; margin-top: 20px; }
+        :root {
+            --noir-black: #050505;
+            --engine-blue: #00d2ff;
+            --text-glow: 0 0 15px rgba(0, 210, 255, 0.6);
+            --glass: rgba(12, 12, 12, 0.95);
+        }
+
+        body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+        /* --- GLOBAL AMBIENT ENGINE BG --- */
+        #bg-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover; filter: brightness(0.15) blur(10px); }
+
+        /* --- HUD TOP BAR --- */
+        .hud-header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 12px 0; z-index: 1000; text-align: center; backdrop-filter: blur(15px); }
+        .grad-bar { width: 300px; height: 3px; background: #222; margin: 8px auto 0; position: relative; overflow: hidden; }
+        .grad-fill { width: 58.2%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); }
+
+        /* --- TERMINAL GRID --- */
+        .terminal-layout { max-width: 1400px; margin: 0 auto; padding: 100px 20px 60px; display: grid; grid-template-columns: 350px 1fr 300px; gap: 30px; height: calc(100vh - 160px); }
+        
+        .pane { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 4px; backdrop-filter: blur(25px); overflow-y: auto; scrollbar-width: none; }
+        .pane::-webkit-scrollbar { display: none; }
+
+        /* --- COMPONENTS --- */
+        .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 25px; transition: 0.3s; }
+        .card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
+        
+        .tag { font-size: 10px; color: var(--engine-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; font-weight: 700; }
+        .btn-action { display: block; width: 100%; padding: 15px; border: 1px solid var(--engine-blue); background: transparent; color: var(--engine-blue); font-size: 9px; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; cursor: pointer; }
+        .btn-action:hover { background: rgba(0, 210, 255, 0.1); }
+
+        h2 { font-family: 'Syncopate'; font-size: 0.75rem; letter-spacing: 6px; color: #444; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+        .stat-value { font-size: 32px; font-weight: bold; letter-spacing: -1px; margin: 10px 0; }
+        .stat-label { font-size: 9px; color: #555; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* --- RESPONSIVE FIX --- */
+        @media (max-width: 1100px) { .terminal-layout { grid-template-columns: 1fr; height: auto; } }
     </style>
 </head>
 <body>
-    <div class="bg"></div>
-    <div class="hud">
-        <div style="font-size: 9px; letter-spacing: 4px; color: #00d2ff;">[ CREATORS_HUB // REGISTRY_ACTIVE ]</div>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
+    </video>
+
+    <div class="hud-header">
+        <div style="font-size: 9px; letter-spacing: 4px; color: var(--engine-blue);">IMAGINX_ENGINE // GRADUATION_PROTOCOL: 58.2%</div>
+        <div class="grad-bar"><div class="grad-fill"></div></div>
     </div>
-    <div class="container">
+
+    <div class="terminal-layout">
+        
+        <!-- LEFT: LORE_FORGE FEED -->
         <div class="pane">
-            <h2>WRITERS_FORGE</h2>
-            <p style="color: #666; font-size: 13px;">Submit cinematic lore scraps to the engine.</p>
-            <a href="#" class="btn">Initiate Script</a>
+            <h2>LORE_FORGE</h2>
+            <div class="card">
+                <span class="tag">@DIRECTOR_3.6M // 04:22:01</span>
+                <p style="font-size: 13px; color: #bbb; line-height: 1.7;">"The Chicago rain is falling on the 54 Partner Assets today. The Registry is expanding."</p>
+            </div>
+            <div class="card" style="opacity: 0.5;">
+                <span class="tag">@ANON_PRODUCER // 03:15:44</span>
+                <p style="font-size: 13px; color: #888;">"Enrolled my first $CATALIEN batch into the engine. Rendering now..."</p>
+            </div>
+            <button class="btn-action">Initiate Script Scrap</button>
         </div>
+
+        <!-- CENTER: ENGINE_ARCHIVE (THE GALLERY) -->
         <div class="pane">
-            <h2>ARTIST_ARCHIVE</h2>
-            <p style="color: #666; font-size: 13px;">Upload high-fidelity engine renders.</p>
-            <a href="#" class="btn">Upload Render</a>
+            <h2>ENGINE_ARCHIVE</h2>
+            <div class="card" style="padding: 0; overflow: hidden; position: relative;">
+                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; display:block; filter: brightness(0.8);">
+                <div style="position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, #000); padding: 30px 20px 20px;">
+                    <span class="tag">MASTER_RENDER_01 // CHICAGO_BREACH</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 10px; color: #666; letter-spacing: 2px;">VIRTUALS_IO_CORE</span>
+                        <span style="font-family: 'Syncopate'; color: var(--engine-blue); font-size: 18px;">9.9</span>
+                    </div>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="card" style="text-align: center;">
+                    <div class="stat-value">54</div>
+                    <div class="stat-label">ENROLLED_ASSETS</div>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div class="stat-value" style="color: var(--engine-blue);">7.86</div>
+                    <div class="stat-label">USDC_LIQUIDITY</div>
+                </div>
+            </div>
+            <button class="btn-action">Upload High-Fidelity Render</button>
         </div>
+
+        <!-- RIGHT: EXECUTIVE_HUD -->
+        <div class="pane">
+            <h2>EXECUTIVE_HUD</h2>
+            <div class="card" style="text-align: center; border-color: #333;">
+                <div class="stat-label">REGISTRY_STAKE</div>
+                <div class="stat-value">3,663,965</div>
+                <div style="font-size: 8px; color: var(--engine-blue); letter-spacing: 2px;">$IMAGIN // BASE_MAINNET</div>
+            </div>
+            <div class="card" style="text-align: center; border-color: #333;">
+                <div class="stat-label">TREASURY_POWER</div>
+                <div class="stat-value" style="font-size: 24px;">HIGH_FIDELITY</div>
+                <div style="font-size: 8px; color: #444; letter-spacing: 2px;">PARTNERS: 54 // SPY_ACTIVE</div>
+            </div>
+            <a href="index.html" class="btn-action" style="border-color: #444; color: #666;">Return to Sanctuary</a>
+            <div style="margin-top: 40px; font-size: 9px; color: #333; line-height: 1.8; text-transform: uppercase;">
+                [ SYSTEM_DIRECTIVE ]: Enrollment is open for Artists and Writers. High-fidelity renders are being prioritized for the Chicago Breach Archive.
+            </div>
+        </div>
+
     </div>
-    <a href="index.html" style="position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); color: #333; font-size: 9px; text-decoration: none; letter-spacing: 4px;">RETURN_TO_SANCTUARY</a>
+
+    <footer>
+        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX | BASE NETWORK
+    </footer>
+
 </body>
 </html>
