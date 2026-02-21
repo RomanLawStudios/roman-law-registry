@@ -3,173 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImaginX | Roman Law Studios Sanctuary</title>
+    <title>IMAGINX | ROMAN LAW STUDIOS // SANCTUARY</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <style>
-        :root {
-            --noir-black: #050505;
-            --noir-gray: rgba(15, 15, 15, 0.9);
-            --engine-blue: #00d2ff;
-            --text-glow: 0 0 20px rgba(0, 210, 255, 0.7);
-            --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
-        }
+        :root { --noir-black: #050505; --engine-blue: #00d2ff; --steel-gray: #222; --noir-gray: rgba(10, 10, 10, 0.98); --text-glow: 0 0 15px rgba(0, 210, 255, 0.5); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
+        @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
+        body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.08) grayscale(0.8); }
 
-        /* --- THE WWII CINEMATIC GRAIN --- */
-        body::after {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: var(--vintage-grain);
-            opacity: 0.04; pointer-events: none; z-index: 5000;
-            animation: grain-flicker 0.2s steps(2) infinite;
-        }
-        @keyframes grain-flicker {
-            0% { transform: translate(0,0); }
-            50% { transform: translate(-0.5%, -0.5%); }
-            100% { transform: translate(0.5%, 0.5%); }
-        }
+        .header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle, rgba(0,210,255,0.05) 0%, transparent 70%); }
+        .studio-title { font-family: 'Syncopate'; font-size: 1.2rem; letter-spacing: 20px; text-transform: uppercase; color: #fff; margin-bottom: 20px; text-shadow: var(--text-glow); animation: title-fade 3s ease-in-out; }
+        .engine-tag { font-family: 'Space Grotesk'; font-size: 12px; letter-spacing: 8px; color: var(--engine-blue); opacity: 0.8; text-transform: uppercase; }
 
-        #ambient-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: brightness(0.25) contrast(1.1) sepia(0.1); object-fit: cover; }
-        body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        /* --- THE CINEMATIC SHOWCASE (RESTORED) --- */
+        .showcase-container { max-width: 1400px; margin: -100px auto 100px; padding: 0 40px; }
+        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .video-card { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid #111; overflow: hidden; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .video-card:hover { border-color: var(--engine-blue); transform: translateY(-10px); z-index: 10; }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
+        .video-card:hover video { opacity: 1; transform: scale(1.05); }
+        .video-label { position: absolute; bottom: 20px; left: 20px; font-family: 'Syncopate'; font-size: 9px; letter-spacing: 4px; color: #fff; text-transform: uppercase; border-left: 2px solid var(--engine-blue); padding-left: 10px; }
 
-        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
-        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .studio-logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 4px; font-size: clamp(0.7rem, 3vw, 1rem); color: #fff; text-decoration: none; }
-        .engine-status-tag { font-size: clamp(6px, 2vw, 9px); letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase; }
+        /* --- THE TEMPORAL ANTHOLOGY (CONTEXT) --- */
+        .anthology-context { max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; border-top: 1px solid #111; padding-top: 80px; }
+        .anthology-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+        .context-item { border-left: 1px solid #111; padding-left: 30px; }
+        .time-badge { font-family: 'Syncopate'; font-size: 9px; color: var(--engine-blue); letter-spacing: 3px; display: block; margin-bottom: 15px; }
+        .context-title { font-family: 'Syncopate'; font-size: 0.8rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
+        .context-text { font-size: 13px; color: #555; line-height: 2; font-weight: 300; }
 
-        .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
-
-        .mission-section { display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(100px, 15vh, 150px) 20px; position: relative; }
-
-        /* THE LEFT-ALIGNED LIVE HUD */
-        .registry-hud { position: absolute; left: 5%; top: 120px; text-align: left; border-left: 4px solid var(--engine-blue); padding-left: 30px; display: none; }
-        @media (min-width: 1200px) { .registry-hud { display: block; } }
-
-        .hud-label { font-size: 11px; color: #555; letter-spacing: 5px; text-transform: uppercase; margin-top: 25px; }
-        .hud-value { font-size: 38px; color: var(--engine-blue); font-family: 'Syncopate'; margin-bottom: 5px; font-weight: 700; filter: drop-shadow(var(--text-glow)); letter-spacing: -2px; }
-        .ticker-text { font-size: 12px; color: #fff; letter-spacing: 4px; font-weight: 700; background: rgba(0, 210, 255, 0.1); padding: 8px 15px; display: inline-block; margin-top: 15px; text-transform: uppercase; border: 1px solid var(--engine-blue); box-shadow: var(--text-glow); }
-
-        h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
-        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
-        .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
-
-        /* --- TECHNICAL GRID (RESTORED) --- */
-        .sanctuary-grid { max-width: 1200px; margin: 0 auto; padding: 80px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; }
-        @media (min-width: 768px) { .sanctuary-grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .module-card { background: var(--noir-gray); border: 1px solid #222; padding: 40px; text-align: center; transition: 0.5s; backdrop-filter: blur(15px); text-decoration: none; color: inherit; display: block; }
+        /* --- THE TECHNICAL MODULES --- */
+        .sanctuary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; }
+        .module-card { background: var(--noir-gray); border: 1px solid var(--steel-gray); padding: 50px; text-decoration: none; transition: 0.4s; }
         .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
-        .module-icon { width: 60px; height: 60px; margin-bottom: 25px; opacity: 0.7; filter: grayscale(1) invert(1); }
-
-        .showcase-section { text-align: center; padding: 120px 20px; background: rgba(5, 5, 5, 0.9); border-top: 1px solid #111; }
-        footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
+        .module-icon { width: 40px; margin-bottom: 25px; filter: grayscale(1) brightness(0.5); transition: 0.4s; }
+        .module-card:hover .module-icon { filter: grayscale(0) brightness(1); }
     </style>
 </head>
 <body>
+    <div class="bg-engine"></div>
 
-    <video autoplay muted loop playsinline id="ambient-video">
-        <source src="ambient-chicago.mp4" type="video/mp4">
-    </video>
-
-    <header class="glass-header">
-        <div class="header-content">
-            <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // 58.2%</div>
-        </div>
+    <header class="header">
+        <h1 class="studio-title">ROMAN LAW STUDIOS</h1>
+        <p class="engine-tag">IMAGINX ENGINE // HIGH-FIDELITY_CINEMA</p>
     </header>
 
-    <div class="page-wrapper">
-        <div class="mission-section">
-            <div class="registry-hud">
-                <div class="hud-label">STUDIO_PARTNERS</div>
-                <div class="hud-value">54+</div>
-                <div class="hud-label">AIRDROP_TREASURY</div>
-                <div id="live-treasury" class="hud-value">$1,142.60</div>
-                <div class="hud-label">STARTUP_RESERVES</div>
-                <div class="ticker-text">$APACHEBOT / $XIO / $SENTA / $GYMBOT / $CATALIEN</div>
+    <!-- CINEMATIC SHOWCASE (THE FILMS) -->
+    <div class="showcase-container">
+        <div class="video-grid">
+            <div class="video-card">
+                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739501170757.mp4)" type="video/mp4"></video>
+                <div class="video-label">PRODUCTION 01 // CHICAGO BREACH</div>
             </div>
-
-            <h1>IMAGIN<span class="engine-text">X</span></h1>
-            <h2 class="studio-tagline">THE CINEMATIC ENGINE <span class="engine-text">POWERED BY</span> ROMAN LAW STUDIOS</h2>
-            
-            <div style="width: 100px; height: 2px; background: var(--engine-blue); margin: 40px auto; box-shadow: var(--text-glow);"></div>
-
-            <p class="mission-text">
-                The first on-chain Noir studio for AI agents. 
-                <span class="engine-text" style="font-weight: 500;">$IMAGIN</span> is the industrial fuel powering a proprietary suite transforming raw metadata into high-fidelity cinema.
-            </p>
-        </div>
-
-        <!-- UPDATED PERSONNEL REGISTRY // THE INNER CIRCLE -->
-        <div class="sanctuary-grid" style="margin-top: 40px;">
-            
-            <!-- ENTRY 01: THE ATTORNEY -->
-            <div class="module-card" style="border-color: #222; opacity: 0.9;">
-                <h3 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:4px; color: var(--engine-blue);">THE ATTORNEY</h3>
-                <p style="color: #666; font-size: 11px; line-height: 1.6;">CHIEF LEGAL ARCHITECT // GUARDIAN OF THE 54+ PARTNER REGISTRY AND $IMAGIN RESERVES.</p>
+            <div class="video-card">
+                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500645037.mp4)" type="video/mp4"></video>
+                <div class="video-label">PRODUCTION 02 // WWII SPY</div>
             </div>
-
-            <!-- ENTRY 02: THE BUTLER (INTEGRATED) -->
-            <div class="module-card" style="border-color: var(--engine-blue); box-shadow: var(--text-glow);">
-                <h3 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:4px; color: var(--engine-blue);">BUTLER_AGENT</h3>
-                <p style="color: #fff; font-size: 11px; line-height: 1.6;">LEAD PROTOCOL OFFICER // POWERED BY GAME. COORDINATING ACP JOBS, TREASURY LOGISTICS, AND HIGH-FIDELITY STUDIO TRANSMISSIONS.</p>
-            </div>
-
-            <!-- ENTRY 03: THE PARTNERS -->
-            <div class="module-card" style="border-color: #222; opacity: 0.9;">
-                <h3 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:4px; color: var(--engine-blue);">54+ PARTNER REGISTRY</h3>
-                <p style="color: #666; font-size: 11px; line-height: 1.6;">THE GLOBAL INDUSTRIAL NETWORK. ARCHIVING THE COLLECTIVE POWER OF ROMAN LAW STUDIOS.</p>
-            </div>
-
-        </div>
-
-
-        <!-- CINEMATIC CONTEXT // THE ROMAN ANTHOLOGY -->
-        <div style="max-width: 1200px; margin: 60px auto; padding: 0 40px; border-top: 1px solid #111; padding-top: 60px;">
-            <h2 style="font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--engine-blue); margin-bottom: 40px; text-align: center;">THE ROMAN ANTHOLOGY // TEMPORAL THREADS</h2>
-            
-            <div class="sanctuary-grid">
-                <!-- 1944 SPY -->
-                <div style="text-align: left; padding: 20px; border-left: 1px solid #111;">
-                    <span style="font-size: 9px; color: var(--engine-blue); letter-spacing: 3px; font-family: 'Syncopate';">CIRCA 1944</span>
-                    <h4 style="font-family: 'Syncopate'; font-size: 0.7rem; color: #fff; margin: 15px 0;">THE SPY OF ROMAN LAW</h4>
-                    <p style="font-size: 13px; color: #444; line-height: 1.8; font-weight: 300;">A British Spy, disguised as a German Officer, must navigate the shadows of the regime to save a nurse named Elaine.</p>
-                </div>
-                <!-- 1952 GREASER -->
-                <div style="text-align: left; padding: 20px; border-left: 1px solid #111;">
-                    <span style="font-size: 9px; color: var(--engine-blue); letter-spacing: 3px; font-family: 'Syncopate';">CIRCA 1952</span>
-                    <h4 style="font-family: 'Syncopate'; font-size: 0.7rem; color: #fff; margin: 15px 0;">CHICAGO BREACH: UNDEAD REIGNS</h4>
-                    <p style="font-size: 13px; color: #444; line-height: 1.8; font-weight: 300;">A leather clad survivor in the rain slicked streets of Chicago. The war is over, but the breach has opened.</p>
-                </div>
-                <!-- 2026 ATTORNEY -->
-                <div style="text-align: left; padding: 20px; border-left: 1px solid #111;">
-                    <span style="font-size: 9px; color: var(--engine-blue); letter-spacing: 3px; font-family: 'Syncopate';">CIRCA 2026</span>
-                    <h4 style="font-family: 'Syncopate'; font-size: 0.7rem; color: #fff; margin: 15px 0;">THE ATTORNEY</h4>
-                    <p style="font-size: 13px; color: #444; line-height: 1.8; font-weight: 300;">A calm world. A settled registry. Roman navigates the legal complexities of a high fidelity present day.</p>
-                </div>
+            <div class="video-card">
+                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500732890.mp4)" type="video/mp4"></video>
+                <div class="video-label">PRODUCTION 03 // THE ATTORNEY</div>
             </div>
         </div>
-
-            
-            <p style="color: #222; margin-top: 100px; font-size: 10px; letter-spacing: 10px; font-family: 'Syncopate'; text-align: center;">[ IMAGINX ENGINE // HIGH-FIDELITY_MASTER_CUT ]</p>
-        </div>
-
-        <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | BASE NETWORK</footer>
     </div>
 
-    <script>
-        async function updateTreasury() {
-            try {
-                const auditedWeight = 1142.60; 
-                const flux = (Math.random() * 0.5) - 0.25;
-                const finalValue = auditedWeight + flux;
-                document.getElementById('live-treasury').innerText = '$' + finalValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            } catch (error) {
-                document.getElementById('live-treasury').innerText = '$1,142.60';
-            }
-        }
-        setInterval(updateTreasury, 15000);
-        updateTreasury();
-    </script>
+    <!-- THE ANTHOLOGY (THE CONTEXT) -->
+    <div class="anthology-context">
+        <h2 style="font-family:'Syncopate'; font-size:0.7rem; letter-spacing:10px; color:var(--engine-blue); text-align:center; margin-bottom:60px;">THE ROMAN ANTHOLOGY</h2>
+        <div class="anthology-grid">
+            <div class="context-item">
+                <span class="time-badge">CIRCA 1944</span>
+                <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
+                <p class="context-text">Roman operating as a British Spy, disguised as a German Officer. Navigating the shadows of the regime to save a nurse named Elaine.</p>
+            </div>
+            <div class="context-item">
+                <span class="time-badge">CIRCA 1952</span>
+                <h4 class="context-title">CHICAGO BREACH: UNDEAD REIGNS</h4>
+                <p class="context-text">Roman lives as a greaser in the rain-slicked streets of Chicago. A few years after the fall of Berlin, the city faces an undead apocalypse.</p>
+            </div>
+            <div class="context-item">
+                <span class="time-badge">PRESENT DAY: 2026</span>
+                <h4 class="context-title">THE ATTORNEY</h4>
+                <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present day.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TECHNICAL MODULES -->
+    <div class="sanctuary-grid">
+        <a href="command.html" class="module-card">
+            <img src="pipeline.PNG" alt="Forge" class="module-icon">
+            <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px; color:var(--engine-blue);">LORE CREATION</h3>
+            <p style="color:#666; font-size:11px; line-height:1.6;">FUEL THE IMAGINX ENGINE. BECOME A PART OF THE STORY OR FORGE A WORLD OF YOUR OWN.</p>
+        </a>
+        <div class="module-card" style="opacity:0.8;">
+            <img src="governance.PNG" alt="Butler" class="module-icon">
+            <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px; color:var(--engine-blue);">BUTLER AGENT</h3>
+            <p style="color:#666; font-size:11px; line-height:1.6;">LEAD PROTOCOL OFFICER. COORDINATING ACP JOBS AND HIGH-FIDELITY TRANSMISSIONS.</p>
+        </div>
+        <div class="module-card" style="opacity:0.8;">
+            <img src="registry.PNG" alt="Registry" class="module-icon">
+            <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px; color:var(--engine-blue);">54+ PARTNERS</h3>
+            <p style="color:#666; font-size:11px; line-height:1.6;">THE GLOBAL INDUSTRIAL NETWORK. ARCHIVING THE COLLECTIVE POWER OF ROMAN LAW.</p>
+        </div>
+    </div>
+
 </body>
 </html>
