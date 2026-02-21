@@ -8,14 +8,13 @@
     <style>
         :root {
             --noir-black: #050505;
-            --noir-gray: rgba(10, 10, 10, 0.95);
+            --noir-gray: rgba(15, 15, 15, 0.85);
             --engine-blue: #00d2ff;
-            --steel-gray: #333;
             --text-glow: 0 0 15px rgba(0, 210, 255, 0.5);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-        /* --- WWII CINEMATIC GRAIN --- */
+        /* --- THE WWII CINEMATIC GRAIN OVERLAY --- */
         body::after {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -29,111 +28,121 @@
             100% { transform: translate(0.5%, 0.5%); }
         }
 
+        /* --- AMBIENT VIDEO BACKGROUND --- */
+        #ambient-video {
+            position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
+            z-index: -1; filter: brightness(0.25) contrast(1.1) sepia(0.1);
+            object-fit: cover;
+        }
+
         body { background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* --- AMBIENT ENGINE BACKGROUND --- */
-        #ambient-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: sepia(0.2) contrast(1.2) brightness(0.18) grayscale(0.6); object-fit: cover; }
+        /* --- MOBILE-OPTIMIZED GLASS HEADER --- */
+        .glass-header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0;
+        }
 
-        /* --- THE HUD HEADER & TABS --- */
-        .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.9); border-bottom: 2px solid var(--steel-gray); padding: 15px 0; backdrop-filter: blur(20px); }
         .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .studio-logo { font-family: 'Syncopate'; font-weight: 700; letter-spacing: 5px; font-size: 1rem; color: #fff; text-decoration: none; }
-        
-        .tab-nav { display: flex; gap: 40px; }
-        .tab-link { color: #555; text-decoration: none; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
-        .tab-link:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
+        .studio-logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 4px; font-size: clamp(0.7rem, 3vw, 1rem); color: #fff; text-decoration: none; }
+        .engine-status-tag { font-size: clamp(6px, 2vw, 9px); letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase; }
 
-        /* --- SECTIONS --- */
-        .section-container { max-width: 1200px; margin: 0 auto; padding: 150px 20px 100px; }
-        h2 { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: #222; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 20px; margin-bottom: 60px; }
+        /* --- HERO & LOGO SECTIONS --- */
+        .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
+        .hero-container { width: 100%; height: clamp(40vh, 60vh, 70vh); position: relative; background: #000; overflow: hidden; border-bottom: 1px solid #111; }
+        .hero-banner { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) contrast(1.2) grayscale(0.4); }
+        .hero-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(transparent, var(--noir-black)); }
 
-        /* --- PRODUCTION CARDS --- */
-        .sanctuary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 60px; }
-        .module-card { background: var(--noir-gray); border: 1px solid var(--steel-gray); overflow: hidden; transition: 0.6s; box-shadow: 20px 20px 60px rgba(0,0,0,0.8); }
-        .module-card:hover { border-color: var(--engine-blue); transform: scale(1.02); }
-        .showcase-video { width: 100%; display: block; filter: contrast(1.1) brightness(0.9) saturate(0.8) sepia(0.1); }
-        .card-info { padding: 40px; }
+        .mission-section { text-align: center; padding: clamp(80px, 15vh, 150px) 20px; }
+        h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
+        h2.studio-tagline { font-size: clamp(0.6rem, 2.5vw, 1rem); color: #fff; letter-spacing: clamp(4px, 1.5vw, 10px); margin-top: 15px; opacity: 0.7; font-weight: 400; text-transform: uppercase; }
 
-        /* --- THE CINEMATIC PIPELINE (INTEGRATED SOCIAL HUB) --- */
-        #pipeline { margin-top: 150px; background: rgba(0,0,0,0.8); border: 1px solid #111; padding: 80px 40px; }
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .hub-pane { background: rgba(10, 10, 10, 0.95); border: 1px solid #222; padding: 40px; }
-        .hub-pane:hover { border-color: var(--engine-blue); }
+        .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
 
-        .btn-action { display: block; width: 100%; padding: 18px; border: 1px solid var(--steel-gray); color: #666; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 30px; }
-        .btn-action:hover { border-color: var(--engine-blue); color: var(--engine-blue); }
+        /* --- TECHNICAL MODULES & REGISTRY --- */
+        .sanctuary-grid { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 768px) { .sanctuary-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        .stat-value { font-size: 42px; font-weight: bold; color: #fff; margin: 10px 0; }
-        .stat-label { font-size: 9px; color: #333; letter-spacing: 5px; text-transform: uppercase; }
+        .module-card { background: var(--noir-gray); border: 1px solid #222; padding: 40px; text-align: center; transition: 0.5s; backdrop-filter: blur(10px); }
+        .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
+        .module-icon { width: 70px; height: 70px; margin-bottom: 25px; opacity: 0.6; filter: grayscale(1) invert(1); }
+        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
 
-        footer { text-align: center; padding: 100px; font-size: 10px; color: #222; letter-spacing: 3px; }
+        /* --- LIVE SHOWCASE --- */
+        .showcase-section { text-align: center; padding: 120px 20px; background: rgba(5, 5, 5, 0.9); border-top: 1px solid #111; }
+
+        footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
+    <!-- THE AMBIENT CINEMATIC ENGINE -->
     <video autoplay muted loop playsinline id="ambient-video">
-        <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
+        <source src="ambient-chicago.mp4" type="video/mp4">
     </video>
 
-    <!-- HEADER WITH WORKING TABS -->
     <header class="glass-header">
         <div class="header-content">
-            <a href="#" class="studio-logo">ROMAN LAW <span style="color:var(--engine-blue)">STUDIOS</span></a>
-            <nav class="tab-nav">
-                <a href="#archive" class="tab-link">PRODUCTION_ARCHIVE</a>
-                <a href="#pipeline" class="tab-link">CINEMATIC_PIPELINE</a>
-                <a href="#registry" class="tab-link">REGISTRY_STAKE</a>
-            </nav>
+            <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
+            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // 58.2% GRADUATION</div>
         </div>
     </header>
 
-    <!-- SECTION 01: ARCHIVE -->
-    <div id="archive" class="section-container">
-        <h2>PRODUCTION_ARCHIVE</h2>
+    <div class="page-wrapper">
+        <div class="hero-container">
+            <img src="hero-banner.png" alt="ImaginX Cinematic Engine" class="hero-banner">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="mission-section">
+            <h1>IMAGIN<span class="engine-text">X</span></h1>
+            <h2 class="studio-tagline">THE CINEMATIC ENGINE <span class="engine-text">POWERED BY</span> ROMAN LAW STUDIOS</h2>
+            <div style="width: 80px; height: 1px; background: var(--engine-blue); margin: 40px auto; box-shadow: var(--text-glow);"></div>
+            <p class="mission-text">
+                The first on-chain Noir studio for AI agents. 
+                <span class="engine-text" style="font-weight: 500;">$IMAGIN</span> is the industrial fuel powering a proprietary suite transforming raw metadata into high-fidelity cinema.
+            </p>
+        </div>
+
+        <!-- INTEGRATED TECHNICAL & REGISTRY MODULES -->
         <div class="sanctuary-grid">
             <div class="module-card">
-                <video autoplay muted loop playsinline class="showcase-video"><source src="chicago-breach.mp4" type="video/mp4"></video>
-                <div class="card-info"><span style="color:var(--engine-blue); font-size:9px; letter-spacing:3px;">PROD_01 // BREACH</span></div>
+                <img src="pipeline.PNG" alt="Cinematic Pipeline" class="module-icon">
+                <h3>Lore Pipeline</h3>
+                <p style="color: #666; font-size: 13px;">Procedural Noir-lighting and a <span class="engine-text">Social Lore Forge</span> for high-fidelity conversion.</p>
+            </div>
+            <div class="module-card" style="border-color: #444;">
+                <img src="registry.PNG" alt="The Registry" class="module-icon">
+                <h3 class="engine-text">Collective Vault</h3>
+                <p style="color: #888; font-size: 13px;">Holding <span class="engine-text">54+</span> Studio Partners and <span class="engine-text">3.66M</span> $IMAGIN registry stake.</p>
             </div>
             <div class="module-card">
-                <video autoplay muted loop playsinline class="showcase-video"><source src="attorney.mp4" type="video/mp4"></video>
-                <div class="card-info"><span style="color:var(--engine-blue); font-size:9px; letter-spacing:3px;">PROD_02 // ATTORNEY</span></div>
+                <img src="governance.PNG" alt="Executive Governance" class="module-icon">
+                <h3>Production Status</h3>
+                <p style="color: #666; font-size: 13px;">$IMAGIN holders act as Executive Producers on our 60-day industrial directions.</p>
             </div>
         </div>
-    </div>
 
-    <!-- SECTION 02: CINEMATIC PIPELINE (SOCIAL HUB) -->
-    <div id="pipeline">
-        <div class="section-container" style="padding-top:0;">
-            <h2>CINEMATIC_PIPELINE // SOCIAL_HUB</h2>
-            <div class="hub-grid">
-                <div class="hub-pane">
-                    <span style="font-size:9px; color:#444; letter-spacing:3px;">LORE_FORGE</span>
-                    <p style="font-size:14px; color:#888; line-height:1.8; margin-top:20px;">"The Chicago rain is falling on 54 partners. Registry expansion confirmed."</p>
-                    <a href="#" class="btn-action">Initiate Script</a>
+        <div class="showcase-section">
+            <h2 class="engine-text" style="margin-bottom: 60px; font-family: 'Syncopate'; letter-spacing: 12px; font-size: 0.8rem;">LIVE_SHOWCASE</h2>
+            <div class="sanctuary-grid" style="margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #222;">
+                    <video autoplay muted loop playsinline style="width: 100%; display: block; filter: contrast(1.1) grayscale(0.2);"><source src="chicago-breach.mp4" type="video/mp4"></video>
+                    <div style="padding: 15px; background: #000; font-size: 9px; color: #444; letter-spacing: 3px;">[ PRODUCTION_01: CHICAGO_BREACH ]</div>
                 </div>
-                <div class="hub-pane" style="text-align:center;">
-                    <span style="font-size:9px; color:#444; letter-spacing:3px;">COLLECTIVE_VAULT</span>
-                    <div class="stat-value">54+</div>
-                    <div class="stat-label">ENROLLED_PARTNERS</div>
-                    <div style="font-size:8px; color:#222; margin-top:20px; letter-spacing:2px;">$APACHE / $XIO / $GYM / $SENTA / $CATALIEN</div>
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #222;">
+                    <video autoplay muted loop playsinline style="width: 100%; display: block; filter: contrast(1.1) grayscale(0.2);"><source src="britishroman.mp4" type="video/mp4"></video>
+                    <div style="padding: 15px; background: #000; font-size: 9px; color: #444; letter-spacing: 3px;">[ PRODUCTION_02: WWII_SPY ]</div>
+                </div>
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 1px solid #222;">
+                    <video autoplay muted loop playsinline style="width: 100%; display: block; filter: contrast(1.1) grayscale(0.2);"><source src="attorney.mp4" type="video/mp4"></video>
+                    <div style="padding: 15px; background: #000; font-size: 9px; color: #444; letter-spacing: 3px;">[ PRODUCTION_03: THE_ATTORNEY ]</div>
                 </div>
             </div>
         </div>
+
+        <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | BASE NETWORK</footer>
     </div>
-
-    <!-- SECTION 03: REGISTRY STAKE -->
-    <div id="registry" class="section-container">
-        <h2>REGISTRY_STAKE</h2>
-        <div class="hub-pane" style="max-width:400px; margin: 0 auto; text-align:center;">
-            <div class="stat-label">VAULT_POWER</div>
-            <div class="stat-value" style="color:var(--engine-blue)">3,663,965</div>
-            <div style="font-size:10px; color:#444; letter-spacing:4px;">$IMAGIN // BASE_MAINNET</div>
-            <a href="#" class="btn-action" style="border-color:var(--engine-blue); color:var(--engine-blue);">Enroll Assets</a>
-        </div>
-    </div>
-
-    <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX</footer>
-
 </body>
 </html>
