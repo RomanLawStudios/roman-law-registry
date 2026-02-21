@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMAGINX | ROMAN LAW STUDIOS // SANCTUARY</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <style>
         :root { --noir-black: #050505; --noir-gray: rgba(10, 10, 10, 0.9); --engine-blue: #00d2ff; --text-glow: 0 0 20px rgba(0, 210, 255, 0.7); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
         
@@ -30,11 +31,11 @@
         .hud-value { font-size: 38px; color: var(--engine-blue); font-family: 'Syncopate'; margin-bottom: 5px; font-weight: 700; filter: drop-shadow(var(--text-glow)); letter-spacing: -2px; }
 
         .hero-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        h1 { font-size: clamp(3rem, 12vw, 8rem); margin-bottom: 0px; font-family: 'Syncopate', sans-serif; letter-spacing: -5px; text-transform: uppercase; }
+        h1 { font-size: clamp(3.5rem, 15vw, 10rem); margin-bottom: 0px; font-family: 'Syncopate', sans-serif; letter-spacing: -8px; text-transform: uppercase; }
         .mission-text { max-width: 850px; margin: 40px auto 0; font-size: 1.2rem; line-height: 1.8; color: #888; font-weight: 300; }
 
         /* --- THE CINEMATIC SHOWCASE --- */
-        .showcase-container { max-width: 1400px; margin: -100px auto 100px; padding: 0 40px; position: relative; z-index: 10; }
+        .showcase-container { max-width: 1400px; margin: -150px auto 100px; padding: 0 40px; position: relative; z-index: 10; }
         .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .video-card { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid #111; overflow: hidden; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
         .video-card:hover { border-color: var(--engine-blue); transform: translateY(-10px); }
@@ -47,19 +48,20 @@
         .anthology-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
         .context-item { border-left: 1px solid #111; padding-left: 30px; }
         .time-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); letter-spacing: 3px; display: block; margin-bottom: 15px; }
+        .context-title { font-family: 'Syncopate'; font-size: 0.8rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
+        .context-text { font-size: 14px; color: #444; line-height: 2; font-weight: 300; }
 
-        /* --- TECHNICAL GRID --- */
-        .sanctuary-grid { max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .module-card { background: var(--noir-gray); border: 1px solid #222; padding: 40px; text-align: center; transition: 0.5s; backdrop-filter: blur(15px); text-decoration: none; color: inherit; }
-        .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
-        .module-icon { width: 60px; height: 60px; margin-bottom: 25px; opacity: 0.7; filter: grayscale(1) invert(1); }
+        /* --- THE COMMAND GATE (LINK TO NEXT PAGE) --- */
+        .command-gate { text-align: center; padding: 120px 20px; background: rgba(0,0,0,0.8); border-top: 1px solid #111; }
+        .gate-link { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 12px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 30px 100px; box-shadow: var(--text-glow); transition: 0.4s; display: inline-block; }
+        .gate-link:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 50px var(--engine-blue); }
 
-        footer { text-align: center; padding: 80px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
+        footer { text-align: center; padding: 60px; font-size: 10px; color: #222; letter-spacing: 5px; background: #000; }
     </style>
 </head>
 <body>
 
-    <!-- THE AMBIENT VIDEO (VERIFY FILENAME: ambient-chicago.mp4) -->
+    <!-- THE AMBIENT VIDEO (CHICAGO BACKDROP) -->
     <video autoplay muted loop playsinline id="ambient-video">
         <source src="ambient-chicago.mp4" type="video/mp4">
     </video>
@@ -67,7 +69,7 @@
     <header class="glass-header">
         <div class="header-content">
             <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // LIVE</div>
+            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // WORLDWIDE PREMIERE</div>
         </div>
     </header>
 
@@ -81,10 +83,10 @@
             </div>
 
             <h1>IMAGIN<span class="engine-text">X</span></h1>
-            <p class="mission-text">The first on-chain Noir studio for AI agents. Transforming raw metadata into high-fidelity cinema.</p>
+            <p class="mission-text">The world's first on-chain Noir studio. Powering the next generation of generative cinema.</p>
         </div>
 
-        <!-- SHOWCASE -->
+        <!-- THE CINEMATIC SHOWCASE (MAXIMUM EXPOSURE) -->
         <div class="showcase-container">
             <div class="video-grid">
                 <div class="video-card">
@@ -102,47 +104,34 @@
             </div>
         </div>
 
-        <!-- ANTHOLOGY CONTEXT -->
+        <!-- THE ROMAN ANTHOLOGY (MAXIMUM CONTEXT) -->
         <div class="anthology-section">
             <div class="anthology-grid">
                 <div class="context-item">
                     <span class="time-badge">CIRCA 1944</span>
-                    <h4 style="font-family:'Syncopate'; font-size:0.7rem;">THE SPY OF ROMAN LAW</h4>
-                    <p style="font-size:13px; color:#444; line-height:1.8;">British Spy disguised as a German Officer. Espionage is the only bridge.</p>
+                    <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
+                    <p class="context-text">Roman operating as a British Spy disguised as a German Officer. Navigating the shadows of the regime to save a nurse named Elaine.</p>
                 </div>
                 <div class="context-item">
                     <span class="time-badge">CIRCA 1952</span>
-                    <h4 style="font-family:'Syncopate'; font-size:0.7rem;">CHICAGO BREACH</h4>
-                    <p style="font-size:13px; color:#444; line-height:1.8;">A survivor in the rain-slicked streets. The war is over, but the breach has opened.</p>
+                    <h4 class="context-title">CHICAGO BREACH</h4>
+                    <p class="context-text">A survivor in the rain-slicked streets of Chicago. The war is over, but the breach has opened. A zombie apocalypse begins in the industrial heart of the North.</p>
                 </div>
                 <div class="context-item">
                     <span class="time-badge">PRESENT DAY: 2026</span>
-                    <h4 style="font-family:'Syncopate'; font-size:0.7rem;">THE ATTORNEY</h4>
-                    <p style="font-size:13px; color:#444; line-height:1.8;">A calm world. Roman navigates the legal complexities of a high-fidelity present.</p>
+                    <h4 class="context-title">THE ATTORNEY</h4>
+                    <p class="context-text">A calm world. A settled registry. Roman now lives as an attorney, navigating the legal complexities of a high-fidelity present day.</p>
                 </div>
             </div>
         </div>
 
-        <!-- TECHNICAL GRID (VERIFY FILENAMES: pipeline.PNG, governance.PNG, registry.PNG) -->
-        <div class="sanctuary-grid">
-            <a href="command.html" class="module-card">
-                <img src="pipeline.PNG" class="module-icon" alt="Forge">
-                <h3 style="font-family:'Syncopate'; font-size:0.7rem; color:var(--engine-blue);">LORE CREATION</h3>
-                <p style="color:#555; font-size:11px;">FUEL THE IMAGINX ENGINE. FORGE THE NARRATIVE.</p>
-            </a>
-            <div class="module-card" style="border-color: var(--engine-blue); box-shadow: var(--text-glow);">
-                <img src="governance.PNG" class="module-icon" alt="Butler" style="filter: grayscale(0) invert(0);">
-                <h3 style="font-family:'Syncopate'; font-size:0.7rem; color:var(--engine-blue);">BUTLER AGENT</h3>
-                <p style="color:#fff; font-size:11px;">LEAD PROTOCOL OFFICER. COORDINATING ACP JOBS.</p>
-            </div>
-            <div class="module-card">
-                <img src="registry.PNG" class="module-icon" alt="Registry">
-                <h3 style="font-family:'Syncopate'; font-size:0.7rem; color:var(--engine-blue);">54+ PARTNERS</h3>
-                <p style="color:#555; font-size:11px;">THE GLOBAL INDUSTRIAL NETWORK. COLLECTIVE POWER.</p>
-            </div>
+        <!-- THE COMMAND GATE (LINK TO LORE CREATION) -->
+        <div class="command-gate">
+            <a href="command.html" class="gate-link">ENTER THE COMMAND CONSOLE</a>
+            <p style="margin-top: 30px; font-size: 9px; color: #444; letter-spacing: 5px; text-transform: uppercase;">[ FORGE THE NARRATIVE // FUEL THE IMAGINX ENGINE ]</p>
         </div>
 
-        <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE</footer>
+        <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | BASE NETWORK</footer>
     </div>
 
     <script>
