@@ -37,15 +37,17 @@
 <body>
     <div class="bg-engine"></div>
 
-    <!-- THE FORGE ANIMATION OVERLAY (EXPLICIT ROUTING) -->
+     <!-- THE FORGE ANIMATION OVERLAY (SOVEREIGNTY UPDATE) -->
     <div id="forge-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(20px);">
         <img src="pipeline.PNG" class="forge-anvil" alt="Anvil" style="width: 120px; height: auto; margin-bottom: 30px; filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5)); animation: forge-thump 1s infinite;">
         <div id="status-text" class="forge-status" style="font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 6px; color: #00d2ff; margin-bottom: 20px; text-align: center;">STRIKING METADATA...</div>
         <div class="forge-progress-container" style="width: 300px; height: 4px; background: #111; border: 1px solid #222; position: relative;">
             <div id="forge-bar" style="width: 0%; height: 100%; background: #00d2ff; box-shadow: 0 0 15px rgba(0, 210, 255, 0.7); transition: 0.2s;"></div>
         </div>
-        <!-- EXPLICIT DESTINATION TEXT -->
-        <p style="font-size: 9px; color: #444; margin-top: 20px; letter-spacing: 4px; text-transform: uppercase;">[ Transmitting to the Roman Law Studios discord ]</p>
+        <!-- UPDATED DISCLAIMER TEXT -->
+        <p style="font-size: 8px; color: #666; margin-top: 30px; letter-spacing: 3px; max-width: 400px; line-height: 1.6; text-align: center; text-transform: uppercase;">
+            [ NOTICE: DIRECTOR LUCIEN IS A TEMPORARY AGENT ASSISTING WITH CONTENT CREATION UNTIL THE COMPLETION OF OUR PROPRIETARY IMAGINX RENDER AGENT. FULL ENGINE POTENTIAL IS CURRENTLY IN TRANSITION. ]
+        </p>
     </div>
     
     <div class="command-layout">
@@ -109,7 +111,6 @@
             overlay.style.display = 'flex';
 
             try {
-                // STRIKE 01: INITIALIZE
                 bar.style.width = '30%';
                 
                 const response = await fetch(webhookURL, {
@@ -122,18 +123,18 @@
                 });
 
                 if (response.ok) {
-                    // STRIKE 02: SIGNAL RECEIVED
                     bar.style.width = '70%';
                     status.innerText = "SIGNAL STABILIZED...";
                     
                     setTimeout(() => {
-                        // STRIKE 03: THE DIRECTOR'S WINK
                         bar.style.width = '100%';
                         status.innerText = "Classified Detail Received. Just kidding.";
                         
                         setTimeout(() => {
+                            // FINAL SOVEREIGNTY ALERT BEFORE REDIRECT
+                            alert("Classified Detail Received. Just kidding.\n\n[ PRODUCTION NOTE: DIRECTOR LUCIEN IS A TEMPORARY AGENT ASSISTING WITH CONTENT CREATION UNTIL WE BUILD AN AGENT OF OUR OWN TO FULLY UTILIZE THE POTENTIAL OF OUR ENGINE WITHOUT THE RELIANCE OF ANYONE ELSE. ]");
                             window.location.href = "index.html"; 
-                        }, 1800);
+                        }, 1000);
                     }, 1000);
                 }
             } catch (error) {
