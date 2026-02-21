@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200, initial-scale=1">
-    <title>IMAGINX | THE WRITER'S SANCTUARY // GHOST HUD</title>
+    <title>IMAGINX | THE WRITER'S SANCTUARY // UNBOUND</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Crimson+Pro:italic,wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { 
             --noir-black: #050505; 
             --engine-blue: #00d2ff; 
-            --warm-amber: rgba(255, 191, 0, 0.9); 
-            --ghost-glass: rgba(5, 5, 5, 0.4); /* HIGH TRANSPARENCY */
-            --amber-glow: 0 0 25px rgba(255, 191, 0, 0.3);
+            --warm-amber: #ffbf00; 
+            --text-glow: 0 0 10px rgba(0, 210, 255, 0.5);
+            --amber-glow: 0 0 15px rgba(255, 191, 0, 0.4);
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); 
         }
 
@@ -22,94 +22,102 @@
             font-family: 'Space Grotesk', sans-serif; 
             margin: 0; 
             padding: 0; 
-            overflow-x: auto; 
+            overflow: hidden; /* LOCKING THE SCREEN FOR FULL VISUAL FOCUS */
         }
         
-        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.03; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
 
-        #bg-visual { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: sepia(0.1) contrast(1.1) brightness(0.25) grayscale(0.3); }
-        .vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.9) 100%); z-index: 1; pointer-events: none; }
+        /* THE PROJECTOR: ZERO FILTER */
+        #bg-visual { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            z-index: -1; 
+            filter: brightness(0.4) contrast(1.1); /* LIGHT DARKENING FOR READABILITY ONLY */
+        }
 
-        .sanctuary-layout { display: flex; max-width: 1400px; margin: 60px auto; gap: 60px; padding: 0 40px; position: relative; z-index: 10; }
-        
-        /* --- GHOST HUD SIDEBAR --- */
-        .sidebar { flex: 0 0 380px; display: flex; flex-direction: column; gap: 40px; }
-        .module-box { 
-            background: var(--ghost-glass); 
-            border: 1px solid rgba(255, 191, 0, 0.1); 
-            padding: 40px; 
-            backdrop-filter: blur(15px); /* BLURS THE BACKGROUND WITHOUT BLOCKING IT */
+        /* FLOATING HUD LAYOUT */
+        .sanctuary-layout { 
+            display: flex; 
+            height: 100vh;
+            width: 100vw;
+            padding: 60px;
+            box-sizing: border-box;
             position: relative; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10; 
         }
-        .module-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--warm-amber), transparent); opacity: 0.5; }
 
-        h2 { font-family: 'Syncopate'; font-size: 0.65rem; letter-spacing: 6px; color: var(--warm-amber); margin-bottom: 30px; text-transform: uppercase; text-shadow: var(--amber-glow); }
+        /* --- LEFT HUD: MINIMALIST LOGS --- */
+        .sidebar { flex: 0 0 300px; display: flex; flex-direction: column; justify-content: space-between; }
+        .hud-module { background: transparent; border: none; padding: 0; }
+        
+        h2 { font-family: 'Syncopate'; font-size: 0.6rem; letter-spacing: 5px; color: var(--warm-amber); margin-bottom: 20px; text-transform: uppercase; text-shadow: var(--amber-glow); opacity: 0.8; }
 
-        /* --- GHOST MAIN WORKSPACE --- */
+        /* --- CENTER: THE WRITING LENS --- */
         .main-workspace { 
             flex: 1; 
-            background: var(--ghost-glass); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            padding: 60px; 
-            backdrop-filter: blur(25px); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            text-align: center;
         }
 
-        .desk-area { position: relative; margin-top: 40px; }
         .input-forge { 
-            width: 100%; 
-            background: rgba(0,0,0,0.3); 
-            border: 1px solid rgba(255, 191, 0, 0.2); 
-            padding: 35px; 
+            width: 800px; 
+            background: transparent; /* FULLY TRANSPARENT */
+            border: none;
+            border-bottom: 1px solid rgba(255, 191, 0, 0.3); /* MINIMAL UNDERLINE */
+            padding: 20px; 
             color: #fff; 
             font-family: 'Crimson Pro', serif; 
-            font-size: 22px; 
+            font-size: 28px; 
             font-style: italic; 
-            line-height: 1.8; 
-            margin-top: 10px; 
-            resize: none; 
+            line-height: 1.6; 
             outline: none; 
             box-sizing: border-box; 
             transition: 0.5s; 
-            border-radius: 2px; 
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
-        .input-forge:focus { border-color: var(--warm-amber); box-shadow: var(--amber-glow); background: rgba(0,0,0,0.5); }
+        .input-forge:focus { border-bottom-color: var(--warm-amber); }
         
         .btn-forge { 
-            display: block; width: 100%; padding: 25px; 
-            border: 1px solid var(--warm-amber); 
-            background: rgba(255, 191, 0, 0.05); 
-            color: var(--warm-amber); 
-            font-size: 9px; 
-            font-family: 'Syncopate'; 
-            letter-spacing: 6px; 
-            text-transform: uppercase; 
-            text-decoration: none; 
-            text-align: center; 
-            margin-top: 30px; 
-            cursor: pointer; 
-            transition: 0.4s; 
-            backdrop-filter: blur(5px);
+            margin-top: 40px;
+            background: transparent;
+            border: 1px solid var(--warm-amber);
+            color: var(--warm-amber);
+            font-family: 'Syncopate';
+            font-size: 9px;
+            letter-spacing: 8px;
+            padding: 20px 60px;
+            cursor: pointer;
+            transition: 0.4s;
+            text-shadow: var(--amber-glow);
+            box-shadow: inset 0 0 10px rgba(255,191,0,0.1);
         }
-        .btn-forge:hover { background: var(--warm-amber); color: #000; box-shadow: 0 0 40px var(--warm-amber); }
+        .btn-forge:hover { background: var(--warm-amber); color: #000; box-shadow: 0 0 30px var(--warm-amber); }
 
-        .case-file { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; margin-bottom: 40px; }
-        .file-badge { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); letter-spacing: 4px; display: block; margin-bottom: 12px; opacity: 0.8; }
-        .file-title { font-family: 'Syncopate'; font-size: 0.8rem; color: #fff; letter-spacing: 2px; margin-bottom: 15px; border-left: 2px solid var(--warm-amber); padding-left: 15px; }
-        .file-summary { font-size: 14px; color: #ccc; line-height: 2; font-weight: 300; font-family: 'Space Grotesk'; }
+        /* --- RIGHT HUD: ERA ARCHIVES --- */
+        .right-hud { flex: 0 0 300px; text-align: right; display: flex; flex-direction: column; gap: 40px; }
+        .archive-item { margin-bottom: 20px; opacity: 0.6; transition: 0.3s; }
+        .archive-item:hover { opacity: 1; }
+        .archive-year { font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); letter-spacing: 3px; display: block; margin-bottom: 5px; }
+        .archive-title { font-size: 11px; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
 
-        .return-link { display: block; margin-top: 60px; color: #555; font-size: 8px; text-decoration: none; letter-spacing: 6px; text-align: center; text-transform: uppercase; transition: 0.4s; font-family: 'Syncopate'; }
-        .return-link:hover { color: var(--warm-amber); letter-spacing: 9px; }
+        .return-link { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); font-family: 'Syncopate'; font-size: 8px; color: #444; text-decoration: none; letter-spacing: 10px; transition: 0.4s; }
+        .return-link:hover { color: var(--warm-amber); }
 
-        #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
+        #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
+    <!-- THE VISUAL IS THE ENTIRE EXPERIENCE -->
     <video autoplay muted loop playsinline id="bg-visual">
         <source src="CRAZY2.mp4" type="video/mp4">
     </video>
-    <div class="vignette"></div>
 
     <div id="forge-overlay">
         <div id="status-text" style="font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 12px; color: #ffbf00; margin-bottom: 40px;">STRIKING_THE_ANVIL...</div>
@@ -119,71 +127,57 @@
     </div>
     
     <div class="sanctuary-layout">
+        <!-- LEFT: SIGNAL LOGS -->
         <div class="sidebar">
-            <div class="module-box">
-                <h2>THE CREATOR'S ANVIL</h2>
-                <div style="text-align: center; padding: 20px 0;">
-                    <img src="pipeline.PNG" style="width: 70px; opacity: 0.4; filter: sepia(1) saturate(5) hue-rotate(-20deg);" alt="Forge">
-                </div>
-                <p style="font-size: 10px; color: #888; line-height: 2.2; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 300;">
-                    Fuel the ImaginX engine. Your words are the metadata that powers high-fidelity cinema. Drafting is forging.
-                </p>
-            </div>
-
-            <div class="module-box">
-                <h2>RECENT_LOGS</h2>
-                <div id="log-feed" style="font-size: 11px; color: #666; line-height: 2;">
-                    <div>[ SIGNAL_STABLE ]: Entry archived to 1952 Archive.</div>
-                    <div>[ SIGNAL_STABLE ]: Entry archived to 1944 Archive.</div>
-                    <div>[ SIGNAL_STABLE ]: Entry archived to 2026 Archive.</div>
+            <div class="hud-module">
+                <h2>SIGNAL_LOGS</h2>
+                <div style="font-size: 10px; color: #555; line-height: 2.5; letter-spacing: 1px;">
+                    [ 1944 ]: SYNC_ACTIVE<br>
+                    [ 1952 ]: SYNC_ACTIVE<br>
+                    [ 2026 ]: SYNC_ACTIVE
                 </div>
             </div>
-            
-            <a href="index.html" class="return-link">← EXIT SANCTUARY</a>
+            <div class="hud-module">
+                <img src="pipeline.PNG" style="width: 50px; opacity: 0.2;" alt="Icon">
+            </div>
         </div>
 
+        <!-- CENTER: THE WRITING LENS -->
         <div class="main-workspace">
-            <h2>THE WRITER'S SANCTUARY // DRAFTING ROOM</h2>
-            
-            <div class="desk-area">
-                <textarea id="loreInput" class="input-forge" rows="8" placeholder="Draft your script scrap here..."></textarea>
-                <button onclick="submitLore()" class="btn-forge">COMMIT TO THE ANTHOLOGY</button>
-            </div>
+            <textarea id="loreInput" class="input-forge" rows="3" placeholder="Begin the forge..."></textarea>
+            <button onclick="submitLore()" class="btn-forge">COMMIT TO ARCHIVE</button>
+        </div>
 
-            <div style="margin-top: 80px;">
-                <div class="case-file">
-                    <span class="file-badge">RECORD // 1944</span>
-                    <h3 class="file-title">THE SPY OF ROMAN LAW</h3>
-                    <p class="file-summary">Deep espionage in WWII Berlin. Navigation of high-stakes shadows to protect the sanctuary.</p>
+        <!-- RIGHT: ARCHIVE HUNTER -->
+        <div class="right-hud">
+            <div>
+                <h2>CASE_FILES</h2>
+                <div class="archive-item">
+                    <span class="archive-year">1944</span>
+                    <span class="archive-title">THE SPY PROTOCOL</span>
                 </div>
-
-                <div class="case-file">
-                    <span class="file-badge">RECORD // 1952</span>
-                    <h3 class="file-title">CHICAGO BREACH</h3>
-                    <p class="file-summary">The industrial North faces the undead. Leather, rain, and the survival of the greasers.</p>
+                <div class="archive-item">
+                    <span class="archive-year">1952</span>
+                    <span class="archive-title">CHICAGO BREACH</span>
                 </div>
-
-                <div class="case-file">
-                    <span class="file-badge">RECORD // 2026</span>
-                    <h3 class="file-title">THE ATTORNEY</h3>
-                    <p class="file-summary">A high-fidelity legal present. Building the registry on the foundations of the past.</p>
+                <div class="archive-item">
+                    <span class="archive-year">2026</span>
+                    <span class="archive-title">THE ATTORNEY</span>
                 </div>
             </div>
         </div>
+
+        <a href="index.html" class="return-link">EXIT_SANCTUARY</a>
     </div>
 
     <script>
         async function submitLore() {
             const loreText = document.getElementById('loreInput').value;
             if (!loreText) return;
-
-            const overlay = document.getElementById('forge-overlay');
-            const bar = document.getElementById('forge-bar');
-            overlay.style.display = 'flex';
-            bar.style.width = '100%';
-            
+            document.getElementById('forge-overlay').style.display = 'flex';
+            document.getElementById('forge-bar').style.width = '100%';
             setTimeout(() => {
-                alert("The Sanctuary has forged your script.\n\n[ DATA COMMITTED TO IMAGINX PIPELINE ]");
+                alert("The Anthology has accepted your scrap.");
                 window.location.href = "index.html"; 
             }, 1200);
         }
