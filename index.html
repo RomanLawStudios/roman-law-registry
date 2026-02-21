@@ -29,12 +29,12 @@
         .hero-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 10; }
         h1 { font-size: clamp(3.5rem, 15vw, 10rem); margin-bottom: 0px; font-family: 'Syncopate', sans-serif; letter-spacing: -8px; text-transform: uppercase; }
 
-        /* --- THE CINEMATIC SHOWCASE (ENHANCED Z-INDEX) --- */
+        /* --- THE CINEMATIC SHOWCASE --- */
         .showcase-container { max-width: 1400px; margin: -150px auto 100px; padding: 0 40px; position: relative; z-index: 500; }
         .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .video-card { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid #111; overflow: hidden; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
         .video-card:hover { border-color: var(--engine-blue); transform: translateY(-10px); }
-        .video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s; }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s; background: #000; }
         .video-card:hover video { opacity: 1; }
         .video-label { position: absolute; bottom: 20px; left: 20px; font-family: 'Syncopate'; font-size: 8px; letter-spacing: 4px; color: #fff; border-left: 2px solid var(--engine-blue); padding-left: 10px; z-index: 10; }
 
@@ -79,23 +79,23 @@
             <p style="max-width: 850px; margin: 40px auto 0; font-size: 1.2rem; line-height: 1.8; color: #888; font-weight: 300;">The world's first on-chain Noir studio. Powering the next generation of generative cinema.</p>
         </div>
 
-        <!-- SHOWCASE (RESTORED SIGNALS) -->
+        <!-- SHOWCASE (RESTORED MOTION) -->
         <div class="showcase-container">
             <div class="video-grid">
                 <div class="video-card">
-                    <video class="production-video" autoplay muted loop playsinline poster="pipeline.PNG">
+                    <video class="production-video" autoplay muted loop playsinline>
                         <source src="![](https://images.useotto.xyz/videos/1739501170757.mp4)" type="video/mp4">
                     </video>
                     <div class="video-label">CHICAGO BREACH // 1952</div>
                 </div>
                 <div class="video-card">
-                    <video class="production-video" autoplay muted loop playsinline poster="pipeline.PNG">
+                    <video class="production-video" autoplay muted loop playsinline>
                         <source src="![](https://images.useotto.xyz/videos/1739500645037.mp4)" type="video/mp4">
                     </video>
                     <div class="video-label">THE SPY // 1944</div>
                 </div>
                 <div class="video-card">
-                    <video class="production-video" autoplay muted loop playsinline poster="pipeline.PNG">
+                    <video class="production-video" autoplay muted loop playsinline>
                         <source src="![](https://images.useotto.xyz/videos/1739500732890.mp4)" type="video/mp4">
                     </video>
                     <div class="video-label">THE ATTORNEY // 2026</div>
@@ -132,15 +132,17 @@
     </div>
 
     <script>
-        // CRITICAL: PRODUCTION VIDEO SIGNAL WAKE-UP
-        window.addEventListener('load', () => {
+        // FORCED MOTION PROTOCOL
+        function forceSignal() {
             const videos = document.querySelectorAll('.production-video');
             videos.forEach(v => {
-                v.play().catch(e => {
-                    console.log("Production Signal Pending Interaction...");
+                v.play().catch(() => {
+                    // Signal interaction fallback
+                    document.addEventListener('click', () => v.play(), {once: true});
                 });
             });
-        });
+        }
+        window.addEventListener('load', forceSignal);
 
         function updateTreasury() {
             const auditedWeight = 1142.60; 
