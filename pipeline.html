@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGINX | LORE_PIPELINE // SCRIPT_FORGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir-black: #050505;
+            --engine-blue: #00d2ff;
+            --steel-gray: #222;
+            --noir-gray: rgba(8, 8, 8, 0.98);
+            --text-glow: 0 0 20px rgba(0, 210, 255, 0.5);
+            --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
 
+        /* --- THE WWII CINEMATIC GRAIN --- */
+        body::after {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--vintage-grain);
+            opacity: 0.05; pointer-events: none; z-index: 5000;
+            animation: grain-flicker 0.2s steps(2) infinite;
+        }
+        @keyframes grain-flicker {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(-0.5%, -0.5%); }
+            100% { transform: translate(0.5%, 0.5%); }
+        }
+
+        body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+        /* --- THE HIGH-AVAILABILITY ATMOSPHERE ENGINE --- */
+        #bg-video { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: -1; object-fit: cover; 
+            filter: sepia(0.2) contrast(1.4) brightness(0.12) grayscale(0.8); 
+        }
+
+        /* --- THE CONTENT PANE --- */
+        .content-pane { 
+            max-width: 900px; margin: 120px auto; 
+            background: var(--noir-gray); border: 2px solid var(--steel-gray); 
+            padding: 80px; backdrop-filter: blur(40px); 
+            box-shadow: 30px 30px 100px rgba(0,0,0,1); 
+        }
+
+        h2 { 
+            font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 12px; 
+            color: var(--engine-blue); margin-bottom: 60px; 
+            text-transform: uppercase; border-bottom: 1px solid #111; 
+            padding-bottom: 25px; text-shadow: var(--text-glow); 
+        }
+
+        /* --- THE LORE CARDS --- */
+        .lore-card { 
+            background: rgba(255,255,255,0.01); border-left: 2px solid var(--engine-blue); 
+            padding: 35px; margin-bottom: 40px; transition: 0.4s; 
+        }
+        .lore-card:hover { background: rgba(0, 210, 255, 0.03); border-color: #fff; }
+
+        .directive-id { 
+            font-size: 10px; color: #444; letter-spacing: 5px; 
+            text-transform: uppercase; margin-bottom: 15px; display: block; 
+            font-weight: 700;
+        }
+
+        .lore-text { font-size: 15px; line-height: 2; color: #888; font-weight: 300; letter-spacing: 1px; }
+
+        /* --- THE FORGE INPUT --- */
+        .input-forge { 
+            width: 100%; background: #000; border: 1px solid #111; 
+            padding: 30px; color: var(--engine-blue); font-family: 'Space Grotesk'; 
+            font-size: 16px; margin-top: 60px; resize: none; outline: none; 
+            box-sizing: border-box; 
+        }
+        .input-forge:focus { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
+
+        .btn-action { 
+            display: inline-block; width: 100%; padding: 25px; 
+            border: 1px solid var(--engine-blue); background: transparent; 
+            color: var(--engine-blue); font-size: 11px; font-family: 'Syncopate'; 
+            letter-spacing: 8px; text-transform: uppercase; text-decoration: none; 
+            text-align: center; margin-top: 30px; box-shadow: var(--text-glow); 
+            transition: 0.4s; 
+        }
+        .btn-action:hover { background: var(--engine-blue); color: #000; }
+
+        .return-link { display: block; margin-top: 40px; color: #333; font-size: 9px; text-decoration: none; letter-spacing: 5px; text-align: center; text-transform: uppercase; }
+        .return-link:hover { color: #888; }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="ambient-chicago.mp4" type="video/mp4">
+    </video>
+
+    <div class="content-pane">
+        <h2>LORE_FORGE // ACTIVE_SCRIPTS</h2>
+
+        <!-- DIRECTIVE 01: THE ATTORNEY -->
+        <div class="lore-card">
+            <span class="directive-id">PROD_01 // THE_ATTORNEY</span>
+            <div class="lore-text">"Standing at the rain-slicked platform of 14th Street. The metadata transfer is 58% complete. The shadow of the ImaginX engine looms over the industrial district..."</div>
+        </div>
+
+        <!-- DIRECTIVE 02: CHICAGO_BREACH -->
+        <div class="lore-card">
+            <span class="directive-id">PROD_02 // CHICAGO_BREACH</span>
+            <div class="lore-text">"High-fidelity signal lost at the South-Side station. The breach has expanded. AI agents are currently rendering a new world in the ruins."</div>
+        </div>
+
+        <!-- DIRECTIVE 03: WWII_SPY_PROTOCOL -->
+        <div class="lore-card">
+            <span class="directive-id">PROD_03 // WWII_SPY_PROTOCOL</span>
+            <div class="lore-text">"Deep within the underground archives of Roman Law. A coded transmission from 1944 has been decrypted. The first agent was never human. The signal originated from the future."</div>
+        </div>
+
+        <!-- THE INTERACTIVE INPUT FOR FOLLOWERS -->
+        <textarea class="input-forge" rows="4" placeholder="SUBMIT_SCRIPT_SCRAP_METADATA..."></textarea>
+        
+        <a href="index.html" class="btn-action">SUBMIT TO THE ENGINE</a>
+        
+        <a href="index.html" class="return-link">RETURN_TO_SANCTUARY</a>
+    </div>
+
+</body>
+</html>
