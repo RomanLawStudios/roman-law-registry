@@ -3,57 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | CREATORS_HUB // TERMINAL_V.02</title>
+    <title>IMAGINX | CREATORS_HUB // WWII_ARCHIVE_V.03</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --noir-black: #050505;
             --engine-blue: #00d2ff;
-            --text-glow: 0 0 15px rgba(0, 210, 255, 0.6);
-            --glass: rgba(12, 12, 12, 0.95);
+            --steel-gray: #444;
+            --noir-gray: rgba(10, 10, 10, 0.95);
+            --text-glow: 0 0 15px rgba(0, 210, 255, 0.4);
+            --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+
+        /* --- THE WWII CINEMATIC GRAIN (SYNCED WITH INDEX) --- */
+        body::after {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--vintage-grain);
+            opacity: 0.05; pointer-events: none; z-index: 5000;
+            animation: grain-flicker 0.2s steps(2) infinite;
+        }
+
+        @keyframes grain-flicker {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(-0.5%, -0.5%); }
+            100% { transform: translate(0.5%, 0.5%); }
         }
 
         body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- GLOBAL AMBIENT ENGINE BG --- */
-        #bg-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover; filter: brightness(0.15) blur(10px); }
+        /* --- GLOBAL AMBIENT VIDEO (WWII GRADING) --- */
+        #bg-video { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: -1; object-fit: cover; 
+            filter: sepia(0.2) contrast(1.3) brightness(0.15) grayscale(0.6); 
+        }
 
-        /* --- HUD TOP BAR --- */
-        .hud-header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 12px 0; z-index: 1000; text-align: center; backdrop-filter: blur(15px); }
-        .grad-bar { width: 300px; height: 3px; background: #222; margin: 8px auto 0; position: relative; overflow: hidden; }
+        /* --- THE INDUSTRIAL "IRON-SIGHT" HUD --- */
+        .hud-header { 
+            position: fixed; top: 0; left: 0; width: 100%; 
+            background: rgba(5, 5, 5, 0.9); border-bottom: 2px solid var(--steel-gray); 
+            padding: 15px 0; z-index: 1000; text-align: center; backdrop-filter: blur(15px); 
+        }
+        .grad-bar { width: 300px; height: 3px; background: #222; margin: 8px auto 0; overflow: hidden; border: 1px solid #111; }
         .grad-fill { width: 58.2%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); }
 
-        /* --- TERMINAL GRID --- */
-        .terminal-layout { max-width: 1400px; margin: 0 auto; padding: 100px 20px 60px; display: grid; grid-template-columns: 350px 1fr 300px; gap: 30px; height: calc(100vh - 160px); }
+        /* --- WWII GRID LAYOUT --- */
+        .terminal-layout { 
+            max-width: 1400px; margin: 0 auto; padding: 120px 25px 80px; 
+            display: grid; grid-template-columns: 350px 1fr 300px; gap: 40px; 
+            height: calc(100vh - 200px); 
+        }
         
-        .pane { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 4px; backdrop-filter: blur(25px); overflow-y: auto; scrollbar-width: none; }
+        .pane { 
+            background: var(--noir-gray); border: 1px solid var(--steel-gray); 
+            padding: 30px; backdrop-filter: blur(25px); overflow-y: auto; 
+            scrollbar-width: none; box-shadow: 20px 20px 60px rgba(0,0,0,0.8);
+        }
         .pane::-webkit-scrollbar { display: none; }
 
-        /* --- COMPONENTS --- */
-        .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px; margin-bottom: 25px; transition: 0.3s; }
+        /* --- WWII INDUSTRIAL COMPONENTS --- */
+        .card { 
+            background: rgba(255,255,255,0.02); border: 1px solid #222; 
+            padding: 25px; margin-bottom: 30px; transition: 0.5s; 
+        }
         .card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
         
-        .tag { font-size: 10px; color: var(--engine-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; font-weight: 700; }
-        .btn-action { display: block; width: 100%; padding: 15px; border: 1px solid var(--engine-blue); background: transparent; color: var(--engine-blue); font-size: 9px; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; cursor: pointer; }
-        .btn-action:hover { background: rgba(0, 210, 255, 0.1); }
+        .tag { 
+            font-size: 10px; color: #666; letter-spacing: 4px; 
+            text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 700; 
+        }
+        .btn-action { 
+            display: block; width: 100%; padding: 18px; 
+            border: 1px solid var(--steel-gray); background: transparent; 
+            color: #888; font-size: 10px; letter-spacing: 5px; 
+            text-transform: uppercase; text-decoration: none; text-align: center; 
+            margin-top: 25px; cursor: pointer; transition: 0.4s; 
+        }
+        .btn-action:hover { border-color: var(--engine-blue); color: var(--engine-blue); background: rgba(0, 210, 255, 0.05); }
 
-        h2 { font-family: 'Syncopate'; font-size: 0.75rem; letter-spacing: 6px; color: #444; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        h2 { 
+            font-family: 'Syncopate'; font-size: 0.75rem; letter-spacing: 8px; 
+            color: #555; margin-bottom: 35px; text-transform: uppercase; 
+            border-bottom: 1px solid var(--steel-gray); padding-bottom: 15px; 
+        }
 
-        .stat-value { font-size: 32px; font-weight: bold; letter-spacing: -1px; margin: 10px 0; }
-        .stat-label { font-size: 9px; color: #555; letter-spacing: 3px; text-transform: uppercase; }
+        .stat-value { font-size: 36px; font-weight: bold; letter-spacing: -2px; margin: 15px 0; color: #fff; }
+        .stat-label { font-size: 10px; color: #444; letter-spacing: 5px; text-transform: uppercase; }
 
-        /* --- RESPONSIVE FIX --- */
-        @media (max-width: 1100px) { .terminal-layout { grid-template-columns: 1fr; height: auto; } }
+        @media (max-width: 1200px) { .terminal-layout { grid-template-columns: 1fr; height: auto; } }
     </style>
 </head>
 <body>
 
+    <!-- WWII AMBIENT BACKGROUND -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
     </video>
 
+    <!-- IRON-SIGHT HEADER HUD -->
     <div class="hud-header">
-        <div style="font-size: 9px; letter-spacing: 4px; color: var(--engine-blue);">IMAGINX_ENGINE // GRADUATION_PROTOCOL: 58.2%</div>
+        <div style="font-size: 10px; letter-spacing: 5px; color: #666;">IMAGINX_ENGINE // ARCHIVE_PROTOCOL: 58.2%</div>
         <div class="grad-bar"><div class="grad-fill"></div></div>
     </div>
 
@@ -63,37 +113,37 @@
         <div class="pane">
             <h2>LORE_FORGE</h2>
             <div class="card">
-                <span class="tag">@DIRECTOR_3.6M // 04:22:01</span>
-                <p style="font-size: 13px; color: #bbb; line-height: 1.7;">"The Chicago rain is falling on the 54 Partner Assets today. The Registry is expanding."</p>
+                <span class="tag">@DIRECTOR_3.6M // BRIEFING</span>
+                <p style="font-size: 14px; color: #888; line-height: 1.8;">"The WWII Archive is now live. 54 Partner Assets have been cataloged in the Registry. The Chicago Breach continues."</p>
             </div>
-            <div class="card" style="opacity: 0.5;">
-                <span class="tag">@ANON_PRODUCER // 03:15:44</span>
-                <p style="font-size: 13px; color: #888;">"Enrolled my first $CATALIEN batch into the engine. Rendering now..."</p>
+            <div class="card" style="opacity: 0.4;">
+                <span class="tag">@ANON_SPY // INTEL</span>
+                <p style="font-size: 14px; color: #666;">"Registry stake confirmed. High-fidelity renders authorized for $IMAGIN holders."</p>
             </div>
             <button class="btn-action">Initiate Script Scrap</button>
         </div>
 
-        <!-- CENTER: ENGINE_ARCHIVE (THE GALLERY) -->
+        <!-- CENTER: WWII ENGINE ARCHIVE -->
         <div class="pane">
-            <h2>ENGINE_ARCHIVE</h2>
-            <div class="card" style="padding: 0; overflow: hidden; position: relative;">
-                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; display:block; filter: brightness(0.8);">
-                <div style="position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, #000); padding: 30px 20px 20px;">
-                    <span class="tag">MASTER_RENDER_01 // CHICAGO_BREACH</span>
+            <h2>WWII_ARCHIVE</h2>
+            <div class="card" style="padding: 0; overflow: hidden; border-color: #333;">
+                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; display:block; filter: sepia(0.3) grayscale(0.5) contrast(1.2);">
+                <div style="padding: 35px;">
+                    <span class="tag">RENDER_ID: 177147 // CHICAGO_NOIR</span>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 10px; color: #666; letter-spacing: 2px;">VIRTUALS_IO_CORE</span>
-                        <span style="font-family: 'Syncopate'; color: var(--engine-blue); font-size: 18px;">9.9</span>
+                        <span style="font-size: 11px; color: #444; letter-spacing: 3px;">INDUSTRIAL_GRADE</span>
+                        <span style="font-family: 'Syncopate'; color: var(--engine-blue); font-size: 20px;">9.9</span>
                     </div>
                 </div>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                 <div class="card" style="text-align: center;">
                     <div class="stat-value">54</div>
-                    <div class="stat-label">ENROLLED_ASSETS</div>
+                    <div class="stat-label">PARTNER_ASSETS</div>
                 </div>
                 <div class="card" style="text-align: center;">
-                    <div class="stat-value" style="color: var(--engine-blue);">7.86</div>
-                    <div class="stat-label">USDC_LIQUIDITY</div>
+                    <div class="stat-value" style="color: var(--engine-blue);">3.66M</div>
+                    <div class="stat-label">$IMAGIN_STAKE</div>
                 </div>
             </div>
             <button class="btn-action">Upload High-Fidelity Render</button>
@@ -102,26 +152,24 @@
         <!-- RIGHT: EXECUTIVE_HUD -->
         <div class="pane">
             <h2>EXECUTIVE_HUD</h2>
-            <div class="card" style="text-align: center; border-color: #333;">
-                <div class="stat-label">REGISTRY_STAKE</div>
-                <div class="stat-value">3,663,965</div>
-                <div style="font-size: 8px; color: var(--engine-blue); letter-spacing: 2px;">$IMAGIN // BASE_MAINNET</div>
+            <div class="card" style="text-align: center;">
+                <div class="stat-label">VAULT_LIQUIDITY</div>
+                <div class="stat-value" style="font-size: 28px;">7.86 USDC</div>
             </div>
-            <div class="card" style="text-align: center; border-color: #333;">
-                <div class="stat-label">TREASURY_POWER</div>
-                <div class="stat-value" style="font-size: 24px;">HIGH_FIDELITY</div>
-                <div style="font-size: 8px; color: #444; letter-spacing: 2px;">PARTNERS: 54 // SPY_ACTIVE</div>
+            <div class="card" style="text-align: center;">
+                <div class="stat-label">PRODUCTION_STATUS</div>
+                <div class="stat-value" style="font-size: 22px; color: var(--engine-blue);">SPY_ACTIVE</div>
             </div>
-            <a href="index.html" class="btn-action" style="border-color: #444; color: #666;">Return to Sanctuary</a>
-            <div style="margin-top: 40px; font-size: 9px; color: #333; line-height: 1.8; text-transform: uppercase;">
-                [ SYSTEM_DIRECTIVE ]: Enrollment is open for Artists and Writers. High-fidelity renders are being prioritized for the Chicago Breach Archive.
+            <a href="index.html" class="btn-action" style="border-color: #444;">Return to Sanctuary</a>
+            <div style="margin-top: 50px; font-size: 9px; color: #333; line-height: 2; text-transform: uppercase; letter-spacing: 3px;">
+                [ DIRECTIVE ]: Archive enrollment is open. High-fidelity renders are now being prioritized for the Chicago Breach and the WWII Cinematic Suite.
             </div>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX | BASE NETWORK
+        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX | 1942 INDUSTRIAL GRADE
     </footer>
 
 </body>
