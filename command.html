@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200, initial-scale=1">
-    <title>IMAGINX | THE WRITER'S SANCTUARY // ZERO-BUTTON</title>
+    <title>IMAGINX | THE WRITER'S SANCTUARY // COMPOSITION_HUB</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Crimson+Pro:italic,wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -14,79 +14,49 @@
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); 
         }
 
-        body { 
-            min-width: 1200px; 
-            background: var(--noir-black); 
-            color: white; 
-            font-family: 'Space Grotesk', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            overflow: hidden; 
-        }
-        
+        body { min-width: 1200px; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow: hidden; }
         body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.03; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
 
-        /* THE VISUAL: ABSOLUTE MASTER */
-        #bg-visual { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            z-index: -1; 
-            filter: brightness(0.5) contrast(1.1); 
-        }
+        #bg-visual { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.4) contrast(1.1); }
 
-        .sanctuary-layout { 
-            display: flex; 
-            height: 100vh;
-            width: 100vw;
-            padding: 60px;
-            box-sizing: border-box;
-            position: relative; 
-            z-index: 10; 
-        }
+        .sanctuary-layout { display: flex; height: 100vh; width: 100vw; padding: 60px; box-sizing: border-box; position: relative; z-index: 10; }
 
-        /* --- LEFT/RIGHT HUD: MINIMALIST METADATA --- */
+        /* HUD ELEMENTS: ANCHORED TO EDGES */
         .sidebar { flex: 0 0 300px; display: flex; flex-direction: column; justify-content: space-between; }
         .right-hud { flex: 0 0 320px; text-align: right; display: flex; flex-direction: column; justify-content: space-between; }
-        
-        h2 { font-family: 'Syncopate'; font-size: 0.55rem; letter-spacing: 5px; color: #444; margin-bottom: 20px; text-transform: uppercase; }
 
-        /* --- CENTER: FLOATING SCRIPT LENS --- */
-        .main-workspace { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-end; /* PUSHES WRITING TO THE BOTTOM */
-            padding-bottom: 100px;
+        /* THE COMPOSITION DESK: CENTERED & CLEAR */
+        .main-workspace { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .manuscript-box { 
+            width: 800px; 
+            background: rgba(0,0,0,0.2); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,191,0,0.05); 
+            padding: 60px; 
+            box-shadow: 0 30px 100px rgba(0,0,0,0.8);
+            text-align: left;
         }
 
         .input-forge { 
-            width: 900px; 
+            width: 100%; 
             background: transparent; 
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 20px; 
             color: #fff; 
             font-family: 'Crimson Pro', serif; 
-            font-size: 32px; 
+            font-size: 26px; 
             font-style: italic; 
-            line-height: 1.4; 
+            line-height: 1.6; 
             outline: none; 
+            resize: none;
             box-sizing: border-box; 
-            transition: 0.8s; 
-            text-shadow: 0 0 40px rgba(0,0,0,1);
-            text-align: center;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
-        .input-forge:focus { border-bottom-color: var(--warm-amber); }
-        .input-forge::placeholder { color: #222; letter-spacing: 2px; font-size: 18px; text-transform: uppercase; font-family: 'Syncopate'; font-style: normal; }
+        .input-forge::placeholder { color: #333; font-style: normal; font-family: 'Syncopate'; font-size: 14px; letter-spacing: 5px; text-transform: uppercase; }
 
-        .ghost-hint { margin-top: 20px; font-size: 8px; color: #222; letter-spacing: 5px; font-family: 'Syncopate'; text-transform: uppercase; }
+        .forge-command { margin-top: 40px; font-family: 'Syncopate'; font-size: 9px; color: var(--warm-amber); letter-spacing: 6px; text-transform: uppercase; border-top: 1px solid rgba(255,191,0,0.2); padding-top: 20px; opacity: 0.6; }
 
-        .return-link { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); font-family: 'Syncopate'; font-size: 8px; color: #222; text-decoration: none; letter-spacing: 12px; transition: 0.4s; }
+        .return-link { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); font-family: 'Syncopate'; font-size: 8px; color: #333; text-decoration: none; letter-spacing: 12px; transition: 0.4s; }
         .return-link:hover { color: var(--warm-amber); }
 
         #forge-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
@@ -106,24 +76,25 @@
     
     <div class="sanctuary-layout">
         <div class="sidebar">
-            <div style="font-size: 8px; color: #222; line-height: 3; letter-spacing: 2px; font-family: 'Syncopate';">
-                [ CORE ]: OPERATIONAL<br>
-                [ SYNC ]: STABLE
+            <div style="font-size: 8px; color: #222; letter-spacing: 2px; font-family: 'Syncopate';">
+                [ ENGINE ]: STANDBY<br>
+                [ BUFFER ]: EMPTY
             </div>
-            <img src="pipeline.PNG" style="width: 30px; opacity: 0.05;" alt="Icon">
+            <a href="archive.html" style="font-family: 'Syncopate'; font-size: 8px; color: var(--engine-blue); text-decoration: none; letter-spacing: 4px; border: 1px solid rgba(0,210,255,0.2); padding: 10px 20px;">VIEW_THE_ANTHOLOGY</a>
         </div>
 
         <div class="main-workspace">
-            <!-- NO BUTTONS. NO BOXES. JUST THE SCRIPT. -->
-            <textarea id="loreInput" class="input-forge" rows="1" placeholder="Type your vision..." onkeydown="handleForge(event)"></textarea>
-            <div class="ghost-hint">Press [ENTER] to Forge</div>
+            <div class="manuscript-box">
+                <textarea id="loreInput" class="input-forge" rows="6" placeholder="COMPOSING_NEW_ERA..." onkeydown="handleForge(event)"></textarea>
+                <div class="forge-command">CMD: [SHIFT + ENTER] TO IGNITE THE FORGE</div>
+            </div>
         </div>
 
         <div class="right-hud">
-            <div style="font-size: 8px; color: #222; text-align: right; letter-spacing: 4px; font-family: 'Syncopate';">
-                NOIR // OPTIONAL<br>
-                CYBER // READY<br>
-                MYTH // READY
+            <div style="font-size: 8px; color: #222; letter-spacing: 4px; font-family: 'Syncopate';">
+                STALLION_ENGAGED<br>
+                ZOMBIE_ENGAGED<br>
+                DRAGON_ENGAGED
             </div>
         </div>
 
@@ -131,9 +102,8 @@
     </div>
 
     <script>
-        // TRIGGER FORGE ON ENTER KEY
         function handleForge(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === 'Enter' && e.shiftKey) {
                 e.preventDefault();
                 submitLore();
             }
@@ -145,8 +115,8 @@
             document.getElementById('forge-overlay').style.display = 'flex';
             document.getElementById('forge-bar').style.width = '100%';
             setTimeout(() => {
-                alert("The Engine has consumed your vision.");
-                window.location.href = "index.html"; 
+                alert("The Engine has consumed your vision.\n\n[ PRODUCTION PROTOCOL: INITIALIZED ]");
+                window.location.href = "archive.html"; // REDIRECTS TO THE ARCHIVE AFTER FORGING
             }, 1200);
         }
     </script>
