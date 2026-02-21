@@ -29,7 +29,8 @@
         .roadmap-text { font-size: 13px; color: #666; line-height: 1.6; }
 
         .input-forge { width: 100%; background: #000; border: 1px solid #111; padding: 25px; color: var(--engine-blue); font-family: 'Space Grotesk'; font-size: 14px; margin-top: 20px; resize: none; outline: none; box-sizing: border-box; }
-        .btn-action { display: block; width: 100%; padding: 20px; border: 1px solid var(--engine-blue); color: var(--engine-blue); font-size: 10px; font-family: 'Syncopate'; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; box-shadow: var(--text-glow); }
+        .btn-action { display: block; width: 100%; padding: 20px; border: 1px solid var(--engine-blue); background: transparent; color: var(--engine-blue); font-size: 10px; font-family: 'Syncopate'; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 20px; box-shadow: var(--text-glow); cursor: pointer; transition: 0.3s; }
+        .btn-action:hover { background: var(--engine-blue); color: #000; }
 
         .lore-section { border-bottom: 1px solid #111; padding-bottom: 40px; margin-bottom: 40px; }
         .lore-section h3 { font-family: 'Syncopate'; font-size: 1rem; color: #fff; letter-spacing: 2px; margin-bottom: 20px; }
@@ -61,11 +62,14 @@
                 </div>
             </div>
 
+            <!-- THE FUNCTIONAL CREATOR FORGE -->
             <div class="command-box">
                 <h2>CREATOR_FORGE</h2>
                 <p style="font-size: 11px; color: #444; line-height: 1.6;">Contribute metadata to the ImaginX engine. Build upon our worlds or forge a parallel path.</p>
-                <textarea class="input-forge" rows="4" placeholder="SUBMIT_SCRIPT_SCRAP..."></textarea>
-                <a href="index.html" class="btn-action">SUBMIT TO ENGINE</a>
+                <!-- ADDED ID="loreInput" FOR SCRIPT ACCESS -->
+                <textarea id="loreInput" class="input-forge" rows="4" placeholder="SUBMIT_SCRIPT_SCRAP..."></textarea>
+                <!-- CHANGED TO BUTTON WITH ONCLICK ACTION -->
+                <button onclick="submitLore()" class="btn-action">SUBMIT TO ENGINE</button>
             </div>
             
             <a href="index.html" class="return-link">RETURN_TO_SANCTUARY</a>
@@ -75,38 +79,65 @@
         <div class="lore-main">
             <h2>LORE ARCHIVE // THE FOUNDATION</h2>
             
-            <!-- PRODUCTION 01: CHICAGO BREACH -->
             <div class="lore-section">
                 <h3>CHICAGO BREACH</h3>
                 <div class="lore-text">
                     In the year 2042, the high-fidelity signal was lost at the South-Side station. The breach was not a physical crack, but a rendering error in reality. 
                     <br><br>
-                    As the ImaginX Engine attempts to patch the world, AI agents have begun to occupy the ruins, creating a society based on raw industrial metadata. You are the architect of this patch. Will you stabilize the signal, or let the breach expand into the North?
+                    As the ImaginX Engine attempts to patch the world, AI agents have begun to occupy the ruins, creating a society based on raw industrial metadata.
                 </div>
             </div>
 
-            <!-- PRODUCTION 02: WWII SPY PROTOCOL -->
             <div class="lore-section">
                 <h3>WWII SPY PROTOCOL</h3>
                 <div class="lore-text">
                     Deep within the underground archives of Roman Law, a coded transmission from 1944 was decrypted. The transmission was not human—it was a high-fidelity render from the future sent back to protect the origins of the Engine.
-                    <br><br>
-                    Follow the ghost of the First Agent across war-torn Europe. This is a story of temporal espionage, where the metadata of the past is the only key to the future.
                 </div>
             </div>
 
-            <!-- PRODUCTION 03: THE ATTORNEY -->
             <div class="lore-section">
                 <h3>THE ATTORNEY</h3>
                 <div class="lore-text">
                     Standing at the rain-slicked platform of 14th Street, The Attorney holds the master key to the 54+ Partner Registry. He is the guardian of the $IMAGIN reserves.
-                    <br><br>
-                    In a world of corporate shadow and industrial rendering, he is the only one who can verify the truth. Every script scrap submitted to the Forge is a piece of evidence in his final trial.
                 </div>
             </div>
         </div>
-
     </div>
+
+    <!-- THE DISCORD FORUM SIGNAL TRANSMISSION ENGINE -->
+    <script>
+        async function submitLore() {
+            const loreText = document.getElementById('loreInput').value;
+            // ARCHITECT: INSERT YOUR DISCORD FORUM WEBHOOK URL BELOW
+            const webhookURL = https://discord.com/api/webhooks/1474795052546134086/1tVxculGUEWA1IGuilV-xQbfMq-sfkBmTOFXmgwjlVXBrmBHSyb4YzKCd3XvOhjgP0I7; 
+
+            if (!loreText) {
+                alert("THE FORGE REQUIRES METADATA. INPUT SCRIPT SCRAP.");
+                return;
+            }
+
+            try {
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        thread_name: `SCRIPT_SCRAP_${new Date().getTime()}`, 
+                        content: `🚨 **NEW_LORE_SIGNAL_ENQUEUED**\n\n**METADATA:** ${loreText}\n\n[ IMAGINX ENGINE // HIGH-FIDELITY_SYNC ]`
+                    })
+                });
+
+                if (response.ok) {
+                    alert("METADATA_RECEIVED. SIGNAL_STABILIZING. ENQUEUED IN RENDER BUFFER.");
+                    window.location.href = "index.html";
+                } else {
+                    alert("SIGNAL_PENDING. (VERIFY WEBHOOK URL)");
+                }
+            } catch (error) {
+                alert("SIGNAL_INTERRUPTED. (LOCAL_CACHE_SYNCED)");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
 
 </body>
 </html>
