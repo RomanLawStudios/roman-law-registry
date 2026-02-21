@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | ROMAN LAW STUDIOS // SANCTUARY</title>
+    <title>ImaginX | Roman Law Studios Sanctuary</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <style>
@@ -35,7 +35,6 @@
         .glass-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 15px 0; }
         .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .studio-logo { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 4px; font-size: clamp(0.7rem, 3vw, 1rem); color: #fff; text-decoration: none; }
-        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
         .engine-status-tag { font-size: clamp(6px, 2vw, 9px); letter-spacing: 2px; color: var(--engine-blue); border: 1px solid var(--engine-blue); padding: 4px 10px; box-shadow: var(--text-glow); text-transform: uppercase; }
 
         .page-wrapper { position: relative; z-index: 1; padding-top: 60px; }
@@ -51,35 +50,23 @@
         .ticker-text { font-size: 12px; color: #fff; letter-spacing: 4px; font-weight: 700; background: rgba(0, 210, 255, 0.1); padding: 8px 15px; display: inline-block; margin-top: 15px; text-transform: uppercase; border: 1px solid var(--engine-blue); box-shadow: var(--text-glow); }
 
         h1 { font-size: clamp(2.5rem, 12vw, 6rem); margin-bottom: 0px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
+        .engine-text { color: var(--engine-blue); text-shadow: var(--text-glow); }
         .mission-text { max-width: 850px; margin: 40px auto 0; font-size: clamp(1rem, 4.5vw, 1.4rem); line-height: 1.8; color: #888; font-weight: 300; letter-spacing: 1px; }
 
-        /* --- THE VIDEO GRID --- */
-        .showcase-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 768px) { .showcase-container { grid-template-columns: repeat(3, 1fr); } }
+        /* --- TECHNICAL GRID (RESTORED) --- */
+        .sanctuary-grid { max-width: 1200px; margin: 0 auto; padding: 80px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 768px) { .sanctuary-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        .video-card { background: #000; border: 1px solid #222; position: relative; aspect-ratio: 16/9; overflow: hidden; transition: 0.5s; }
-        .video-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
-        .video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .video-card:hover video { opacity: 1; }
-        .video-label { position: absolute; bottom: 15px; left: 15px; font-family: 'Syncopate'; font-size: 8px; color: #fff; letter-spacing: 3px; border-left: 2px solid var(--engine-blue); padding-left: 10px; }
+        .module-card { background: var(--noir-gray); border: 1px solid #222; padding: 40px; text-align: center; transition: 0.5s; backdrop-filter: blur(15px); text-decoration: none; color: inherit; display: block; }
+        .module-card:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
+        .module-icon { width: 60px; height: 60px; margin-bottom: 25px; opacity: 0.7; filter: grayscale(1) invert(1); }
 
-        /* --- THE ANTHOLOGY (LUMINESCENT) --- */
-        .anthology-grid { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr; gap: 40px; border-top: 1px solid #111; padding-top: 60px; }
-        @media (min-width: 768px) { .anthology-grid { grid-template-columns: repeat(3, 1fr); } }
-        .context-item { border-left: 1px solid #111; padding-left: 30px; }
-        .context-title { font-family: 'Syncopate'; font-size: 0.7rem; color: var(--engine-blue); text-shadow: var(--text-glow); letter-spacing: 2px; margin-bottom: 10px; }
-
-        /* --- THE WRITER'S GATEWAY --- */
-        .command-gate { text-align: center; padding: 100px 20px; }
-        .gate-link { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 10px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 25px 60px; box-shadow: var(--text-glow); transition: 0.4s; }
-        .gate-link:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 40px var(--engine-blue); }
-
+        .showcase-section { text-align: center; padding: 120px 20px; background: rgba(5, 5, 5, 0.9); border-top: 1px solid #111; }
         footer { text-align: center; padding: 80px 20px; font-size: 10px; color: #333; letter-spacing: 3px; background: #000; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
-    <!-- THE AMBIENT BACKDROP -->
     <video autoplay muted loop playsinline id="ambient-video">
         <source src="ambient-chicago.mp4" type="video/mp4">
     </video>
@@ -87,7 +74,7 @@
     <header class="glass-header">
         <div class="header-content">
             <a href="#" class="studio-logo">ROMAN LAW <span class="engine-text">STUDIOS</span></a>
-            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // LIVE</div>
+            <div class="engine-status-tag">IMAGINX ENGINE: ONLINE // 58.2%</div>
         </div>
     </header>
 
@@ -98,66 +85,97 @@
                 <div class="hud-value">54+</div>
                 <div class="hud-label">AIRDROP_TREASURY</div>
                 <div id="live-treasury" class="hud-value">$1,142.60</div>
+                <div class="hud-label">STARTUP_RESERVES</div>
+                <div class="ticker-text">$APACHEBOT / $XIO / $SENTA / $GYMBOT / $CATALIEN</div>
             </div>
 
             <h1>IMAGIN<span class="engine-text">X</span></h1>
-            <h2 class="studio-tagline" style="font-family:'Syncopate'; font-size: 0.8rem; letter-spacing: 4px; margin-top: 10px;">THE CINEMATIC ENGINE <span class="engine-text">BY</span> ROMAN LAW STUDIOS</h2>
+            <h2 class="studio-tagline">THE CINEMATIC ENGINE <span class="engine-text">POWERED BY</span> ROMAN LAW STUDIOS</h2>
             
+            <div style="width: 100px; height: 2px; background: var(--engine-blue); margin: 40px auto; box-shadow: var(--text-glow);"></div>
+
             <p class="mission-text">
                 The first on-chain Noir studio for AI agents. 
-                <span class="engine-text" style="font-weight: 500;">$IMAGIN</span> is the industrial fuel transforming raw metadata into high-fidelity cinema.
+                <span class="engine-text" style="font-weight: 500;">$IMAGIN</span> is the industrial fuel powering a proprietary suite transforming raw metadata into high-fidelity cinema.
             </p>
         </div>
 
-        <!-- THE VIDEO GRID -->
-        <div class="showcase-container">
-            <div class="video-card">
-                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739501170757.mp4)" type="video/mp4"></video>
-                <div class="video-label">CHICAGO BREACH // 1952</div>
-            </div>
-            <div class="video-card">
-                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500645037.mp4)" type="video/mp4"></video>
-                <div class="video-label">THE SPY // 1944</div>
-            </div>
-            <div class="video-card">
-                <video autoplay muted loop playsinline><source src="![](https://images.useotto.xyz/videos/1739500732890.mp4)" type="video/mp4"></video>
-                <div class="video-label">THE ATTORNEY // 2026</div>
-            </div>
+        <!-- CLEAN CINEMATIC MODULES (NO UNDERSCORES) -->
+        <div class="sanctuary-grid">
+            <!-- MODULE 01: LORE CREATION (FUSED SUPER-TAB) -->
+            <a href="command.html" class="module-card" style="border-color: var(--engine-blue); box-shadow: var(--text-glow);">
+                <img src="pipeline.PNG" alt="Lore Creation" class="module-icon">
+                <h3 class="engine-text" style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:4px;">LORE CREATION</h3>
+                <p style="color: #fff; font-size: 13px; line-height: 1.6;">Forge the narrative scripts for The Attorney, Chicago Breach, and WWII Spy Protocols.</p>
+            </a>
+            <!-- MODULE 02: RESERVED (WIP) -->
+            <a href="wip.html" class="module-card" style="border-color: #111; opacity: 0.6;">
+                <img src="registry.PNG" alt="Reserved" class="module-icon">
+                <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:3px; color: #333;">RESERVED</h3>
+                <p style="color: #222; font-size: 11px; line-height: 1.6;">STATUS: IN PROGRESS // FUTURE CONTENT SLOT</p>
+            </a>
+            <!-- MODULE 03: RESERVED (WIP) -->
+            <a href="wip.html" class="module-card" style="border-color: #111; opacity: 0.6;">
+                <img src="governance.PNG" alt="Reserved" class="module-icon">
+                <h3 style="font-family:'Syncopate'; font-size:0.8rem; letter-spacing:3px; color: #333;">RESERVED</h3>
+                <p style="color: #222; font-size: 11px; line-height: 1.6;">STATUS: IN PROGRESS // FUTURE CONTENT SLOT</p>
+            </a>
         </div>
 
-        <!-- THE ANTHOLOGY -->
-        <div class="anthology-grid">
-            <div class="context-item">
-                <span style="font-size:8px; color:var(--engine-blue); font-family:'Syncopate'; letter-spacing:2px; text-shadow: var(--text-glow);">CIRCA 1944</span>
-                <h4 class="context-title">THE SPY OF ROMAN LAW</h4>
-                <p style="font-size:13px; color:#666; line-height:1.8;">British Spy disguised as a German Officer. Espionage is the only bridge to survival.</p>
-            </div>
-            <div class="context-item">
-                <span style="font-size:8px; color:var(--engine-blue); font-family:'Syncopate'; letter-spacing:2px; text-shadow: var(--text-glow);">CIRCA 1952</span>
-                <h4 class="context-title">CHICAGO BREACH</h4>
-                <p style="font-size:13px; color:#666; line-height:1.8;">A survivor in the rain-slicked streets of Chicago. The war is over, but the breach has opened.</p>
-            </div>
-            <div class="context-item">
-                <span style="font-size:8px; color:var(--engine-blue); font-family:'Syncopate'; letter-spacing:2px; text-shadow: var(--text-glow);">PRESENT DAY: 2026</span>
-                <h4 class="context-title">THE ATTORNEY</h4>
-                <p style="font-size:13px; color:#666; line-height:1.8;">A calm world. Roman navigates the legal complexities of a high-fidelity present day.</p>
-            </div>
-        </div>
 
-        <!-- THE WRITER'S GATEWAY -->
-        <div class="command-gate">
-            <a href="command.html" class="gate-link">ENTER THE WRITER'S SANCTUARY</a>
-            <p style="margin-top: 40px; font-size: 8px; color: #222; letter-spacing: 10px; font-family:'Syncopate';">[ IMAGINX ENGINE // MASTER CUT ]</p>
+        <!-- UPSCALED IMAX CINEMATIC SHOWCASE -->
+        <div class="showcase-section" style="padding: 150px 0; background: #000; border-top: 1px solid #111;">
+            <h2 class="engine-text" style="margin-bottom: 80px; font-family: 'Syncopate'; letter-spacing: 20px; font-size: 1rem; text-align: center;">LIVE_SHOWCASE // INDUSTRIAL_RENDERS</h2>
+            
+            <div class="sanctuary-grid" style="max-width: 1400px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; padding: 0 40px;">
+                
+                <!-- PRODUCTION 01: CHICAGO BREACH (UPSCALED) -->
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid #111; transition: 0.6s;">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 500px; object-fit: cover; filter: contrast(1.1) grayscale(0.2);">
+                        <source src="chicago-breach.mp4" type="video/mp4">
+                    </video>
+                    <div style="padding: 20px; background: #050505; border-top: 1px solid #111; font-size: 10px; color: #444; letter-spacing: 4px; text-align: left;">
+                        [ PROD_01: CHICAGO_BREACH // RENDERING_ACTIVE ]
+                    </div>
+                </div>
+
+                <!-- PRODUCTION 02: WWII SPY (UPSCALED) -->
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid #111; transition: 0.6s;">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 500px; object-fit: cover; filter: contrast(1.1) grayscale(0.2);">
+                        <source src="britishroman.mp4" type="video/mp4">
+                    </video>
+                    <div style="padding: 20px; background: #050505; border-top: 1px solid #111; font-size: 10px; color: #444; letter-spacing: 4px; text-align: left;">
+                        [ PROD_02: WWII_SPY_PROTOCOL // ARCHIVE_UNLOCKED ]
+                    </div>
+                </div>
+
+                <!-- PRODUCTION 03: THE ATTORNEY (UPSCALED) -->
+                <div class="module-card" style="padding: 0; overflow: hidden; border: 2px solid #111; transition: 0.6s;">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 500px; object-fit: cover; filter: contrast(1.1) grayscale(0.2);">
+                        <source src="attorney.mp4" type="video/mp4">
+                    </video>
+                    <div style="padding: 20px; background: #050505; border-top: 1px solid #111; font-size: 10px; color: #444; letter-spacing: 4px; text-align: left;">
+                        [ PROD_03: THE_ATTORNEY // METADATA_SYNCED ]
+                    </div>
+                </div>
+            </div>
+            
+            <p style="color: #222; margin-top: 100px; font-size: 10px; letter-spacing: 10px; font-family: 'Syncopate'; text-align: center;">[ IMAGINX ENGINE // HIGH-FIDELITY_MASTER_CUT ]</p>
         </div>
 
         <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | BASE NETWORK</footer>
     </div>
 
     <script>
-        function updateTreasury() {
-            const auditedWeight = 1142.60; 
-            const flux = (Math.random() * 0.4) - 0.2;
-            document.getElementById('live-treasury').innerText = '$' + (auditedWeight + flux).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        async function updateTreasury() {
+            try {
+                const auditedWeight = 1142.60; 
+                const flux = (Math.random() * 0.5) - 0.25;
+                const finalValue = auditedWeight + flux;
+                document.getElementById('live-treasury').innerText = '$' + finalValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            } catch (error) {
+                document.getElementById('live-treasury').innerText = '$1,142.60';
+            }
         }
         setInterval(updateTreasury, 15000);
         updateTreasury();
