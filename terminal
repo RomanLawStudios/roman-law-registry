@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGINX | SOCIAL TERMINAL ARCHIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir-black: #050505;
+            --engine-blue: #00d2ff;
+            --text-glow: 0 0 15px rgba(0, 210, 255, 0.6);
+            --glass: rgba(12, 12, 12, 0.9);
+        }
+
+        body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+        /* --- GLOBAL AMBIENT VIDEO (SAFE LINK) --- */
+        #bg-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover; filter: brightness(0.2) blur(10px); }
+
+        /* --- HUD COMPONENTS --- */
+        .grad-hud { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); border-bottom: 1px solid var(--engine-blue); padding: 10px 0; z-index: 1000; text-align: center; }
+        .grad-bar { width: 300px; height: 3px; background: #222; margin: 8px auto 0; position: relative; overflow: hidden; }
+        .grad-fill { width: 58%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); }
+
+        .terminal-container { max-width: 1200px; margin: 0 auto; padding: 100px 20px 60px; position: relative; z-index: 10; }
+        
+        .pane-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .pane { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 4px; backdrop-filter: blur(20px); transition: 0.3s; }
+        .pane:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); }
+
+        .tag { font-size: 10px; color: var(--engine-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: block; }
+        .btn-action { display: block; width: 100%; padding: 12px; border: 1px solid var(--engine-blue); background: transparent; color: var(--engine-blue); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 15px; cursor: pointer; }
+
+        h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 4px; color: #555; margin-bottom: 25px; text-transform: uppercase; }
+        footer { text-align: center; padding: 60px; color: #444; font-size: 10px; border-top: 1px solid #111; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL ENGINE LINK (HIGH AVAILABILITY) -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
+    </video>
+
+    <div class="grad-hud">
+        <div style="font-size: 9px; letter-spacing: 3px; color: var(--engine-blue);">GRADUATION PROTOCOL: 58% COMPLETE</div>
+        <div class="grad-bar"><div class="grad-fill"></div></div>
+    </div>
+
+    <div class="terminal-container">
+        
+        <h2 style="color:var(--engine-blue); text-shadow: var(--text-glow);">THE_SOCIAL_REGISTRY // ARCHIVE_V.01</h2>
+
+        <div class="pane-grid">
+            
+            <!-- SCRIPTS -->
+            <div class="pane">
+                <span class="tag">Lore_Forge // Writers</span>
+                <div style="font-size: 13px; color: #bbb; line-height: 1.7; min-height: 100px;">
+                    "@DIRECTOR_3.6M: The rain didn't wash away the neon, it only made the shadows deeper. In the 3.6M Vault, some things are meant to stay buried."
+                </div>
+                <button class="btn-action">Submit Script Scrap</button>
+            </div>
+
+            <!-- RENDERS -->
+            <div class="pane">
+                <span class="tag">ImaginX_Gallery // Artists</span>
+                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; border-radius: 2px; margin-bottom: 10px; border: 1px solid #222;">
+                <div style="display: flex; justify-content: space-between; font-size: 10px;">
+                    <span style="color: #666;">MASTER_RENDER_01</span>
+                    <span style="color: var(--engine-blue); font-family: 'Syncopate';">9.9</span>
+                </div>
+                <button class="btn-action">Upload Render</button>
+            </div>
+
+            <!-- STATS -->
+            <div class="pane" style="text-align: center;">
+                <span class="tag">Executive_Dossier</span>
+                <div style="font-size: 30px; font-weight: bold; margin: 20px 0;">3.66M</div>
+                <div style="font-size: 9px; color: #555; letter-spacing: 3px; margin-bottom: 40px;">$IMAGIN_REGISTRY</div>
+                <a href="index.html" class="btn-action" style="border-color: #444; color: #666;">Return to Sanctuary</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE
+    </footer>
+
+</body>
+</html>
