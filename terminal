@@ -3,95 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGINX | SOCIAL TERMINAL ARCHIVE</title>
+    <title>IMAGINX | CREATORS HUB</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --noir-black: #050505;
-            --engine-blue: #00d2ff;
-            --text-glow: 0 0 15px rgba(0, 210, 255, 0.6);
-            --glass: rgba(12, 12, 12, 0.95);
-        }
-
-        body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
-
-        /* --- GLOBAL AMBIENT VIDEO (HIGH AVAILABILITY) --- */
-        #bg-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover; filter: brightness(0.2) blur(12px); }
-
-        /* --- GRADUATION HUD (TOP) --- */
-        .grad-hud { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding: 12px 0; z-index: 1000; text-align: center; backdrop-filter: blur(10px); }
-        .grad-bar { width: 300px; height: 3px; background: #222; margin: 8px auto 0; position: relative; overflow: hidden; border-radius: 2px; }
-        .grad-fill { width: 58%; height: 100%; background: var(--engine-blue); box-shadow: var(--text-glow); }
-
-        /* --- TERMINAL CONTENT --- */
-        .terminal-container { max-width: 1200px; margin: 0 auto; padding: 120px 20px 80px; position: relative; z-index: 10; }
+        body, html { margin: 0; padding: 0; background: #050505; color: #fff; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
         
-        .pane-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .pane { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 4px; backdrop-filter: blur(25px); transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
-        .pane:hover { border-color: var(--engine-blue); box-shadow: var(--text-glow); transform: translateY(-5px); }
+        /* --- HIGH-FIDELITY ENGINE BG --- */
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0, 210, 255, 0.05) 0%, #000 100%); z-index: -1; }
+        
+        /* --- HEADER HUD --- */
+        .hud-top { position: fixed; top: 0; left: 0; width: 100%; border-bottom: 1px solid rgba(0, 210, 255, 0.2); background: rgba(0,0,0,0.9); padding: 15px 0; z-index: 1000; text-align: center; backdrop-filter: blur(10px); }
+        .grad-bar { width: 250px; height: 2px; background: #222; margin: 8px auto 0; overflow: hidden; }
+        .grad-fill { width: 58%; height: 100%; background: #00d2ff; box-shadow: 0 0 10px #00d2ff; }
 
-        .tag { font-size: 10px; color: var(--engine-blue); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 700; }
-        .btn-action { display: block; width: 100%; padding: 15px; border: 1px solid var(--engine-blue); background: transparent; color: var(--engine-blue); font-size: 10px; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 25px; cursor: pointer; transition: 0.3s; }
-        .btn-action:hover { background: rgba(0, 210, 255, 0.1); box-shadow: var(--text-glow); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 120px 20px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .pane { border: 1px solid rgba(255,255,255,0.05); padding: 35px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); transition: 0.4s; }
+        .pane:hover { border-color: #00d2ff; transform: translateY(-5px); box-shadow: 0 0 20px rgba(0, 210, 255, 0.2); }
 
-        h2 { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 6px; color: #444; margin-bottom: 30px; text-transform: uppercase; }
-        footer { text-align: center; padding: 100px; color: #333; font-size: 10px; border-top: 1px solid #111; margin-top: 100px; letter-spacing: 3px; }
+        .tag { font-size: 9px; color: #00d2ff; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .btn { display: block; width: 100%; padding: 15px; border: 1px solid #00d2ff; color: #00d2ff; text-align: center; text-decoration: none; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; margin-top: 25px; transition: 0.3s; }
+        .btn:hover { background: rgba(0, 210, 255, 0.1); }
+
+        h1 { font-family: 'Syncopate'; font-size: 0.9rem; letter-spacing: 8px; color: #fff; text-transform: uppercase; margin-bottom: 60px; text-align: center; }
+        footer { text-align: center; padding: 80px; font-size: 9px; color: #333; letter-spacing: 3px; }
     </style>
 </head>
 <body>
-
-    <!-- HIGH-FIDELITY ATMOSPHERIC LINK -->
-    <video autoplay muted loop playsinline id="bg-video">
-        <source src="![](https://c2acdn-prod.s3.ap-southeast-1.amazonaws.com/699279c4f245c2ac0851a221/98553648-5226-448c-969f-07ef466fba0c.mp4)" type="video/mp4">
-    </video>
-
-    <!-- GRADUATION TRACKER (SYNCED WITH INDEX) -->
-    <div class="grad-hud">
-        <div style="font-size: 10px; letter-spacing: 4px; color: var(--engine-blue);">GRADUATION PROTOCOL: 58% COMPLETE</div>
+    <div class="bg-overlay"></div>
+    <div class="hud-top">
+        <div style="font-size: 9px; letter-spacing: 4px; color: #00d2ff;">REGISTRY_STATUS: 58% GRADUATION</div>
         <div class="grad-bar"><div class="grad-fill"></div></div>
     </div>
 
-    <div class="terminal-container">
+    <div class="container">
+        <h1>THE_CREATORS_HUB // V.01</h1>
         
-        <h2 style="color:var(--engine-blue); text-shadow: var(--text-glow); margin-bottom: 50px;">THE_CREATORS_HUB // ARCHIVE_V.01</h2>
-
-        <div class="pane-grid">
-            
-            <!-- SCRIPTS: LORE_FORGE -->
+        <div class="grid">
+            <!-- LORE FORGE -->
             <div class="pane">
                 <span class="tag">Lore_Forge // Writers</span>
-                <div style="font-size: 14px; color: #bbb; line-height: 1.8; min-height: 120px;">
-                    "@DIRECTOR_3.6M: The shadows are deeper tonight. The Chicago Breach is now active in the Registry. Writers, submit your script scraps for engine-processing."
-                </div>
-                <button class="btn-action">Initiate Script Scrap</button>
+                <p style="color: #888; font-size: 14px; line-height: 1.8;">"@DIRECTOR_3.6M: The Chicago Breach is live. Writers, submit your script scraps for engine-processing."</p>
+                <a href="#" class="btn">Initiate Script</a>
             </div>
 
-            <!-- RENDERS: IMAGINX_GALLERY -->
+            <!-- ENGINE ARCHIVE -->
             <div class="pane">
                 <span class="tag">ImaginX_Archive // Artists</span>
-                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; border-radius: 2px; margin-bottom: 15px; border: 1px solid rgba(0, 210, 255, 0.2);">
-                <div style="display: flex; justify-content: space-between; font-size: 11px;">
-                    <span style="color: #666; letter-spacing: 1px;">MASTER_RENDER_01</span>
-                    <span style="color: var(--engine-blue); font-family: 'Syncopate'; letter-spacing: 2px;">9.9</span>
-                </div>
-                <button class="btn-action">Upload Engine Render</button>
+                <img src="![](https://images.useotto.xyz/images/1771475958807.png)" style="width:100%; opacity: 0.8; border: 1px solid #222; margin-bottom: 10px;">
+                <a href="#" class="btn">Upload Render</a>
             </div>
 
             <!-- EXECUTIVE HUD -->
             <div class="pane" style="text-align: center;">
                 <span class="tag">Executive_Dossier</span>
-                <div style="font-size: 36px; font-weight: bold; margin: 25px 0; letter-spacing: -2px;">3,663,965</div>
-                <div style="font-size: 10px; color: #555; letter-spacing: 4px; margin-bottom: 40px;">$IMAGIN_REGISTRY_STAKE</div>
-                <a href="index.html" class="btn-action" style="border-color: #444; color: #666; font-size: 8px;">RETURN TO SANCTUARY</a>
+                <div style="font-size: 32px; font-weight: bold; margin: 20px 0;">3.66M</div>
+                <div style="font-size: 8px; color: #444; letter-spacing: 3px;">$IMAGIN_REGISTRY</div>
+                <a href="index.html" class="btn" style="border-color: #333; color: #666;">Return to Sanctuary</a>
             </div>
-
         </div>
-
     </div>
 
-    <footer>
-        &copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX ENGINE | BASE NETWORK
-    </footer>
-
+    <footer>&copy; 2026 ROMAN LAW STUDIOS | POWERED BY IMAGINX</footer>
 </body>
 </html>
