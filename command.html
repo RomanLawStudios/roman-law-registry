@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGINX | STUDIO_COMMAND</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --noir-black: #050505; --engine-blue: #00d2ff; --steel-gray: #222; --noir-gray: rgba(8, 8, 8, 0.98); --text-glow: 0 0 15px rgba(0, 210, 255, 0.4); --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png'); }
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.05; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
+        @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
+        body, html { margin: 0; padding: 0; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
+        .bg-engine { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.useotto.xyz/images/1771475958807.png'); background-size: cover; background-position: center; z-index: -1; filter: sepia(0.2) contrast(1.5) brightness(0.1) grayscale(0.8); }
+        .content-pane { max-width: 900px; margin: 100px auto; background: var(--noir-gray); border: 2px solid var(--steel-gray); padding: 60px; backdrop-filter: blur(40px); box-shadow: 30px 30px 100px rgba(0,0,0,1); }
+        h2 { font-family: 'Syncopate'; font-size: 0.7rem; letter-spacing: 12px; color: var(--engine-blue); margin-bottom: 50px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 25px; text-shadow: var(--text-glow); }
+        .lore-card { background: rgba(255,255,255,0.01); border-left: 2px solid var(--engine-blue); padding: 25px; margin-bottom: 25px; font-size: 13px; color: #888; }
+        .day-badge { font-size: 10px; color: var(--engine-blue); letter-spacing: 3px; font-weight: 700; margin-bottom: 5px; display: block; }
+        .roadmap-card { background: #000; padding: 20px; border: 1px solid #111; margin-bottom: 20px; }
+        .btn-action { display: block; width: 100%; padding: 25px; border: 1px solid var(--engine-blue); color: var(--engine-blue); font-size: 11px; font-family: 'Syncopate'; letter-spacing: 8px; text-transform: uppercase; text-decoration: none; text-align: center; margin-top: 50px; box-shadow: var(--text-glow); }
+    </style>
+</head>
+<body>
+    <div class="bg-engine"></div>
+    <div class="content-pane">
+        <h2>STUDIO_COMMAND // LORE_ARCHIVE</h2>
+        <div class="lore-card"><b>PROD_01:</b> "Standing at 14th Street station. Metadata transfer 58% complete."</div>
+        <div class="lore-card"><b>PROD_02:</b> "Chicago Breach expanding. Signal lost at South-Side station."</div>
+        <div class="lore-card"><b>PROD_03:</b> "WWII Spy Protocol. Decrypted 1944 signal: Agent was never human."</div>
+        
+        <h2 style="margin-top: 80px;">PRODUCTION_ROADMAP // 60_DAY</h2>
+        <div class="roadmap-card"><span class="day-badge">DAY 01-15</span> [ COMPLETED ]: Sanctuary & Industrial HUD initialized.</div>
+        <div class="roadmap-card" style="border-color: var(--engine-blue);"><span class="day-badge">DAY 16-30</span> [ ACTIVE ]: Super-Command Fused Architecture. Lore Expansion.</div>
+        <div class="roadmap-card" style="opacity:0.3;"><span class="day-badge">DAY 31-60</span> [ PENDING ]: Executive Premiere & Governance.</div>
+        
+        <a href="index.html" class="btn-action">RETURN_TO_SANCTUARY</a>
+    </div>
+</body>
+</html>
