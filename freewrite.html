@@ -68,6 +68,10 @@
         .btn-back { position: fixed; top: 40px; left: 40px; color: #444; text-decoration: none; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; z-index: 1000; }
         .btn-back:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
         .status-badge { position: absolute; top: 40px; right: 40px; font-family: 'IM Fell English SC'; font-size: 10px; color: #8c7e6d; letter-spacing: 2px; }
+        
+        .clear-ledger { text-align: center; margin-bottom: 40px; }
+        .btn-clear { background: transparent; border: 1px solid #333; color: #333; font-family: 'Space Grotesk'; font-size: 8px; padding: 5px 15px; cursor: pointer; letter-spacing: 2px; }
+        .btn-clear:hover { color: #f00; border-color: #f00; }
     </style>
 </head>
 <body>
@@ -85,6 +89,7 @@
 
     <div class="archive-container">
         <div class="archive-header">SCROLL_OF_THE_SHADOWS // RECENT_SIGNALS</div>
+        <div class="clear-ledger"><button class="btn-clear" onclick="clearLegacyLedger()">[ CLEAR_OLD_INK ]</button></div>
         <div id="liveArchive"></div>
     </div>
 
@@ -96,6 +101,14 @@
             toast.innerText = message;
             toast.classList.add('active');
             setTimeout(() => { toast.classList.remove('active'); }, 4000);
+        }
+
+        function clearLegacyLedger() {
+            if(confirm("Burn the old ledger and start the chronological era?")) {
+                localStorage.removeItem('roman_ledger');
+                loadArchive();
+                showSignalToast("LEDGER_CLEARED // STARTING_NEW_ERA");
+            }
         }
 
         async function commitToRegistry() {
@@ -117,7 +130,7 @@
                 });
             } catch(e) { console.log("Dispatch Delayed..."); }
 
-            // THE REGISTRY (Natural Order: push to the end)
+            // THE REGISTRY (PUSH for Chronological Order)
             const signal = { text: text, time: new Date().toLocaleString() };
             let history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
             history.push(signal); 
@@ -129,7 +142,9 @@
             showSignalToast("SIGNAL_LOCKED // DISPATCH_COMPLETE");
             
             // AUTO-SCROLL TO THE BOTTOM
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            setTimeout(() => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }, 100);
         }
 
         function loadArchive() {
@@ -141,7 +156,7 @@
                 return;
             }
 
-            // Render in Chronological Order (First entry at the top, last at the bottom)
+            // RENDER IN CHRONOLOGICAL ORDER (First at top, last at bottom)
             container.innerHTML = history.map(entry => `
                 <div class="story-entry">
                     "${entry.text}"
