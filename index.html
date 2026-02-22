@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- CRITICAL: LOCKING SCALE FOR DESKTOP FIDELITY ON MOBILE -->
     <meta name="viewport" content="width=1200, initial-scale=1">
     <title>ImaginX | Roman Law Studios Sanctuary</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
@@ -17,29 +16,9 @@
             --vintage-grain: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
 
-        /* FORCING DESKTOP CANVAS SIZE */
-        body { 
-            min-width: 1200px; 
-            background-color: var(--noir-black); 
-            color: #ffffff; 
-            font-family: 'Space Grotesk', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            overflow-x: auto; 
-        }
-
-        body::after {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: var(--vintage-grain);
-            opacity: 0.04; pointer-events: none; z-index: 5000;
-            animation: grain-flicker 0.2s steps(2) infinite;
-        }
-        @keyframes grain-flicker {
-            0% { transform: translate(0,0); }
-            50% { transform: translate(-0.5%, -0.5%); }
-            100% { transform: translate(0.5%, 0.5%); }
-        }
+        body { min-width: 1200px; background-color: var(--noir-black); color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: auto; }
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: var(--vintage-grain); opacity: 0.04; pointer-events: none; z-index: 5000; animation: grain-flicker 0.2s steps(2) infinite; }
+        @keyframes grain-flicker { 0% { transform: translate(0,0); } 50% { transform: translate(-0.5%, -0.5%); } 100% { transform: translate(0.5%, 0.5%); } }
 
         #ambient-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; filter: brightness(0.25) contrast(1.1) sepia(0.1); object-fit: cover; }
 
@@ -58,7 +37,6 @@
         h1 { font-size: 6rem; margin-bottom: 10px; filter: drop-shadow(var(--text-glow)); font-family: 'Syncopate', sans-serif; letter-spacing: -2px; text-transform: uppercase; }
         .mission-text { max-width: 900px; margin: 40px auto 0; font-size: 1.25rem; line-height: 2; color: #ffffff; font-weight: 400; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
-        /* --- THE SHOWCASE --- */
         .showcase-section { text-align: center; padding: 120px 20px; background: transparent; border-top: 1px solid rgba(255,255,255,0.05); }
         .video-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 0 40px; }
         .video-card { padding: 0; overflow: hidden; border: 1px solid #222; transition: 0.6s; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); position: relative; text-align: left; cursor: zoom-in; }
@@ -71,7 +49,6 @@
         .context-title { font-family: 'Syncopate'; font-size: 0.8rem; color: var(--engine-blue); text-shadow: var(--master-glow); letter-spacing: 2px; margin-bottom: 15px; }
         .context-text { font-size: 13px; color: #aaa; line-height: 1.8; font-weight: 300; }
 
-        /* IMAX OVERLAY */
         #imax-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center; }
         #imax-video { width: 100%; height: 100%; object-fit: contain; }
         .close-imax { position: absolute; top: 40px; right: 40px; color: #fff; font-family: 'Syncopate'; font-size: 10px; letter-spacing: 5px; cursor: pointer; border: 1px solid #fff; padding: 10px 20px; z-index: 10001; }
@@ -79,7 +56,6 @@
         .command-gate { text-align: center; padding: 100px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
         .gate-link { font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 10px; color: var(--engine-blue); text-decoration: none; border: 1px solid var(--engine-blue); padding: 30px 80px; box-shadow: var(--text-glow); transition: 0.4s; display: inline-block; background: rgba(0,210,255,0.05); backdrop-filter: blur(5px); }
 
-        /* SOCIAL PORTAL FOOTER (UPDATED CTA) */
         .social-footer { text-align: center; padding: 80px 20px; background: transparent; border-top: 1px solid rgba(255,255,255,0.05); }
         .teaser-cta { font-family: 'Space Grotesk'; font-size: 1.1rem; color: #888; letter-spacing: 2px; margin-bottom: 40px; font-weight: 300; line-height: 1.8; }
         .social-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
@@ -127,15 +103,7 @@
             <h2 class="engine-text" style="margin-bottom: 80px; font-family: 'Syncopate'; letter-spacing: 20px; font-size: 0.8rem; text-align: center;">INDUSTRIAL_RENDERS // CLICK TO IMMERSE</h2>
             
             <div class="video-grid">
-                <div class="video-card" onclick="openIMAX('chicago-breach.mp4')">
-                    <video class="prod-video" autoplay muted loop playsinline><source src="chicago-breach.mp4" type="video/mp4"></video>
-                    <div class="narrative-info">
-                        <span class="time-badge">CIRCA 1952</span>
-                        <h4 class="context-title">CHICAGO BREACH</h4>
-                        <p class="context-text">A leather-clad survivor in the rain-slicked streets of Chicago. The war is over, but the breach has opened.</p>
-                    </div>
-                </div>
-
+                <!-- 1: BRITISH SPY (1944) - NOW THE OPENING ACT -->
                 <div class="video-card" onclick="openIMAX('britishroman.mp4')">
                     <video class="prod-video" autoplay muted loop playsinline><source src="britishroman.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
@@ -145,6 +113,17 @@
                     </div>
                 </div>
 
+                <!-- 2: CHICAGO BREACH (1952) - NOW THE ESCALATION -->
+                <div class="video-card" onclick="openIMAX('chicago-breach.mp4')">
+                    <video class="prod-video" autoplay muted loop playsinline><source src="chicago-breach.mp4" type="video/mp4"></video>
+                    <div class="narrative-info">
+                        <span class="time-badge">CIRCA 1952</span>
+                        <h4 class="context-title">CHICAGO BREACH</h4>
+                        <p class="context-text">A leather-clad survivor in the rain-slicked streets of Chicago. The war is over, but the breach has opened.</p>
+                    </div>
+                </div>
+
+                <!-- 3: ATTORNEY (2026) - THE CONCLUSION -->
                 <div class="video-card" onclick="openIMAX('attorney.mp4')">
                     <video class="prod-video" autoplay muted loop playsinline><source src="attorney.mp4" type="video/mp4"></video>
                     <div class="narrative-info">
@@ -160,13 +139,14 @@
             <a href="command.html" class="gate-link">ENTER THE WRITER'S SANCTUARY</a>
         </div>
 
-        <!-- SOCIAL PORTAL (UPDATED WITH CTA) -->
         <div class="social-footer">
             <div class="teaser-cta">
-                Follow us for updates and teasers at:
+                Follow us for updates, or contribute to the legacy at:
             </div>
             <div class="social-links">
                 <a href="https://x.com/DeadChicag0" class="social-link" target="_blank">X (TWITTER)</a>
+                <!-- LINKED TO THE NEW COMMONS AREA -->
+                <a href="commons.html" class="social-link" style="border-color: #fff; color: #fff; text-shadow: none;">THE COMMONS (FREE_WRITE)</a>
                 <a href="https://discord.com/channels/1474792872573276434/1474792875341644099" class="social-link" target="_blank">DISCORD</a>
             </div>
         </div>
