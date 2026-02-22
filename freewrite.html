@@ -3,35 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200, initial-scale=1">
-    <title>IMAGINX | THE LIVE LEDGER // ROMAN LAW</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Crimson+Pro:italic,wght@400;600&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <title>IMAGINX | THE FREE WRITING LEDGER // ROMAN LAW</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Crimson+Pro:italic,wght@400;600&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
     <style>
-        :root { --noir-black: #050505; --parchment: #e8dfd1; --ink-blue: #1a2a3a; --warm-amber: #ffbf00; }
-        body { min-width: 1200px; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; }
-        
-        .ledger-container { max-width: 900px; margin: 60px auto; background: var(--parchment); padding: 80px; box-shadow: 0 0 100px rgba(0,0,0,1); min-height: 400px; position: relative; border: 1px solid #d4c4a8; }
-        .ledger-header { font-family: 'IM Fell English SC', serif; color: var(--ink-blue); text-align: center; border-bottom: 2px solid rgba(26, 42, 58, 0.1); padding-bottom: 20px; margin-bottom: 40px; letter-spacing: 8px; text-transform: uppercase; }
+        :root { 
+            --noir-black: #050505; 
+            --parchment: #e8dfd1; 
+            --ink-blue: #1a2a3a;
+            --engine-blue: #00d2ff;
+            --warm-amber: #ffbf00;
+            --text-glow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
 
-        .scribe-area { width: 100%; background: transparent; border: none; color: var(--ink-blue); font-family: 'Crimson Pro', serif; font-size: 22px; line-height: 1.8; outline: none; resize: none; min-height: 250px; }
-        
-        /* THE LIVE FEED SECTION */
-        .archive-container { max-width: 900px; margin: 0 auto 100px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .archive-header { font-family: 'Syncopate'; font-size: 10px; color: var(--warm-amber); letter-spacing: 5px; margin-bottom: 30px; text-align: center; opacity: 0.6; }
-        .story-entry { background: rgba(232, 223, 209, 0.05); border-left: 2px solid var(--warm-amber); padding: 25px; margin-bottom: 20px; font-family: 'Crimson Pro'; font-style: italic; font-size: 18px; color: #aaa; line-height: 1.6; }
-        .entry-meta { font-family: 'Space Grotesk'; font-size: 9px; color: var(--warm-amber); margin-top: 10px; letter-spacing: 2px; text-transform: uppercase; }
+        body { 
+            min-width: 1200px; 
+            background: var(--noir-black); 
+            color: white; 
+            font-family: 'Space Grotesk', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
 
-        .btn-commit { position: sticky; bottom: 40px; left: 50%; transform: translateX(-50%); padding: 20px 60px; background: rgba(0,0,0,0.8); border: 1px solid var(--warm-amber); color: var(--warm-amber); font-family: 'Space Grotesk'; font-size: 10px; letter-spacing: 5px; cursor: pointer; transition: 0.4s; backdrop-filter: blur(10px); z-index: 1000; }
-        .btn-commit:hover { background: var(--warm-amber); color: #000; box-shadow: 0 0 40px var(--warm-amber); }
-        .btn-back { position: fixed; top: 40px; left: 40px; color: #555; text-decoration: none; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; z-index: 1000; }
+        /* THE LEDGER VISUAL */
+        .ledger-container { 
+            max-width: 900px; 
+            margin: 80px auto 40px; 
+            background: var(--parchment); 
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            padding: 80px; 
+            box-shadow: 0 0 100px rgba(0,0,0,1), inset 0 0 50px rgba(0,0,0,0.1);
+            min-height: 400px;
+            position: relative;
+            border: 1px solid #d4c4a8;
+        }
+
+        .ledger-header { 
+            font-family: 'IM Fell English SC', serif; 
+            color: var(--ink-blue); 
+            text-align: center; 
+            border-bottom: 2px solid rgba(26, 42, 58, 0.1);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .scribe-area { 
+            width: 100%; 
+            background: transparent; 
+            border: none; 
+            color: var(--ink-blue); 
+            font-family: 'Crimson Pro', serif; 
+            font-size: 24px; 
+            line-height: 1.8; 
+            outline: none; 
+            resize: none;
+            min-height: 300px;
+        }
+        .scribe-area::placeholder { color: rgba(26, 42, 58, 0.3); font-style: italic; }
+
+        /* THE COMMIT BUTTON */
+        .btn-commit { 
+            display: block;
+            margin: 40px auto;
+            padding: 25px 80px; 
+            background: rgba(0,0,0,0.9); 
+            border: 1px solid var(--engine-blue); 
+            color: var(--engine-blue); 
+            font-family: 'Syncopate'; 
+            font-size: 10px; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: 0.4s; 
+            backdrop-filter: blur(10px);
+            box-shadow: var(--text-glow);
+        }
+        .btn-commit:hover { background: var(--engine-blue); color: #000; box-shadow: 0 0 40px var(--engine-blue); }
+
+        /* THE LIVE FEED ARCHIVE */
+        .archive-container { max-width: 1000px; margin: 0 auto 100px; padding: 60px 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .archive-header { font-family: 'Syncopate'; font-size: 10px; color: var(--engine-blue); letter-spacing: 10px; margin-bottom: 50px; text-align: center; opacity: 0.6; }
+        
+        .story-entry { 
+            background: rgba(255, 255, 255, 0.02); 
+            border-left: 3px solid var(--engine-blue); 
+            padding: 40px; 
+            margin-bottom: 30px; 
+            font-family: 'Crimson Pro'; 
+            font-size: 20px; 
+            color: #ccc; 
+            line-height: 1.8; 
+            transition: 0.3s;
+        }
+        .story-entry:hover { background: rgba(0, 210, 255, 0.03); border-left-width: 6px; }
+        .entry-meta { font-family: 'Space Grotesk'; font-size: 9px; color: var(--engine-blue); margin-top: 20px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; }
+
+        /* NOIR TOAST NOTIFICATION (THE FIX) */
+        #toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--engine-blue);
+            color: var(--engine-blue);
+            padding: 20px 50px;
+            font-family: 'Syncopate';
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.3);
+            backdrop-filter: blur(15px);
+            transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 10000;
+            pointer-events: none;
+        }
+        #toast.active { bottom: 50px; }
+
+        .btn-back { position: fixed; top: 40px; left: 40px; color: #444; text-decoration: none; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; z-index: 1000; }
+        .btn-back:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
+        .status-badge { position: absolute; top: 40px; right: 40px; font-family: 'IM Fell English SC'; font-size: 10px; color: #8c7e6d; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <a href="index.html" class="btn-back">[ RETURN_TO_STUDIO ]</a>
+    
+    <div id="toast">SIGNAL_LOCKED // DISPATCH_COMPLETE</div>
 
     <div class="ledger-container">
+        <div class="status-badge">REGISTRY: FREE_WRITE // UNLIMITED_INK</div>
         <h1 class="ledger-header">The Free Writing Ledger</h1>
-        <textarea id="freeInput" class="scribe-area" placeholder="The rain in Chicago never stops. Scribe your story here..."></textarea>
+        <textarea id="freeInput" class="scribe-area" placeholder="Scribe your vision. Any world. Any era. Any genre. The ink is free..."></textarea>
     </div>
 
     <button class="btn-commit" onclick="commitToRegistry()">COMMIT_TO_LEDGER</button>
@@ -47,36 +152,53 @@
         // LOAD EXISTING STORIES ON START
         window.onload = loadArchive;
 
+        function showSignalToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('active');
+            setTimeout(() => { toast.classList.remove('active'); }, 4000);
+        }
+
         async function commitToRegistry() {
             const text = document.getElementById('freeInput').value;
-            if(!text) return;
-
-            // 1. PUSH TO DISCORD (OPTIONAL WEBHOOK LOGIC)
-            // You can replace the URL below with your actual Discord Webhook URL
-            const discordWebhook = "https://discord.gg/RzNxCGSa"; 
-            if(discordWebhook !== "https://discord.gg/RzNxCGSa") {
-                fetch(discordWebhook, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content: `📜 **NEW SIGNAL IN THE LEDGER:**\n\n"${text}"\n\n*— Scribed at Roman Law Studios*` })
-                });
+            if(!text) {
+                showSignalToast("INKWELL_EMPTY // SCRIBE_A_VISION");
+                return;
             }
 
-            // 2. SAVE TO LOCAL STORAGE (FOR PERSISTENCE ON THIS DEVICE)
+            // 1. THE DISPATCH (Discord Webhook Logic)
+            const discordWebhook = "YOUR_DISCORD_WEBHOOK_URL_HERE"; 
+            if(discordWebhook !== "YOUR_DISCORD_WEBHOOK_URL_HERE") {
+                try {
+                    await fetch(discordWebhook, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ content: `📜 **NEW SIGNAL IN THE LEDGER:**\n\n"${text}"\n\n*— Scribed at Roman Law Studios*` })
+                    });
+                } catch(e) { console.log("Dispatch Delayed..."); }
+            }
+
+            // 2. THE REGISTRY (Local Storage)
             const signal = { text: text, time: new Date().toLocaleString() };
             let history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
             history.unshift(signal);
             localStorage.setItem('roman_ledger', JSON.stringify(history));
 
-            // 3. UI FEEDBACK
+            // 3. UI FEEDBACK (No misleading alerts)
             document.getElementById('freeInput').value = "";
-            alert("SIGNAL_LOCKED: Your ink has been shared with the city and the Discord dispatch.");
             loadArchive();
+            showSignalToast("SIGNAL_LOCKED // DISPATCH_COMPLETE");
         }
 
         function loadArchive() {
             const container = document.getElementById('liveArchive');
             const history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
+            
+            if(history.length === 0) {
+                container.innerHTML = `<div style="text-align:center; opacity:0.3; font-family:'Crimson Pro'; font-size:18px;">The ledger is empty. Be the first to strike the ink.</div>`;
+                return;
+            }
+
             container.innerHTML = history.map(entry => `
                 <div class="story-entry">
                     "${entry.text}"
