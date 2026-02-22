@@ -18,7 +18,7 @@
         body { min-width: 1200px; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
         .ledger-container { 
-            max-width: 900px; margin: 80px auto 40px; background: var(--parchment); 
+            max-width: 900px; margin: 80px auto 20px; background: var(--parchment); 
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
             padding: 80px; box-shadow: 0 0 100px rgba(0,0,0,1), inset 0 0 50px rgba(0,0,0,0.1);
             min-height: 400px; position: relative; border: 1px solid #d4c4a8;
@@ -26,14 +26,16 @@
 
         .ledger-header { 
             font-family: 'IM Fell English SC', serif; color: var(--ink-blue); text-align: center; 
-            border-bottom: 2px solid rgba(26, 42, 58, 0.1); padding-bottom: 20px; margin-bottom: 40px; 
+            border-bottom: 2px solid rgba(26, 42, 58, 0.1); padding-bottom: 20px; margin-bottom: 20px; 
             letter-spacing: 8px; text-transform: uppercase;
         }
+
+        .format-hud { text-align: center; font-family: 'Space Grotesk'; font-size: 8px; color: #8c7e6d; letter-spacing: 2px; margin-bottom: 30px; opacity: 0.6; }
 
         .scribe-area { 
             width: 100%; background: transparent; border: none; color: var(--ink-blue); 
             font-family: 'Crimson Pro', serif; font-size: 24px; line-height: 1.8; outline: none; 
-            resize: none; min-height: 300px;
+            resize: none; min-height: 350px; white-space: pre-wrap;
         }
         .scribe-area::placeholder { color: rgba(26, 42, 58, 0.3); font-style: italic; }
 
@@ -48,13 +50,16 @@
         .archive-container { max-width: 1000px; margin: 0 auto 100px; padding: 60px 40px; border-top: 1px solid rgba(255,255,255,0.05); }
         .archive-header { font-family: 'Syncopate'; font-size: 10px; color: var(--engine-blue); letter-spacing: 10px; margin-bottom: 50px; text-align: center; opacity: 0.6; }
         
+        /* THE STORY ENTRY (PRESERVES FORMATTING) */
         .story-entry { 
             background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--engine-blue); 
             padding: 40px; margin-bottom: 30px; font-family: 'Crimson Pro'; font-size: 20px; 
             color: #ccc; line-height: 1.8; transition: 0.3s;
+            white-space: pre-wrap; /* THIS PRESERVES YOUR LINE BREAKS */
+            word-wrap: break-word;
         }
         .story-entry:hover { background: rgba(0, 210, 255, 0.03); border-left-width: 6px; }
-        .entry-meta { font-family: 'Space Grotesk'; font-size: 9px; color: var(--engine-blue); margin-top: 20px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; }
+        .entry-meta { font-family: 'Space Grotesk'; font-size: 9px; color: var(--engine-blue); margin-top: 20px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
 
         #toast {
             position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
@@ -68,10 +73,8 @@
         .btn-back { position: fixed; top: 40px; left: 40px; color: #444; text-decoration: none; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; z-index: 1000; }
         .btn-back:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
         .status-badge { position: absolute; top: 40px; right: 40px; font-family: 'IM Fell English SC'; font-size: 10px; color: #8c7e6d; letter-spacing: 2px; }
-        
         .clear-ledger { text-align: center; margin-bottom: 40px; }
         .btn-clear { background: transparent; border: 1px solid #333; color: #333; font-family: 'Space Grotesk'; font-size: 8px; padding: 5px 15px; cursor: pointer; letter-spacing: 2px; }
-        .btn-clear:hover { color: #f00; border-color: #f00; }
     </style>
 </head>
 <body>
@@ -82,7 +85,10 @@
     <div class="ledger-container">
         <div class="status-badge">REGISTRY: FREE_WRITE // UNLIMITED_INK</div>
         <h1 class="ledger-header">The Free Writing Ledger</h1>
-        <textarea id="freeInput" class="scribe-area" placeholder="Scribe your vision. Any world. Any era. Any genre. The ink is free..."></textarea>
+        <div class="format-hud">[ USE DOUBLE_SPACE FOR NEW_PARAGRAPH // SHIFT+ENTER FOR LINE_BREAK ]</div>
+        <textarea id="freeInput" class="scribe-area" placeholder="Scribe your title here...
+
+Then your story below. Paragraphs will be preserved."></textarea>
     </div>
 
     <button class="btn-commit" onclick="commitToRegistry()">COMMIT_TO_LEDGER</button>
@@ -104,7 +110,7 @@
         }
 
         function clearLegacyLedger() {
-            if(confirm("Burn the old ledger and start the chronological era?")) {
+            if(confirm("Burn the old ledger and start the formatted era?")) {
                 localStorage.removeItem('roman_ledger');
                 loadArchive();
                 showSignalToast("LEDGER_CLEARED // STARTING_NEW_ERA");
@@ -125,23 +131,20 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        content: `📜 **NEW SIGNAL IN THE ROMAN LAW LEDGER:**\n\n"${text}"\n\n*— Scribed at the Sanctuary*` 
+                        content: `📜 **NEW FORMATTED SIGNAL IN THE LEDGER:**\n\n${text}\n\n*— Scribed at the Sanctuary*` 
                     })
                 });
             } catch(e) { console.log("Dispatch Delayed..."); }
 
-            // THE REGISTRY (PUSH for Chronological Order)
             const signal = { text: text, time: new Date().toLocaleString() };
             let history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
             history.push(signal); 
             localStorage.setItem('roman_ledger', JSON.stringify(history));
 
-            // UI FEEDBACK
             document.getElementById('freeInput').value = "";
             loadArchive();
             showSignalToast("SIGNAL_LOCKED // DISPATCH_COMPLETE");
             
-            // AUTO-SCROLL TO THE BOTTOM
             setTimeout(() => {
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }, 100);
@@ -156,12 +159,8 @@
                 return;
             }
 
-            // RENDER IN CHRONOLOGICAL ORDER (First at top, last at bottom)
             container.innerHTML = history.map(entry => `
-                <div class="story-entry">
-                    "${entry.text}"
-                    <div class="entry-meta">SCRIBED_AT: ${entry.time} // STATUS: LIVE_SIGNAL</div>
-                </div>
+                <div class="story-entry">${entry.text}<div class="entry-meta">SCRIBED_AT: ${entry.time} // STATUS: LIVE_SIGNAL</div></div>
             `).join('');
         }
     </script>
