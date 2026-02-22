@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1">
+    <title>IMAGINX | FREE WRITING // THE LEDGER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Crimson+Pro:italic,wght@400;600&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --noir-black: #050505; 
+            --parchment: #e8dfd1; 
+            --ink-blue: #1a2a3a;
+            --warm-amber: #ffbf00;
+        }
+
+        body { min-width: 1200px; background: var(--noir-black); color: white; font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* THE LEDGER VISUAL */
+        .ledger-container { 
+            max-width: 900px; 
+            margin: 100px auto; 
+            background: var(--parchment); 
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            padding: 100px; 
+            box-shadow: 0 0 100px rgba(0,0,0,1), inset 0 0 50px rgba(0,0,0,0.1);
+            min-height: 80vh;
+            position: relative;
+            border: 1px solid #d4c4a8;
+        }
+
+        .ledger-header { 
+            font-family: 'IM Fell English SC', serif; 
+            color: var(--ink-blue); 
+            text-align: center; 
+            border-bottom: 2px solid rgba(26, 42, 58, 0.1);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .scribe-area { 
+            width: 100%; 
+            background: transparent; 
+            border: none; 
+            color: var(--ink-blue); 
+            font-family: 'Crimson Pro', serif; 
+            font-size: 22px; 
+            line-height: 2; 
+            outline: none; 
+            resize: none;
+            min-height: 500px;
+        }
+        .scribe-area::placeholder { color: rgba(26, 42, 58, 0.3); font-style: italic; }
+
+        .btn-commit { 
+            position: fixed; bottom: 50px; right: 50px; 
+            padding: 20px 40px; background: transparent; border: 1px solid var(--warm-amber); 
+            color: var(--warm-amber); font-family: 'Space Grotesk'; font-size: 10px; letter-spacing: 4px; 
+            text-transform: uppercase; cursor: pointer; transition: 0.4s; backdrop-filter: blur(10px);
+        }
+        .btn-commit:hover { background: var(--warm-amber); color: #000; box-shadow: 0 0 30px var(--warm-amber); }
+
+        .btn-back { position: fixed; top: 40px; left: 40px; color: #555; text-decoration: none; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; }
+        .btn-back:hover { color: #fff; }
+
+        .status-badge { position: absolute; top: 40px; right: 40px; font-family: 'IM Fell English SC'; font-size: 10px; color: #8c7e6d; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="btn-back">[ RETURN_TO_STUDIO ]</a>
+    <div class="status-badge">REGISTRY: FREE_WRITE // UNLIMITED_INK</div>
+
+    <div class="ledger-container">
+        <h1 class="ledger-header">The Free Writing Ledger</h1>
+        <textarea id="freeInput" class="scribe-area" placeholder="The rain in Chicago never stops. Scribe your story here..."></textarea>
+    </div>
+
+    <button class="btn-commit" onclick="commitToRegistry()">COMMIT_TO_LEDGER</button>
+
+    <script>
+        function commitToRegistry() {
+            const text = document.getElementById('freeInput').value;
+            if(!text) return;
+            alert("Your Signal has been etched into the Ledger. Our Directors are watching.");
+            window.location.href = "index.html"; 
+        }
+    </script>
+</body>
+</html>
