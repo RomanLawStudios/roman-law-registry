@@ -104,7 +104,7 @@ Then your era below."></textarea>
             setTimeout(() => { toast.classList.add('fadeOut'); toast.classList.remove('active'); setTimeout(() => toast.classList.remove('fadeOut'), 600); }, 4000);
         }
 
-        async function commitToRegistry() {
+       async function commitToRegistry() {
             const text = document.getElementById('freeInput').value;
             if(!text) {
                 showSignalToast("INKWELL_EMPTY // SCRIBE_A_VISION");
@@ -113,15 +113,20 @@ Then your era below."></textarea>
 
             const discordWebhook = "https://discord.com/api/webhooks/1474966113875136767/G64t4_SOBOxXLx_9qhSeZH1CpLDuct_RZ4qpQBX6BFvlN7ZET31Wvh2rbsFCoYmz_tMp"; 
             
+            // THE DISPATCH (Using 'no-cors' to bypass browser restrictions)
             try {
-                await fetch(discordWebhook, {
+                const response = await fetch(discordWebhook, {
                     method: 'POST',
+                    mode: 'no-cors', // THIS IS THE SIGNAL BOOSTER
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         content: `📜 **NEW SIGNAL IN THE ROMAN LAW LEDGER:**\n\n${text}\n\n*— Scribed at the Sanctuary*` 
                     })
                 });
-            } catch(e) { console.log("Dispatch Delayed..."); }
+                console.log("Signal Dispatched to Discord HQ.");
+            } catch(e) { 
+                console.error("Dispatch Failed:", e); 
+            }
 
             const signal = { text: text, time: new Date().toLocaleString() };
             let history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
@@ -136,7 +141,6 @@ Then your era below."></textarea>
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }, 100);
         }
-
         function loadArchive() {
             const container = document.getElementById('liveArchive');
             const history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
