@@ -71,12 +71,17 @@
         .btn-back { position: fixed; top: 40px; left: 40px; color: #444; text-decoration: none; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; z-index: 1000; }
         .btn-back:hover { color: var(--engine-blue); text-shadow: var(--text-glow); }
         .status-badge { position: absolute; top: 40px; right: 40px; font-family: 'IM Fell English SC'; font-size: 10px; color: #8c7e6d; letter-spacing: 2px; }
+
+        /* THE RESET BUTTON UI */
+        .clear-ledger { text-align: center; margin-bottom: 40px; }
+        .btn-clear { background: transparent; border: 1px solid #333; color: #333; font-family: 'Space Grotesk'; font-size: 8px; padding: 5px 15px; cursor: pointer; letter-spacing: 2px; transition: 0.3s; }
+        .btn-clear:hover { color: #ff4444; border-color: #ff4444; }
     </style>
 </head>
 <body>
 
     <a href="index.html" class="btn-back">[ RETURN_TO_STUDIO ]</a>
-    <div id="toast">SIGNAL_LOCKED // DISPATCH_SENT</div>
+    <div id="toast">SIGNAL_LOCKED</div>
 
     <div class="ledger-container">
         <div class="status-badge">REGISTRY: FREE_WRITE // UNLIMITED_INK</div>
@@ -91,6 +96,9 @@ Then your era below."></textarea>
 
     <div class="archive-container">
         <div class="archive-header">SCROLL_OF_THE_SHADOWS // THE ANTHOLOGY</div>
+        <div class="clear-ledger">
+            <button class="btn-clear" onclick="clearLegacyLedger()">[ CLEAR_OLD_INK ]</button>
+        </div>
         <div id="liveArchive"></div>
     </div>
 
@@ -104,6 +112,15 @@ Then your era below."></textarea>
             setTimeout(() => { toast.classList.remove('active'); }, 4000);
         }
 
+        // THE RESET LOGIC
+        function clearLegacyLedger() {
+            if(confirm("Burn the current ledger entries and start fresh? This cannot be undone.")) {
+                localStorage.removeItem('roman_ledger');
+                loadArchive();
+                showSignalToast("LEDGER_PURGED // SLATE_IS_CLEAN");
+            }
+        }
+
         async function commitToRegistry() {
             const text = document.getElementById('freeInput').value;
             if(!text) {
@@ -111,24 +128,10 @@ Then your era below."></textarea>
                 return;
             }
 
-            // THE DISPATCH (Discord Webhook with Robust Fetch)
-            const discordWebhook = "https://discord.com/api/webhooks/1474966113875136767/G64t4_SOBOxXLx_9qhSeZH1CpLDuct_RZ4qpQBX6BFvlN7ZET31Wvh2rbsFCoYmz_tMp"; 
-            
-            try {
-                // We use a clean fetch without complex headers to avoid CORS Pre-flight blocks
-                fetch(discordWebhook, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        content: `📜 **NEW SIGNAL IN THE ROMAN LAW LEDGER:**\n\n${text}\n\n*— Scribed at the Sanctuary*` 
-                    })
-                });
-            } catch(e) { console.log("External Dispatch Blocked by Browser."); }
-
             // REGISTRY PERSISTENCE (Natural Chronological Order)
             const signal = { text: text, time: new Date().toLocaleString() };
             let history = JSON.parse(localStorage.getItem('roman_ledger') || "[]");
-            history.push(signal); // Push to the end of the array
+            history.push(signal); 
             localStorage.setItem('roman_ledger', JSON.stringify(history));
 
             // UI UPDATES
